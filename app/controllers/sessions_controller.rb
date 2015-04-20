@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     user = UsersRepository.new.from_auth(auth)
     reset_session
     session[:user_id] = user.id
+    session[:google_token] = auth["credentials"]["token"]
     redirect_to root_url, notice: "Signed in!"
   end
 

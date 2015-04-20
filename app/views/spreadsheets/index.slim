@@ -1,0 +1,19 @@
+h1 Select base spreadsheet
+
+table.table
+  thead
+    tr
+      th Id
+      th Title
+      th
+
+  tbody
+    - spreadsheets.each do |sheet|
+      tr
+        td
+          code= sheet.id
+        td = sheet.title
+        td
+          .btn-group
+            = link_to "Preview", sheet.human_url, class: 'btn btn-info', target: '_blank'
+            = link_to "Select", "#", class: 'btn btn-success'
