@@ -1,5 +1,6 @@
 # Reminders
 
+[![](https://img.shields.io/circleci/project/netguru/reminders.svg?style=flat-square)](https://circleci.com/gh/netguru/reminders)
 [![](http://img.shields.io/codeclimate/github/netguru/reminders.svg?style=flat-square)](https://codeclimate.com/github/netguru/reminders)
 [![](http://img.shields.io/codeclimate/coverage/github/netguru/reminders.svg?style=flat-square)](https://codeclimate.com/github/netguru/reminders)
 [![](http://img.shields.io/gemnasium/netguru/reminders.svg?style=flat-square)](https://gemnasium.com/netguru/reminders)
