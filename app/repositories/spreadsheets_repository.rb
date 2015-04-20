@@ -9,6 +9,10 @@ class SpreadsheetsRepository
     @all ||= google_session.spreadsheets.sort_by(&:title)
   end
 
+  def find(id)
+    google_session.file_by_id id
+  end
+
   private
 
   def init_google_session(access_token)

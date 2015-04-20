@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :reminders
-  resources :spreadsheets, only: [:index]
+  resources :spreadsheets, only: [:show, :index]
+
   root to: "visitors#index"
 
   get "/auth/:provider/callback" => "sessions#create"

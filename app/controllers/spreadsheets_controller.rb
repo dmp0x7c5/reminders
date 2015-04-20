@@ -5,4 +5,7 @@ class SpreadsheetsController < ApplicationController
   expose(:spreadsheets) do
     SpreadsheetDecorator.decorate_collection spreadsheets_repository.all
   end
+  expose(:spreadsheet) do
+    SpreadsheetDecorator.decorate spreadsheets_repository.find(params[:id])
+  end
 end

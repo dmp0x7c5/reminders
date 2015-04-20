@@ -16,4 +16,4 @@ table.table
         td
           .btn-group
             = link_to "Preview", sheet.human_url, class: 'btn btn-info', target: '_blank'
-            = link_to "Select", "#", class: 'btn btn-success'
+            = link_to "Select", spreadsheet_path(sheet.id), class: 'btn btn-success'
