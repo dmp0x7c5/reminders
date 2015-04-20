@@ -1,5 +1,5 @@
 class UsersRepository
-  def from_auth(_auth)
+  def from_auth(auth)
     User.where(
       provider: auth["provider"],
       uid: auth["uid"].to_s,
