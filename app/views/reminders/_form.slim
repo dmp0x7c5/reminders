@@ -1,0 +1,10 @@
+= simple_form_for(@reminder) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :interval
+    = f.input :source_url
+
+  .form-actions
+    = f.button :submit

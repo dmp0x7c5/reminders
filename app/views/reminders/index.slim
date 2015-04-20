@@ -1,0 +1,25 @@
+h1 Listing reminders
+
+table.table
+  thead
+    tr
+      th Name
+      th Interval
+      th Source url
+      th Actions
+
+  tbody
+    - @reminders.each do |reminder|
+      tr
+        td = reminder.name
+        td = reminder.interval
+        td = reminder.source_url
+        td
+          .btn-group
+            = link_to 'Show', reminder, class: 'btn btn-mini btn-success'
+            = link_to 'Edit', edit_reminder_path(reminder), class: 'btn btn-mini btn-primary'
+            = link_to 'Destroy', reminder, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-mini btn-danger'
+
+br
+
+= link_to 'New Reminder', new_reminder_path, class: 'btn btn-success'
