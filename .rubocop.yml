@@ -2,9 +2,7 @@ AllCops:
   Exclude:
     - 'bin/*'
     - 'db/**/*'
-    - 'config/**/*'
     - 'script/**/*'
-    - 'Gemfile'
     - 'Guardfile'
     - 'Rakefile'
 Documentation:
@@ -16,3 +14,7 @@ Style/TrailingComma:
   Enabled: true
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+Metrics/LineLength:
+  Enabled: true
+  Exclude:
+    - 'config/**/*'
