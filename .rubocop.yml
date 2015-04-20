@@ -1,10 +1,18 @@
 AllCops:
-  RunRailsCops: true
-  Include:
-    - '**/Gemfile'
-    - '**/Rakefile'
   Exclude:
-   - 'bin/*'
-   - 'db/seeds.rb'
-   - 'db/schema.rb'
-   - 'vendor/bundle/**/*'
+    - 'bin/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'Gemfile'
+    - 'Guardfile'
+    - 'Rakefile'
+Documentation:
+  Enabled: false
+SignalException:
+  Enabled: false
+Style/TrailingComma:
+  EnforcedStyleForMultiline: comma
+  Enabled: true
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
