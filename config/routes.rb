@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :projects
+  resources :projects, only: [:index] do
+    post :sync, on: :collection
+  end
   resources :reminders
 
   root to: "visitors#index"

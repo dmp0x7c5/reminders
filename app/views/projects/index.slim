@@ -1,0 +1,17 @@
+.row
+  .col-xs-12
+    h1 Listing projects
+
+    table.table
+      thead
+        tr
+          th Name
+
+      tbody
+        - projects.each do |project|
+          tr
+            td = project.name
+    br
+  .col-xs-12
+    = link_to "Sync projects with Slack", sync_projects_path, method: :post,
+      class: 'btn btn-primary', "data-confirm" => t('projects.sync.confirmation')

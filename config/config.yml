@@ -2,7 +2,8 @@ development: &default
   omniauth_provider_key: omniauth_provider_key
   omniauth_provider_secret: omniauth_provider_secret
   domain_name: example.com
-  secret_key_base: my-secret
+  secret_key_base: my_secret
+  slack_token: slack_token
 
 test:
   <<: *default
