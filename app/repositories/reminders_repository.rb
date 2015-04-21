@@ -19,5 +19,7 @@ class RemindersRepository
     entity.destroy
   end
 
-  delegate :find, to: :all
+  def find(id)
+    Reminder.find_by_id id
+  end
 end

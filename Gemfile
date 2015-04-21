@@ -27,6 +27,10 @@ group :development, :test do
   gem "web-console", "~> 2.0"
 end
 
+group :test do
+  gem "rspec-rails"
+end
+
 group :development do
   gem "better_errors"
   gem "bullet"
