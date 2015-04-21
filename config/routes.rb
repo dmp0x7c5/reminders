@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :reminders
-  resources :spreadsheets, only: [:show, :index]
 
   root to: "visitors#index"
 
