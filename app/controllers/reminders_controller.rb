@@ -1,75 +1,47 @@
 class RemindersController < ApplicationController
-  before_action :set_reminder, only: [:show, :edit, :update, :destroy]
-
-  # GET /reminders
-  # GET /reminders.json
-  def index
-    @reminders = Reminder.all
+  expose(:reminders_repository) { RemindersRepository.new }
+  expose(:reminders) do
+    ReminderDecorator.decorate_collection reminders_repository.all
   end
+  expose(:reminder) { reminders_repository.find(params[:id]) }
 
-  # GET /reminders/1
-  # GET /reminders/1.json
+  def index; end
+
   def show
+    self.reminder = ReminderDecorator.decorate(reminder)
   end
 
-  # GET /reminders/new
   def new
-    @reminder = Reminder.new
+    self.reminder = Reminder.new
   end
 
-  # GET /reminders/1/edit
-  def edit
-  end
+  def edit; end
 
-  # POST /reminders
-  # POST /reminders.json
   def create
-    @reminder = Reminder.new(reminder_params)
-
-    respond_to do |format|
-      if @reminder.save
-        format.html { redirect_to @reminder, notice: "Reminder was successfully created." }
-        format.json { render :show, status: :created, location: @reminder }
-      else
-        format.html { render :new }
-        format.json { render json: @reminder.errors, status: :unprocessable_entity }
-      end
+    self.reminder = Reminder.new reminder_attrs
+    if reminders_repository.create reminder
+      redirect_to reminder, notice: "Reminder was successfully created."
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /reminders/1
-  # PATCH/PUT /reminders/1.json
   def update
-    respond_to do |format|
-      if @reminder.update(reminder_params)
-        format.html { redirect_to @reminder, notice: "Reminder was successfully updated." }
-        format.json { render :show, status: :ok, location: @reminder }
-      else
-        format.html { render :edit }
-        format.json { render json: @reminder.errors, status: :unprocessable_entity }
-      end
+    if reminders_repository.update reminder
+      redirect_to reminder, notice: "Reminder was successfully updated."
+    else
+      render :edit
     end
   end
 
-  # DELETE /reminders/1
-  # DELETE /reminders/1.json
   def destroy
-    @reminder.destroy
-    respond_to do |format|
-      format.html { redirect_to reminders_url, notice: "Reminder was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    reminders_repository.delete reminder
+    redirect_to reminders_url, notice: "Reminder was successfully destroyed."
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_reminder
-    @reminder = Reminder.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def reminder_params
+  def reminder_attrs
     params.require(:reminder).permit(:name, :interval, :source_url)
   end
 end

@@ -2,14 +2,14 @@ p#notice = notice
 
 p
   strong Name:
-  = @reminder.name
+  = reminder.name
 p
   strong Interval:
-  = @reminder.interval
+  = reminder.interval
 p
   strong Source url:
-  = @reminder.source_url
+  = reminder.source_url
 
-= link_to 'Edit', edit_reminder_path(@reminder)
+= link_to 'Edit', edit_reminder_path(reminder)
 '|
 = link_to 'Back', reminders_path

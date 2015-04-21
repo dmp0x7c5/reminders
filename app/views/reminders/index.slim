@@ -9,7 +9,7 @@ table.table
       th Actions
 
   tbody
-    - @reminders.each do |reminder|
+    - reminders.each do |reminder|
       tr
         td = reminder.name
         td = reminder.interval
@@ -22,4 +22,4 @@ table.table
 
 br
 
-= link_to 'New Reminder', spreadsheets_path, class: 'btn btn-success'
+= link_to 'New Reminder', new_reminder_path, class: 'btn btn-success'
