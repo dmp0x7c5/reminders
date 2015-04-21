@@ -5,7 +5,6 @@ table.table
     tr
       th Name
       th Interval
-      th Source url
       th Actions
 
   tbody
@@ -13,7 +12,6 @@ table.table
       tr
         td = reminder.name
         td = reminder.interval
-        td = reminder.source_url
         td
           .btn-group
             = link_to 'Show', reminder, class: 'btn btn-mini btn-success'
