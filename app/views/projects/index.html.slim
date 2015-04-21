@@ -1,0 +1,13 @@
+.row
+  .col-xs-12
+    h1 Listing projects
+
+    table
+      thead
+        tr
+          th Name
+
+      tbody
+        - projects.each do |project|
+          tr
+            td = project.name
