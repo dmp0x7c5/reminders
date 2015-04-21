@@ -29,6 +29,7 @@ end
 
 group :test do
   gem "rspec-rails"
+  gem "codeclimate-test-reporter", require: nil
 end
 
 group :development do
