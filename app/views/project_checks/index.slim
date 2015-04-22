@@ -1,0 +1,19 @@
+.row
+  .col-xs-12
+    table.table
+      thead
+        tr
+          th Project
+          th Reminder
+          th Last check
+          th Checked now button
+      tbody
+        - checks.each do |check|
+          tr
+            td = check.project_name
+            td = check.reminder_name
+            td class="#{check.css_date_class}"
+              = check.last_check_date
+            td
+              = link_to "#", class: "btn btn-success btn-sm" do
+                i.glyphicon.glyphicon-ok

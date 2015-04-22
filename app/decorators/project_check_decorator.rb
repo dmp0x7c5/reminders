@@ -11,7 +11,11 @@ class ProjectCheckDecorator < Draper::Decorator
     if object.last_check_date.present?
       h.l object.last_check_date
     else
-      h.content_tag :span, "no checked yet", class: "label label-danger"
+      "not checked yet"
     end
+  end
+
+  def css_date_class
+    "warning" if object.last_check_date.nil?
   end
 end

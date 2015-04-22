@@ -1,12 +1,20 @@
-p#notice = notice
+.row
+  .col-lg-6
+    h1 = reminder.name
 
-p
-  strong Name:
-  = reminder.name
-p
-  strong Interval:
-  = reminder.interval
+    table.table
+      thead
+        tr
+          th Interval
+      tbody
+        tr
+          td
+            = reminder.interval
 
-= link_to 'Edit', edit_reminder_path(reminder)
-'|
-= link_to 'Back', reminders_path
+    .btn-group
+      = link_to "Edit", edit_reminder_path(reminder), class: "btn btn-info"
+      = link_to "Back", reminders_path, class: "btn btn-default"
+      = link_to '#', class: "btn btn-success" do
+        i.glyphicon.glyphicon-refresh
+        |  Sync missing projects
+= render template: "project_checks/index", locals: { checks: project_checks }
