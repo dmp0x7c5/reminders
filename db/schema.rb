@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421183320) do
+ActiveRecord::Schema.define(version: 20150422070737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "project_checks", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "reminder_id"
+    t.date     "last_check_date"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "project_checks", ["project_id"], name: "index_project_checks_on_project_id", using: :btree
+  add_index "project_checks", ["reminder_id"], name: "index_project_checks_on_reminder_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "name",       null: false
@@ -37,4 +48,6 @@ ActiveRecord::Schema.define(version: 20150421183320) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "project_checks", "projects"
+  add_foreign_key "project_checks", "reminders"
 end
