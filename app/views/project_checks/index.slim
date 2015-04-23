@@ -6,7 +6,7 @@
           th Project
           th Reminder
           th Last check
-          th Checked now button
+          th Check now?
       tbody
         - checks.each do |check|
           tr
@@ -15,5 +15,7 @@
             td class="#{check.css_date_class}"
               = check.last_check_date
             td
-              = link_to "#", class: "btn btn-success btn-sm" do
+              = link_to project_check_path(check), method: :put,
+                class: "btn btn-success btn-sm",
+                data: { disable_with: check.css_disabled_state } do
                 i.glyphicon.glyphicon-ok
