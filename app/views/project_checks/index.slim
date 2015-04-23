@@ -4,14 +4,12 @@
       thead
         tr
           th Project
-          th Reminder
           th Last check
           th Check now?
       tbody
         - checks.each do |check|
           tr
             td = check.project_name
-            td = check.reminder_name
             td class="#{check.css_date_class}"
               = check.last_check_date
             td

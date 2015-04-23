@@ -4,7 +4,7 @@ class ProjectChecksRepository
   end
 
   def for_reminder(reminder)
-    all.includes(:project, :reminder).where(reminder_id: reminder.id)
+    all.includes(:project, :reminder).where(reminder_id: reminder.id).order("projects.name")
   end
 
   def create(attrs)

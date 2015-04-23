@@ -5,10 +5,6 @@ class ProjectCheckDecorator < Draper::Decorator
     object.project.name
   end
 
-  def reminder_name
-    object.reminder.name
-  end
-
   def last_check_date
     if object.last_check_date.present?
       h.l object.last_check_date
