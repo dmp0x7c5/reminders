@@ -7,6 +7,10 @@ class ProjectChecksRepository
     all.includes(:project, :reminder).where(reminder_id: reminder.id)
   end
 
+  def create(attrs)
+    ProjectCheck.create attrs
+  end
+
   def find(id)
     all.find_by_id id
   end

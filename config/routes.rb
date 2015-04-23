@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     post :sync, on: :collection
   end
   resources :project_checks, only: [:update]
-  resources :reminders
+  resources :reminders do
+    post :sync_projects
+  end
 
   root to: "visitors#index"
 

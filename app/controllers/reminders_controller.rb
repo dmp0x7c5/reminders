@@ -22,6 +22,12 @@ class RemindersController < ApplicationController
 
   def edit; end
 
+  def sync_projects
+    reminder = reminders_repository.find params[:reminder_id]
+    Reminders::SyncProjects.new(reminder).call
+    redirect_to reminder, notice: "Projecets have been synchronized."
+  end
+
   def create
     self.reminder = Reminder.new reminder_attrs
     if reminders_repository.create reminder
