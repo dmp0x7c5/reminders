@@ -38,6 +38,7 @@ class RemindersController < ApplicationController
   end
 
   def update
+    reminder.assign_attributes reminder_attrs
     if reminders_repository.update reminder
       redirect_to reminder, notice: "Reminder was successfully updated."
     else
@@ -53,6 +54,6 @@ class RemindersController < ApplicationController
   private
 
   def reminder_attrs
-    params.require(:reminder).permit(:name, :interval)
+    params.require(:reminder).permit(:name, :interval, :valid_for_n_days)
   end
 end
