@@ -10,7 +10,8 @@ table.table
   tbody
     - reminders.each do |reminder|
       tr
-        td = reminder.name
+        td
+          = link_to reminder.name, reminder_path(reminder)
         td = reminder.interval
         td
           .btn-group

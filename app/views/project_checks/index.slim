@@ -15,5 +15,5 @@
             td
               = link_to project_check_path(check), method: :put,
                 class: "btn btn-success btn-sm",
-                data: { disable_with: check.css_disabled_state } do
+                data: { confirm: "Are you sure?", disable_with: check.css_disabled_state } do
                 i.glyphicon.glyphicon-ok
