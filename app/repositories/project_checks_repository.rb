@@ -9,8 +9,12 @@ class ProjectChecksRepository
       .order("projects.name")
   end
 
-  def create(attrs)
-    ProjectCheck.create attrs
+  def create(reminder)
+    persist reminder
+  end
+
+  def persist(reminder)
+    reminder.save
   end
 
   def find(id)

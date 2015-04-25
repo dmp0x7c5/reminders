@@ -11,8 +11,8 @@ module Reminders
 
     def call
       missing_projects.each do |project|
-        project_checks_repository.create(project_id: project.id,
-                                         reminder_id: reminder.id)
+        pc = ProjectCheck.new project_id: project.id, reminder_id: reminder.id
+        project_checks_repository.create pc
       end
     end
 
