@@ -22,7 +22,7 @@ module Reminders
 
     def format_remind_after_days(reminder_attrs)
       days = reminder_attrs[:remind_after_days] || ""
-      days = days.split(",").map(&:strip).map(&:to_i) - [0]
+      days = days.split(",").map(&:strip).map(&:to_i).uniq.sort - [0]
       reminder_attrs[:remind_after_days] = days
       reminder_attrs
     end
