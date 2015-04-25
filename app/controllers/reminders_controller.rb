@@ -1,7 +1,7 @@
 class RemindersController < ApplicationController
   expose(:reminders_repository) { RemindersRepository.new }
   expose(:reminders) do
-    ReminderDecorator.decorate_collection reminders_repository.all
+    ReminderDecorator::Base.decorate_collection reminders_repository.all
   end
   expose(:reminder) { reminders_repository.find(params[:id]) }
   expose(:project_checks_repository) { ProjectChecksRepository.new }
@@ -13,14 +13,16 @@ class RemindersController < ApplicationController
   def index; end
 
   def show
-    self.reminder = ReminderDecorator.decorate(reminder)
+    self.reminder = ReminderDecorator::Base.decorate(reminder)
   end
 
   def new
-    self.reminder = Reminder.new
+    self.reminder = ReminderDecorator::Form.new Reminder.new
   end
 
-  def edit; end
+  def edit
+    self.reminder = ReminderDecorator::Form.new reminder
+  end
 
   def sync_projects
     reminder = reminders_repository.find params[:reminder_id]
@@ -29,19 +31,23 @@ class RemindersController < ApplicationController
   end
 
   def create
-    self.reminder = Reminder.new reminder_attrs
-    if reminders_repository.create reminder
-      redirect_to reminder, notice: "Reminder was successfully created."
+    create_reminder = Reminders::Create.new(reminder_attrs).call
+    if create_reminder.success?
+      redirect_to create_reminder.data,
+                  notice: "Reminder was successfully created."
     else
+      self.reminder = ReminderDecorator::Form.decorate create_reminder.data
       render :new
     end
   end
 
   def update
-    reminder.assign_attributes reminder_attrs
-    if reminders_repository.update reminder
-      redirect_to reminder, notice: "Reminder was successfully updated."
+    update_reminder = Reminders::Update.new(reminder, reminder_attrs).call
+    if update_reminder.success?
+      redirect_to update_reminder.data,
+                  notice: "Reminder was successfully updated."
     else
+      self.reminder = ReminderDecorator::Form.decorate update_reminder.data
       render :edit
     end
   end
