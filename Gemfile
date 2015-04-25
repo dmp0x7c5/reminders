@@ -15,6 +15,7 @@ gem "omniauth-google-oauth2"
 gem "pg"
 gem "sass-rails", "~> 5.0"
 gem "simple_form"
+gem 'sidekiq'
 gem "slack-api"
 gem "slim-rails"
 gem "thin"
