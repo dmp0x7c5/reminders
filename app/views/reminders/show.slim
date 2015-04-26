@@ -5,11 +5,14 @@
     table.table
       thead
         tr
-          th Interval
+          th Valid for N days
+          th Remind after N days
       tbody
         tr
           td
-            = reminder.interval
+            = reminder.valid_for_n_days
+          td
+            = reminder.remind_after_days
 
     .btn-group
       = link_to "Edit", edit_reminder_path(reminder), class: "btn btn-info"

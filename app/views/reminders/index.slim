@@ -4,7 +4,8 @@ table.table
   thead
     tr
       th Name
-      th Interval
+      th Valid for N days
+      th Remind after N days
       th Actions
 
   tbody
@@ -12,7 +13,8 @@ table.table
       tr
         td
           = link_to reminder.name, reminder_path(reminder)
-        td = reminder.interval
+        td = reminder.valid_for_n_days
+        td = reminder.remind_after_days
         td
           .btn-group
             = link_to 'Show', reminder, class: 'btn btn-mini btn-success'
