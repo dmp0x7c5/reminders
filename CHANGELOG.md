@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-04-26
+
+## Added
+
+* Sidekiq for background processing
+* Field in `reminders` table to check on which days send a (gentle)
+  notification about expiring task
+* Task, jobs and services for handling notifications for appropriate checks
+  (e.g. check is overdue)
+* `Procfile` file for `foreman` users (easy way to start development services)
+* Various validation to models
+* `valid_for_n_days` column has been added to `reminders` table - it will tell
+  for how many days the check is valid
+
+## Removed
+
+* `interval` column has been removed from `reminders` table
+
 # 2015-04-23
 
 ## Added
