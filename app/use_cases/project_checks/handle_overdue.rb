@@ -15,7 +15,7 @@ module ProjectChecks
     private
 
     def notify!
-      notifier.send_message notification, channel: "#sandbox"
+      notifier.send_message notification, channel: "##{project.channel_name}"
     end
 
     def reminder
