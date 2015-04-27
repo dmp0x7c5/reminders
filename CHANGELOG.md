@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-04-27
+
+## Added
+
+* Slack channel name is saved in db when projects are synced
+* The simplest version of admin authorization
+
+## Fixed
+
+* Flash messages have top margin and the are separated from the navbar
+
 # 2015-04-26
 
 ## Added
