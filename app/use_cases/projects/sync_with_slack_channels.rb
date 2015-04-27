@@ -20,7 +20,8 @@ module Projects
     private
 
     def save_project(name, channel_name)
-      projects_repository.persist Project.new(name: name, channel_name: channel_name)
+      projects_repository.persist Project.new(name: name,
+                                              channel_name: channel_name)
     end
   end
 end
