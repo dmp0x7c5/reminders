@@ -15,7 +15,7 @@ module ProjectChecks
     private
 
     def notify!
-      notifier.send_message notification
+      notifier.send_message notification, channel: "#sandbox"
     end
 
     def reminder
@@ -27,9 +27,9 @@ module ProjectChecks
     end
 
     def notification
-      "It looks like last #{reminder.name} in #{project.name} was done \
-      *#{days_diff} days ago* - it should be done every \
-      #{reminder.valid_for_n_days} days or so. \n\n"
+      "It looks like last #{reminder.name} in #{project.name} was done "\
+      "*#{days_diff} days ago* - it should be done every " \
+      "#{reminder.valid_for_n_days} days or so."
     end
   end
 end
