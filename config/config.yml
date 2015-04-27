@@ -4,6 +4,7 @@ development: &default
   domain_name: example.com
   secret_key_base: my_secret
   slack_token: slack_token
+  slack_enabled: false
   secret_key_base: secret_key_base
 
 test:

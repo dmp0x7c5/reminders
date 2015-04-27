@@ -4,6 +4,10 @@ describe Notifier do
   let(:client) { double(send_message: true) }
   let(:notifier) { described_class.new(client) }
 
+  before do
+    notifier.slack_enabled = true
+  end
+
   describe "#send_message" do
     let(:message) { "hello world" }
     let(:options) { {} }
