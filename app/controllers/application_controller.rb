@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
+  helper_method :admin?
 
   private
 
@@ -16,6 +17,10 @@ class ApplicationController < ActionController::Base
       nil
   end
 
+  def admin?
+    current_user.present? && current_user.admin?
+  end
+
   def user_signed_in?
     return true if current_user
   end
@@ -23,6 +28,11 @@ class ApplicationController < ActionController::Base
   def correct_user?
     @user = User.find(params[:id])
     redirect_to root_url, alert: "Access denied." unless current_user == @user
+  end
+
+  def authenticate_admin!
+    return if admin?
+    redirect_to root_url, alert: "You need to be admin to access to this page."
   end
 
   def authenticate_user!

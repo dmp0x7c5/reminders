@@ -15,10 +15,11 @@
             = reminder.remind_after_days
 
     .btn-group
-      = link_to "Edit", edit_reminder_path(reminder), class: "btn btn-info"
       = link_to "Back", reminders_path, class: "btn btn-default"
-      = link_to reminder_sync_projects_path(reminder),
-        class: "btn btn-success", method: :post do
-        i.glyphicon.glyphicon-refresh
-        |  Sync missing projects
+      - if admin?
+        = link_to "Edit", edit_reminder_path(reminder), class: "btn btn-info"
+        = link_to reminder_sync_projects_path(reminder),
+          class: "btn btn-success", method: :post do
+          i.glyphicon.glyphicon-refresh
+          |  Sync missing projects
 = render template: "project_checks/index", locals: { checks: project_checks }

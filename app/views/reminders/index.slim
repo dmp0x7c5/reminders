@@ -18,8 +18,9 @@ table.table
         td
           .btn-group
             = link_to 'Show', reminder, class: 'btn btn-mini btn-success'
-            = link_to 'Edit', edit_reminder_path(reminder), class: 'btn btn-mini btn-primary'
-            = link_to 'Destroy', reminder, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-mini btn-danger'
+            - if admin?
+              = link_to 'Edit', edit_reminder_path(reminder), class: 'btn btn-mini btn-primary'
+              = link_to 'Destroy', reminder, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-mini btn-danger'
 
 br
 
