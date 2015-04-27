@@ -21,6 +21,14 @@ class InMemoryRepository
     records.values
   end
 
+  def persist(record)
+    if record.id.present?
+      update record
+    else
+      create record
+    end
+  end
+
   def all=(records)
     records.each { |r| create(r) }
     all
