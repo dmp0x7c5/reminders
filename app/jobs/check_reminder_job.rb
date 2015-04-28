@@ -22,6 +22,6 @@ class CheckReminderJob < ActiveJob::Base
   end
 
   def checks_for_reminder(reminder)
-    project_checks_repository.for_reminder reminder
+    project_checks_repository.for_reminder(reminder).select(&:enabled?)
   end
 end

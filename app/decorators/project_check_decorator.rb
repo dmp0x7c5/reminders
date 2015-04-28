@@ -1,5 +1,5 @@
 class ProjectCheckDecorator < Draper::Decorator
-  delegate :id
+  delegate :id, :enabled?
 
   def project_name
     object.project.name
@@ -14,19 +14,32 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   def css_date_class
-    "warning" if object.last_check_date.nil?
+    if !object.enabled?
+      "active"
+    elsif object.last_check_date.nil?
+      "warning"
+    elsif days_to_deadline_as_number <= 0
+      "danger"
+    end
   end
 
   def css_disabled_state
     '<i class="glyphicon glyphicon-time"></i>'
   end
 
-  def days_to_deadline
+  def days_to_deadline_as_number
     to_date = object.last_check_date || object.created_at.to_date
     to_date += object.reminder.valid_for_n_days.days
     from_date = Time.zone.today
-    days_diff = (to_date - from_date).to_i
-    days_diff > 0 ? days_diff : "after deadline"
+    (to_date - from_date).to_i
+  end
+
+  def days_to_deadline
+    if days_to_deadline_as_number > 0
+      days_to_deadline_as_number
+    else
+      "after deadline"
+    end
   end
 
   def last_checked_by

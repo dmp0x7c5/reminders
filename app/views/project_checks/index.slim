@@ -8,18 +8,32 @@
           th Days to deadline
           th Last checked by
           th Check now?
+          th Enable/disable
       tbody
         - checks.each do |check|
-          tr
+          tr class="#{check.css_date_class}"
             td = check.project_name
-            td class="#{check.css_date_class}"
+            td
               = check.last_check_date
             td
               = check.days_to_deadline
             td
               = check.last_checked_by
             td
-              = link_to project_check_path(check), method: :put,
-                class: "btn btn-success btn-sm",
-                data: { confirm: "Are you sure?", disable_with: check.css_disabled_state } do
-                i.glyphicon.glyphicon-ok
+              - if check.enabled?
+                = link_to project_check_path(check), method: :put,
+                  class: "btn btn-success btn-sm",
+                  data: { confirm: "Are you sure?", disable_with: check.css_disabled_state } do
+                  i.glyphicon.glyphicon-ok
+                  |  Check!
+            td
+              - if check.enabled?
+                = link_to project_check_toggle_state_path(check), method: :post,
+                  class: "btn btn-danger",
+                  data: { confirm: "Are you sure?", disable_with: check.css_disabled_state } do
+                  i.glyphicon.glyphicon-remove-circle
+              - else
+                = link_to project_check_toggle_state_path(check), method: :post,
+                  class: "btn btn-success",
+                  data: { confirm: "Are you sure?", disable_with: check.css_disabled_state } do
+                  i.glyphicon.glyphicon-ok-circle

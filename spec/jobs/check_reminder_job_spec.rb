@@ -13,10 +13,11 @@ describe CheckReminderJob do
     repo.all = [reminder]
     repo
   end
-  let(:check_1) { double(id: 21) }
-  let(:check_2) { double(id: 12) }
+  let(:check_1) { double(id: 21, enabled?: true) }
+  let(:check_2) { double(id: 12, enabled?: true) }
+  let(:check_3) { double(id: 12, enabled?: false) }
   let(:project_checks_repository) do
-    checks = [check_1, check_2]
+    checks = [check_1, check_2, check_3]
     double(:project_checks_repository, for_reminder: checks)
   end
 
@@ -26,11 +27,13 @@ describe CheckReminderJob do
       job.project_checks_repository = project_checks_repository
     end
 
-    it "creates a job for each check belonging to the reminder" do
+    it "creates a job for each enabled check belonging to the reminder" do
       expect(ProjectCheckedOnTimeJob).to receive(:perform_later)
         .with(check_1.id, days_valid, daily_reminders)
       expect(ProjectCheckedOnTimeJob).to receive(:perform_later)
         .with(check_2.id, days_valid, daily_reminders)
+      expect(ProjectCheckedOnTimeJob).to_not receive(:perform_later)
+        .with(check_3.id, days_valid, daily_reminders)
 
       job.perform reminder.id
     end
