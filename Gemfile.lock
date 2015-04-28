@@ -135,6 +135,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     jwt (1.4.1)
+    liquid (3.0.2)
     listen (2.10.0)
       celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
@@ -353,6 +354,7 @@ DEPENDENCIES
   hub
   jbuilder (~> 2.0)
   jquery-rails
+  liquid
   netguru_bootstrapper
   netguru_theme
   omniauth
