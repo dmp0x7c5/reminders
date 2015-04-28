@@ -5,6 +5,7 @@
         tr
           th Project
           th Last check
+          th Days to deadline
           th Last checked by
           th Check now?
       tbody
@@ -13,6 +14,8 @@
             td = check.project_name
             td class="#{check.css_date_class}"
               = check.last_check_date
+            td
+              = check.days_to_deadline
             td
               = check.last_checked_by
             td

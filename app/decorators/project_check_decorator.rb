@@ -21,6 +21,18 @@ class ProjectCheckDecorator < Draper::Decorator
     '<i class="glyphicon glyphicon-time"></i>'
   end
 
+  def days_to_deadline
+    to_date = object.last_check_date || object.created_at.to_date
+    to_date += object.reminder.valid_for_n_days.days
+    from_date = Time.zone.today
+    days_diff = (to_date - from_date).to_i
+    days_diff > 0 ? days_diff : "after deadline"
+  end
+
+  def last_checked_by
+    object.last_check_user.name if object.last_check_user.present?
+  end
+
   private
 
   def date_diff_in_words(from_date, to_date = Time.zone.today)
