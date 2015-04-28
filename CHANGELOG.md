@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-04-28
+
+## Added
+
+* We have a shiny new logo, thanks [@czajkovsky](https://github.com/czajkovsky)!
+* Checks might be now disabled/enabled so they are not executed
+* Reminder and deadline notification messages are fully customizable
+* Table rows with checks are marked with appropriate color depending on their state
+
 # 2015-04-27
 
 ## Added
