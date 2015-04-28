@@ -4,6 +4,7 @@ class ProjectChecksController < ApplicationController
 
   def update
     check.last_check_date = Time.current.to_date
+    check.last_check_user = current_user
     check.save
 
     redirect_to reminder_path(check.reminder), notice: "All right!"

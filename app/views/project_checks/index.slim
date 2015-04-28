@@ -5,6 +5,7 @@
         tr
           th Project
           th Last check
+          th Last checked by
           th Check now?
       tbody
         - checks.each do |check|
@@ -12,6 +13,8 @@
             td = check.project_name
             td class="#{check.css_date_class}"
               = check.last_check_date
+            td
+              = check.last_checked_by
             td
               = link_to project_check_path(check), method: :put,
                 class: "btn btn-success btn-sm",
