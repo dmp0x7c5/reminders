@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Reminders::Create do
   let(:reminders_repo) { InMemoryRepository.new }
-  let(:attrs) { { name: "foo" } }
+  let(:attrs) { attributes_for(:reminder) }
   let(:service) { described_class.new(attrs, reminders_repo) }
 
   describe "#call" do

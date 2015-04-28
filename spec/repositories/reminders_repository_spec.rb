@@ -5,7 +5,7 @@ describe RemindersRepository do
 
   describe "#all" do
     before do
-      2.times { Reminder.create!(name: "test") }
+      2.times { create(:reminder) }
     end
 
     it "returns all the reminders" do
@@ -15,14 +15,14 @@ describe RemindersRepository do
 
   describe "#create" do
     it "saves object" do
-      reminder = Reminder.new(name: "test")
+      reminder = create(:reminder)
       repo.create reminder
       expect(reminder.persisted?).to eq true
     end
   end
 
   describe "#update" do
-    let!(:reminder) { Reminder.create!(name: "foo") }
+    let!(:reminder) { create(:reminder) }
 
     it "updates object" do
       reminder.name = "bar"
@@ -32,7 +32,7 @@ describe RemindersRepository do
   end
 
   describe "#delete" do
-    let!(:reminder) { Reminder.create!(name: "foo") }
+    let!(:reminder) { create(:reminder) }
 
     it "removes object from db" do
       repo.delete reminder

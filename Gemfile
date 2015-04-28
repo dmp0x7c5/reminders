@@ -25,6 +25,8 @@ gem "uglifier", ">= 1.3.0"
 
 group :development, :test do
   gem "byebug"
+  gem "factory_girl_rails"
+  gem "faker"
   gem "pry-rails"
   gem "pry-rescue"
   gem "web-console", "~> 2.0"
