@@ -1,6 +1,6 @@
 module ReminderDecorator
   class Base < Draper::Decorator
-    delegate :id, :name, :valid_for_n_days,
+    delegate :id, :name, :valid_for_n_days, :deadline_text, :notification_text,
              :persisted?
     decorates :reminder
 

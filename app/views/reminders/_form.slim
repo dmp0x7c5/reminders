@@ -1,10 +1,30 @@
-= simple_form_for(reminder) do |f|
-  = f.error_notification
+.row
+  .col-md-6
+    = simple_form_for(reminder) do |f|
+      = f.error_notification
 
-  .form-inputs
-    = f.input :name
-    = f.input :valid_for_n_days
-    = f.input :remind_after_days
+      .form-inputs
+        = f.input :name
+        = f.input :valid_for_n_days
+        = f.input :remind_after_days
+        = f.input :deadline_text, as: :text
+        = f.input :notification_text, as: :text
 
-  .form-actions
-    = f.button :submit
+      .form-actions
+        = f.button :submit
+  .col-md-6
+    h3 Deadline and notification text content
+    p
+      | You can use variables, e.g.
+      blockquote Last {{ reminder_name }} for {{ project_name }} was done {{ days_ago }} days ago.
+    h4
+      Available variables:
+    ul
+      li
+        code reminder_name
+      li
+        code project_name
+      li
+        code days_ago
+      li
+        code valid_for

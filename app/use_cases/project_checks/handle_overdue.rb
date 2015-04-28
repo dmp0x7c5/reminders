@@ -27,9 +27,21 @@ module ProjectChecks
     end
 
     def notification
-      "It looks like last #{reminder.name} in #{project.name} was done "\
-      "*#{days_diff} days ago* - it should be done every " \
-      "#{reminder.valid_for_n_days} days or so."
+      Liquid::Template.parse(notification_template)
+        .render(available_variables)
+    end
+
+    def notification_template
+      reminder.deadline_text
+    end
+
+    def available_variables
+      {
+        reminder_name: reminder.name,
+        project_name: project.name,
+        days_ago: days_diff,
+        valid_for: reminder.valid_for_n_days,
+      }.stringify_keys
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428152915) do
+ActiveRecord::Schema.define(version: 20150428161142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20150428152915) do
     t.integer  "project_id"
     t.integer  "reminder_id"
     t.date     "last_check_date"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "last_check_user_id"
   end
 
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20150428152915) do
     t.datetime "updated_at",                     null: false
     t.integer  "valid_for_n_days",  default: 30
     t.text     "remind_after_days", default: [],              array: true
+    t.string   "deadline_text"
+    t.string   "notification_text"
   end
 
   create_table "users", force: :cascade do |t|
