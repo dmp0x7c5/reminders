@@ -6,7 +6,8 @@ nav.navbar.navbar-default.navbar-static-top
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      = link_to 'Home', root_path, class: 'navbar-logo'
+      = link_to root_path, class: 'navbar-logo' do
+        = image_tag 'logo.png', alt: "Home"
     .collapse.navbar-collapse
       ul.nav.navbar-nav
         = render 'layouts/navigation_links'
