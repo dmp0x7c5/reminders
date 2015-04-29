@@ -23,6 +23,16 @@ gem "slim-rails"
 gem "thin"
 gem "turbolinks"
 gem "uglifier", ">= 1.3.0"
+gem "whenever"
+
+# deployment
+
+gem "capistrano"
+gem "capistrano-rails"
+gem "capistrano-bundler"
+gem "capistrano-passenger"
+
+gem "rvm1-capistrano3", require: false
 
 group :development, :test do
   gem "byebug"
