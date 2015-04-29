@@ -6,4 +6,4 @@ set :deploy_to, ENV["REMINDERS_DEPLOY_PATH"]
 
 set :linked_files, %w(config/database.yml config/secrets.yml)
 
-set :linked_dirs, %w(bin log tmp vendor/bundle public/uploads)
+set :linked_dirs, %w(log tmp vendor/bundle public/uploads)
