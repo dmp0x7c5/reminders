@@ -2,8 +2,6 @@ def google_scope
   [
     "userinfo.email",
     "userinfo.profile",
-    "https://www.googleapis.com/auth/drive",
-    "https://spreadsheets.google.com/feeds/",
   ].join(" ")
 end
 
