@@ -13,7 +13,7 @@ end
 
 def copy_sample(name)
   real_name = "config/#{name}.yml"
-  if File.exist?("config/database.yml")
+  if File.exist? real_name
     say "#{real_name} already exists"
   else
     system "cp #{real_name}.sample #{real_name}"
