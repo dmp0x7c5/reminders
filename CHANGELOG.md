@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-05-17
+
+## Added
+
+* Production deployment config has been added
+* Sidekiq has been replaced by Sucker Punch. We still use ActiveJob interface,
+  so it is easy to change the background processing backend anytime.
+
+## Fixed
+
+* Checking if today is a day to notify about pending reminder has been fixed
+* Rubocop checks Gemfile and Capfile files
+* Few gems were updated
+
 # 2015-04-28
 
 ## Added
