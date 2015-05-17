@@ -1,5 +1,6 @@
-class CheckReminderJob < ActiveJob::Base
-  queue_as :default
+class CheckReminderJob
+  # NOTE: this is not a regular ActiveJob class - this class is used as an
+  # interface to enqueue all the smaller jobs for a given reminder
   attr_writer :reminders_repository, :project_checks_repository
 
   def perform(reminder_id)

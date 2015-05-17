@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe CheckReminderJob do
-  let(:job) { described_class.new(reminder.id) }
+  let(:job) { described_class.new }
   let(:reminder) do
     double(:reminder, id: 1, valid_for_n_days: days_valid,
                       remind_after_days: daily_reminders)
