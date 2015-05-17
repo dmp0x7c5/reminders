@@ -19,7 +19,7 @@ class ProjectCheckedOnTimeJob < ActiveJob::Base
   end
 
   def notify?(remind_after_days)
-    remind_after_days.any? { |day| day == days_diff }
+    remind_after_days.any? { |day| day.to_i == days_diff }
   end
 
   def overdue?(valid_for_n_days)
