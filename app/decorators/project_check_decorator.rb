@@ -7,7 +7,7 @@ class ProjectCheckDecorator < Draper::Decorator
 
   def last_check_date
     if object.last_check_date.present?
-      date_diff_in_words object.last_check_date
+      "#{h.l(object.last_check_date)} (#{last_check_date_time_diff})"
     else
       "not checked yet"
     end
@@ -47,6 +47,10 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   private
+
+  def last_check_date_time_diff
+    date_diff_in_words object.last_check_date
+  end
 
   def date_diff_in_words(from_date, to_date = Time.zone.today)
     days_diff = (to_date - from_date).to_i
