@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   helper_method :correct_user?
   helper_method :admin?
 
+  before_action :authenticate_user!
+
   private
 
   def current_user
