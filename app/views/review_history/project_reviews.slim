@@ -1,0 +1,13 @@
+tr
+  tbody.review_history
+    tr
+      th Review name
+      th Check date
+      th Checker
+
+    - checks.each do |check|
+      tr
+        td = check.review
+        td = check.last_check_date
+        td = check.last_check_user.name
+
