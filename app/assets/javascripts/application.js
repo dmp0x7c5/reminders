@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require netguru_theme
+//= require review_history
 //= require_tree .
