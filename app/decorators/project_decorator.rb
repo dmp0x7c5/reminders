@@ -8,4 +8,9 @@ class ProjectDecorator < Draper::Decorator
   def channel_name
     "##{object.channel_name}"
   end
+
+  def checked_reviews
+    ::ProjectCheckDecorator.decorate_collection object.checked_reviews
+  end
+
 end
