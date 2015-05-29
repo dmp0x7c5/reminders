@@ -13,4 +13,7 @@ class ProjectDecorator < Draper::Decorator
     ::ProjectCheckDecorator.decorate_collection object.checked_reviews
   end
 
+  def has_checked_reviews?
+    checked_reviews.any?
+  end
 end
