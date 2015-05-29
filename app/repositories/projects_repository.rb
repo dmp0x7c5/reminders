@@ -3,6 +3,10 @@ class ProjectsRepository
     Project.all
   end
 
+  def with_done_checks
+    Project.includes(checked_reviews: [:reminder, :last_check_user])
+  end
+
   def persist(entity)
     entity.save
   end
