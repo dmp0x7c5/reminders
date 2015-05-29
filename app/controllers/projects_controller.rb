@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
     SlackChannelsRepository.new Slack.client
   end
   expose(:projects) do
-    ProjectDecorator.decorate_collection projects_repository.all
+    ProjectDecorator.decorate_collection projects_repository.with_done_checks
   end
 
   def index; end
