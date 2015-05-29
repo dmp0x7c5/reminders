@@ -46,6 +46,10 @@ class ProjectCheckDecorator < Draper::Decorator
     object.last_check_user.name if object.last_check_user.present?
   end
 
+  def review
+    object.reminder.name
+  end
+
   private
 
   def last_check_date_time_diff
