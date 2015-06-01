@@ -6,11 +6,11 @@
           th Project
           th Last check
           th Days to deadline
-          th Last checker
+          th Last checked by
           th History
           th Check now?
           th Enable/disable
-          th Assign
+          th Assign reviewer
       tbody
         - projects.each do |project|
           - last_check = project.checks_per_reminder(reminder.id).first
@@ -37,6 +37,6 @@
                   i.glyphicon.glyphicon-ok-circle
             td
               .btn.btn-success
-                | Request reviewer
+                | Pick random
             = render template: "review_history/reminder_project_checks", locals: { checks: project.checks_per_reminder(reminder.id), tbody_class: project.name }
 
