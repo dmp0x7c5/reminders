@@ -1,0 +1,11 @@
+tbody class="review_history #{tbody_class}"
+  tr
+    <td colspan=1></td>
+    td Check date
+    td Checker
+
+  - checks.each do |check|
+    tr
+      <td colspan=1></td>
+      td = check.last_check_date
+      td = check.last_checked_by
