@@ -18,7 +18,10 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def checks_per_reminder(reminder_id)
-    ::ProjectCheckDecorator.decorate_collection object.project_checks.order(created_at: :desc).select { |c| c.reminder_id == reminder_id }
+    ::ProjectCheckDecorator.decorate_collection object
+      .project_checks
+      .order(created_at: :desc)
+      .select { |c| c.reminder_id == reminder_id }
   end
 
   def has_checked_reviews?
