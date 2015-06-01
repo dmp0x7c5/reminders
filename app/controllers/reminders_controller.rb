@@ -16,7 +16,8 @@ class RemindersController < ApplicationController
   expose(:projects_repository) { ProjectsRepository.new }
   expose(:projects) do
     projects = projects_repository.for_reminder_with_checks(reminder2)
-    ProjectDecorator.decorate_collection projects
+    ProjectDecorator.decorate_collection projects,
+                                         context: { reminder_id: reminder.id }
   end
 
   def index; end
