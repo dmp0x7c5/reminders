@@ -38,5 +38,5 @@
             td
               .btn.btn-success
                 | Pick random
-            = render template: "review_history/reminder_project_checks", locals: { checks: project.checks_per_reminder(reminder.id), tbody_class: project.name }
+            = render template: "review_history/reminder_project_checks", locals: { checks: project.checks_per_reminder(reminder.id), project: project.name }
 
