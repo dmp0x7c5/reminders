@@ -19,5 +19,11 @@ class ProjectsRepository
     reminder.projects
   end
 
+  def for_reminder_with_checks(reminder)
+    reminder.projects
+      .includes(project_checks: [:reminder, :last_check_user])
+      .distinct
+  end
+
   delegate :find_by_name, to: :all
 end
