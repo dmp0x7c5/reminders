@@ -18,10 +18,13 @@ toggleButtonText = (button_text, button_class) ->
   else
     button.text('Show')
 
-$('document').ready ->
+ready = ->
   $('tbody.review_history').hide()
   $('.toggle_history').on 'click', ->
     expandable_class = $(this).parent('td').attr('class')
     button_text = this.textContent.trim()
 
     toggleTable(expandable_class, button_text)
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
