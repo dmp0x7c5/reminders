@@ -3,6 +3,10 @@ class ProjectsRepository
     Project.all
   end
 
+  def find(project_id)
+    Project.find_by(id: project_id)
+  end
+
   def with_done_checks
     Project.includes(checked_reviews: [:reminder, :last_check_user])
   end
