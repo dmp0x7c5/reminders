@@ -34,6 +34,10 @@ class ProjectDecorator < Draper::Decorator
     checked_reviews.any?
   end
 
+  def latest_check
+    checks_per_reminder(reminder_id).first
+  end
+
   def show_history
     if project.checked_reviews.count > 0
       h.content_tag :div, "Show", class: ["toggle_history", "btn", "btn-success", "center"]
