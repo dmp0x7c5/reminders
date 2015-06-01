@@ -24,6 +24,10 @@
             td class="#{project.name}"
               .toggle_history.btn.btn-success
                 | Show
+              | (
+              = pluralize project.checked_reviews.count, 'review'
+              |  to show)
+
           - if project.has_checked_reviews?
             = render template: "review_history/project_reviews", locals: { checks: project.checked_reviews, tbody_class: project.name }
 
