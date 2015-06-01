@@ -9,6 +9,10 @@ class ProjectChecksRepository
       .order("projects.name")
   end
 
+  def add(reminder, project)
+    ProjectCheck.create(project_id: project.id, reminder_id: reminder.id)
+  end
+
   def create(reminder)
     persist reminder
   end
