@@ -36,9 +36,7 @@
                   data: { confirm: "Are you sure?", disable_with: last_check.css_disabled_state } do
                   i.glyphicon.glyphicon-ok-circle
             td
-              = link_to project_checks_assign_checker_path(params: { reminder_id: reminder.id, project_id: project.id }), method: :post,
-                class: "btn btn-info" do
-                  i.glyphicon.glyphicon-ok
-                  | Request reviewer!
-            = render template: "review_history/reminder_project_checks", locals: { checks: project.checks_per_reminder(reminder.id), tbody_class: project.name }
+              .btn.btn-success
+                | Request reviewer
+          = render template: "review_history/reminder_project_checks", locals: { checks: project.checks_per_reminder(reminder.id), tbody_class: project.name }
 
