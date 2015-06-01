@@ -1,5 +1,11 @@
 class ProjectDecorator < Draper::Decorator
   delegate :id, :name
+  attr_reader :reminder_id
+
+  def initialize(object, reminder_id = nil)
+    @object = object
+    @reminder_id = reminder_id[:context][:reminder_id]
+  end
 
   def created_at
     h.l object.created_at
