@@ -1,6 +1,6 @@
-tbody class="review_history #{project}"
-  tr class='empty'
-    - rows = checks.count + 1
+tbody class="review_history #{project} empty"
+  tr
+    - rows = checks.count + 2
     <td colspan=1 rowspan="#{rows}"></td>
     th Review name
     th Check date
@@ -8,10 +8,11 @@ tbody class="review_history #{project}"
     <td colspan=1 rowspan="#{rows}"></td>
 
   - checks.each do |check|
-    tr
+    tr class="with_content"
       td = check.review
       td = check.last_check_date
       <td colspan=1>
         =check.last_checked_by
       </td>
-
+  tr class='empty'
+    <td colspan=3></td>
