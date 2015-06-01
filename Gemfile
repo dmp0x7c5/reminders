@@ -43,6 +43,8 @@ group :test do
   gem "codeclimate-test-reporter", require: nil
   gem "factory_girl_rails"
   gem "rspec-rails"
+  gem "timecop"
+  gem "zonebie"
 end
 
 group :development do

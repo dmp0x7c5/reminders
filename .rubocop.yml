@@ -7,14 +7,23 @@ AllCops:
     - 'Rakefile'
 Documentation:
   Enabled: false
-SignalException:
-  Enabled: false
-Style/TrailingComma:
-  EnforcedStyleForMultiline: comma
-  Enabled: true
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
 Metrics/LineLength:
   Enabled: true
   Exclude:
     - 'config/**/*'
+Rails/TimeZone:
+  Enabled: false
+SignalException:
+  Enabled: false
+Style/PredicateName:
+  NamePrefix:
+    - is_
+    - have_
+  NamePrefixBlacklist:
+    - is_
+    - have_
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+Style/TrailingComma:
+  EnforcedStyleForMultiline: comma
+  Enabled: true
