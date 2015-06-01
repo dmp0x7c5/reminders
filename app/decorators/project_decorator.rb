@@ -40,7 +40,8 @@ class ProjectDecorator < Draper::Decorator
 
   def show_history
     if project.checked_reviews.count > 0
-      h.content_tag :div, "Show", class: ["toggle_history", "btn", "btn-success", "center"]
+      h.content_tag :div, "Show",
+                    class: ["toggle_history", "btn", "btn-success", "center"]
     else
       "nothing to show"
     end
