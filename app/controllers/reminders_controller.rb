@@ -7,10 +7,16 @@ class RemindersController < ApplicationController
     ReminderDecorator::Base.decorate_collection reminders_repository.all
   end
   expose(:reminder) { reminders_repository.find(params[:id]) }
+  expose(:reminder2) {reminders_repository.find(params[:id]) }
   expose(:project_checks_repository) { ProjectChecksRepository.new }
   expose(:project_checks) do
     checks = project_checks_repository.for_reminder(reminder)
     ProjectCheckDecorator.decorate_collection checks
+  end
+  expose(:projects_repository) { ProjectsRepository.new }
+  expose(:projects) do
+    projects = projects_repository.for_reminder_with_checks(reminder2)
+    ProjectDecorator.decorate_collection projects
   end
 
   def index; end
