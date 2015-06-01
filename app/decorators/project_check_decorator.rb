@@ -1,5 +1,5 @@
 class ProjectCheckDecorator < Draper::Decorator
-  delegate :id, :enabled?, :last_check_user, :reminder_id, :project_id
+  delegate :id, :enabled?, :last_check_user
 
   def project_name
     object.project.name
