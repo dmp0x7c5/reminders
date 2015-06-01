@@ -16,7 +16,7 @@
 
       tbody
         - projects.each do |project|
-          tr
+          tr id="#{project.name}"
             td = project.id
             td = project.name
             td = project.channel_name
