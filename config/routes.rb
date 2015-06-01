@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   resources :projects, only: [:index] do
     post :sync, on: :collection
   end
-  resources :project_checks, only: [:update] do
+
+  resources :project_checks do
     post :toggle_state
   end
+
   resources :reminders do
     post :sync_projects
   end
