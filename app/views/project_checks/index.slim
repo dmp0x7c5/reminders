@@ -13,27 +13,26 @@
           th Assign reviewer
       tbody
         - projects.each do |project|
-          - last_check = project.checks_per_reminder(reminder.id).first
-          tr class="#{last_check.css_date_class}" id="#{project.name}"
+          tr class="#{project.latest_check.css_date_class}" id="#{project.name}"
             td = project.name
-            td = last_check.last_check_date
-            td = last_check.days_to_deadline
-            td = last_check.last_checked_by
+            td = project.latest_check.last_check_date
+            td = project.latest_check.days_to_deadline
+            td = project.latest_check.last_checked_by
             td class="#{project.name}"
               .toggle_history.btn.btn-success
                 | Show
             td
-              - if last_check.enabled?
+              - if project.latest_check.enabled?
                 = link_to project_checks_path(params: {reminder_id: reminder.id, project_id: project.id }), method: :post,
                   class: "btn btn-success btn-sm",
-                  data: { confirm: "Are you sure?", disable_with: last_check.css_disabled_state } do
+                  data: { confirm: "Are you sure?", disable_with: project.latest_check.css_disabled_state } do
                   i.glyphicon.glyphicon-ok
                   | Check!
             td
-              - if last_check.enabled?
-                = link_to project_check_toggle_state_path(last_check), method: :post,
+              - if project.latest_check.enabled?
+                = link_to project_check_toggle_state_path(project.latest_check), method: :post,
                   class: "btn btn-success",
-                  data: { confirm: "Are you sure?", disable_with: last_check.css_disabled_state } do
+                  data: { confirm: "Are you sure?", disable_with: project.latest_check.css_disabled_state } do
                   i.glyphicon.glyphicon-ok-circle
             td
               .btn.btn-success
