@@ -14,7 +14,7 @@
       tbody
         - projects.each do |project|
           - last_check = project.checks_per_reminder(reminder.id).first
-          tr class="#{last_check.css_date_class}"
+          tr class="#{last_check.css_date_class}" id="#{project.name}"
             td = project.name
             td = last_check.last_check_date
             td = last_check.days_to_deadline
