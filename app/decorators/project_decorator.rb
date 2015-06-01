@@ -38,6 +38,10 @@ class ProjectDecorator < Draper::Decorator
     checks_per_reminder(reminder_id).first
   end
 
+  def history_rowspan_size
+    checks.count + 2
+  end
+
   def show_history
     if project.checked_reviews.count > 0
       h.content_tag :div, "Show",
