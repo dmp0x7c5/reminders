@@ -25,5 +25,5 @@
               = project.show_history
 
           - if project.has_checked_reviews?
-            = render template: "review_history/project_reviews", locals: { checks: project.checked_reviews, project: project.name }
-
+            = render template: "review_history/project_reviews",
+              locals: { checks: project.checked_reviews, project: project }

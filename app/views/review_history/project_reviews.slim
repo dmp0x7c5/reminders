@@ -1,10 +1,10 @@
-tbody class = "review_history #{project} empty"
+tbody class = "review_history #{project.name} empty"
   tr
-    td colspan = 1 rowspan = history_rowspan_size
+    td colspan = 1 rowspan = project.history_rowspan_size
     th Review name
     th Check date
     th Checker
-    td colspan = 1 rowspan = history_rowspan_size
+    td colspan = 1 rowspan = project.history_rowspan_size
 
   - checks.each do |check|
     tr class = "with_content"

@@ -1,11 +1,5 @@
 class ProjectDecorator < Draper::Decorator
   delegate :id, :name
-  attr_reader :reminder_id
-
-  def initialize(object, reminder_id = nil)
-    @object = object
-    @reminder_id = reminder_id[:context][:reminder_id]
-  end
 
   def created_at
     h.l object.created_at
@@ -23,19 +17,8 @@ class ProjectDecorator < Draper::Decorator
     ::ProjectCheckDecorator.decorate_collection object.project_checks
   end
 
-  def checks_per_reminder(reminder_id)
-    ::ProjectCheckDecorator.decorate_collection object
-      .project_checks
-      .order(created_at: :desc)
-      .select { |c| c.reminder_id == reminder_id }
-  end
-
   def has_checked_reviews?
     checked_reviews.any?
-  end
-
-  def latest_check
-    checks_per_reminder(reminder_id).first
   end
 
   def history_rowspan_size

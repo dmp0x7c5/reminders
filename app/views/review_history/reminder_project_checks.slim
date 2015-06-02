@@ -1,8 +1,8 @@
-tbody class="review_history #{project} empty"
+tbody class="review_history #{project_name} empty"
   tr
     - rows = checks.count + 3
     <th colspan=1 rowspan="#{rows}"></td>
-    <th colspan=6>Review checks history for #{project}</th>
+    <th colspan=6>Review checks history for #{project_name}</th>
     <th colspan=1 rowspan="#{rows}"></th>
   tr class="with_content"
     <th colspan=2>Check date</td>
@@ -18,4 +18,3 @@ tbody class="review_history #{project} empty"
       </td>
   tr class='empty'
     <td colspan=6></td>
-

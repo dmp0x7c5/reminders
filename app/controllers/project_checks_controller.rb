@@ -14,14 +14,6 @@ class ProjectChecksController < ApplicationController
     projects_repository.find(params[:project_id])
   end
 
-  def update
-    check.last_check_date = Time.current.to_date
-    check.last_check_user = current_user
-    check.save
-
-    redirect_to reminder_path(check.reminder), notice: "All right!"
-  end
-
   def create
     check = project_checks_repository.add(reminder, project)
     check.last_check_user = current_user

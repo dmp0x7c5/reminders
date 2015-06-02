@@ -1,5 +1,5 @@
 class ProjectCheckDecorator < Draper::Decorator
-  delegate :id, :enabled?, :last_check_user
+  delegate :id, :enabled?, :last_check_user, :project_id, :reminder_id
 
   def project_name
     object.project.name
@@ -48,6 +48,10 @@ class ProjectCheckDecorator < Draper::Decorator
 
   def review
     object.reminder.name
+  end
+
+  def assignments
+    []
   end
 
   private

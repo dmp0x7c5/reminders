@@ -13,12 +13,12 @@ class ProjectChecksRepository
     ProjectCheck.create(project_id: project.id, reminder_id: reminder.id)
   end
 
-  def create(reminder)
-    persist reminder
+  def create(entity)
+    persist entity
   end
 
-  def persist(reminder)
-    reminder.save
+  def persist(entity)
+    entity.save
   end
 
   def find(id)
