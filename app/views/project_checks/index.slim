@@ -32,6 +32,12 @@
             td
               - if pc.enabled?
                 = link_to project_check_toggle_state_path(pc), method: :post,
+                  class: "btn btn-danger",
+                  data: { confirm: "Are you sure?", disable_with: pc.css_disabled_state } do
+                  i.glyphicon.glyphicon-ok-circle
+
+              - else
+                = link_to project_check_toggle_state_path(pc), method: :post,
                   class: "btn btn-success",
                   data: { confirm: "Are you sure?", disable_with: pc.css_disabled_state } do
                   i.glyphicon.glyphicon-ok-circle
