@@ -1,20 +1,22 @@
 tbody class="review_history #{project_name} empty"
   tr
-    - rows = checks.count + 3
-    <th colspan=1 rowspan="#{rows}"></td>
-    <th colspan=6>Review checks history for #{project_name}</th>
-    <th colspan=1 rowspan="#{rows}"></th>
-  tr class="with_content"
-    <th colspan=2>Check date</td>
-    <th colspan=4>Checker</td>
+    th colspan = 1 rowspan = table_size
+    th colspan = 6
+      | Review checks history for #{project_name}
+    th colspan = 1 rowspan = table_size
+
+  tr class = "with_content"
+    th colspan = 2
+      | Check date
+    th colspan = 2
+      | Checker
 
   - checks.each do |check|
     tr class="with_content"
-      <td colspan=2>
-        = check.last_check_date
-      </td>
-      <td colspan=4>
-        = check.last_checked_by
-      </td>
-  tr class='empty'
-    <td colspan=6></td>
+      td colspan = 2
+        = check.completion_date
+      td colspan = 2
+        = check.checker
+
+  tr class = 'empty'
+    td colspan = 6
