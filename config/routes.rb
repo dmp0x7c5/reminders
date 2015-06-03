@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     post :toggle_state
   end
 
+  post "check_assignments/assign_checker" => "check_assignments#assign_checker", :as => :assign_checker
+  post "check_assignments/complete_check" => "check_assignments#complete_check", :as => :complete_check
+
   resources :reminders do
     post :sync_projects
   end
