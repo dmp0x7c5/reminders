@@ -45,4 +45,4 @@
               .btn.btn-success
                 | Pick random
             = render template: "review_history/reminder_project_checks",
-              locals: { checks: pc.assignments, project_name: pc.project_name }
+              locals: { checks: pc.assignments, project_name: pc.project_name, table_size: pc.assignments_table_size }
