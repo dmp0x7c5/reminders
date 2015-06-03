@@ -53,6 +53,9 @@ class ProjectCheckDecorator < Draper::Decorator
 
   def assignments
     []
+  def has_no_checks?
+    check_assignments.empty?
+  end
   def has_appointed_review?
     latest_assignment.completion_date.nil? unless has_no_checks?
   end
