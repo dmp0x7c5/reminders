@@ -7,9 +7,15 @@ class CheckAssignmentsController < ApplicationController
   expose(:assignments_repository) { CheckAssignmentsRepository.new }
   expose(:assignment) { assignments_repository.latest_assignment(check) }
   expose(:users_repository) { UsersRepository.new }
+  expose(:last_checker) do
+    assignment.nil? ? nil : assignment.user
+  end
 
   def assign_checker
-    checker = PickCheckerService.new(repository: users_repository).call
+    checker = PickCheckerService.new(
+      repository: users_repository,
+      latest_checker: last_checker,
+    ).call
 
     AssignmentsService.new(
       checker: checker,
