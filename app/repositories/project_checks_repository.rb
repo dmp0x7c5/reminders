@@ -1,6 +1,6 @@
 class ProjectChecksRepository
   def all
-    ProjectCheck.all
+    ProjectCheck.all.includes(:project)
   end
 
   def for_reminder(reminder)
