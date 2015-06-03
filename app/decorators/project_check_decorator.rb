@@ -52,7 +52,9 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   def assignments
-    []
+    return check_assignments[1..-1] if has_appointed_review?
+    check_assignments
+  end
   def has_no_checks?
     check_assignments.empty?
   end
