@@ -67,6 +67,10 @@ class ProjectCheckDecorator < Draper::Decorator
   def has_appointed_review?
     latest_assignment.completion_date.nil? unless has_no_checks?
   end
+
+  def latest_assignment
+    object.check_assignments.first.decorate unless has_no_checks?
+  end
   end
 
   private
