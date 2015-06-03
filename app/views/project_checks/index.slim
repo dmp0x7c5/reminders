@@ -43,7 +43,15 @@
                   data: { confirm: "Are you sure?", disable_with: pc.css_disabled_state } do
                   i.glyphicon.glyphicon-ok-circle
             td
-              .btn.btn-success
-                | Pick random
+              - if pc.has_appointed_review?
+                | Assigned: #{pc.assigned_reviewer}
+
+              - else
+                = form_tag assign_checker_path, method: :post do
+                  = hidden_field_tag :project_check_id, pc.id
+                  = button_tag type: :submit,
+                    class: 'btn btn-success btn-sm' do
+                      | Pick random
+
             = render template: "review_history/reminder_project_checks",
               locals: { checks: pc.assignments, project_name: pc.project_name, table_size: pc.assignments_table_size }
