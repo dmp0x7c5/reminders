@@ -1,3 +1,5 @@
+require "zonebie"
+
 RSpec.configure do |config|
   Zonebie.set_random_timezone
 
