@@ -20,4 +20,8 @@ class ProjectChecksRepository
   def find(id)
     all.find_by_id id
   end
+
+  def update(check, update_params)
+    check.update_attributes(update_params)
+  end
 end
