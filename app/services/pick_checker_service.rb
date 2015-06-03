@@ -14,6 +14,15 @@ class PickCheckerService
   private
 
   def pick_random
-    users_repository.all.sample(1).first
+    users = prepare_users
+    users.sample(1).first
+  end
+
+  def prepare_users
+    latest_checker.nil? ? users : users - [latest_checker]
+  end
+
+  def users
+    users_repository.all.to_a
   end
 end
