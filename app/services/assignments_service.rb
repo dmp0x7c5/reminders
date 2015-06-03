@@ -52,9 +52,10 @@ class AssignmentsService
   end
 
   def update(assignment)
+    attributes = { completion_date: Time.now, user_id: checker.id }
     assignments_repository.update(
       assignment,
-      {completion_date: Time.now, user_id: checker.id}
+      attributes,
     )
   end
 end
