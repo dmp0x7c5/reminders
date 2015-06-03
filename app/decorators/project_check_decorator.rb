@@ -75,6 +75,9 @@ class ProjectCheckDecorator < Draper::Decorator
   def latest_completed_check
     assignments.first
   end
+
+  def assigned_reviewer
+    latest_assignment.checker if has_appointed_review?
   end
 
   private
