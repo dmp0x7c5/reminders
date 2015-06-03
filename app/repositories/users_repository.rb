@@ -1,4 +1,8 @@
 class UsersRepository
+  def all
+    User.all
+  end
+
   def from_auth(auth)
     User.where(
       provider: auth["provider"],
