@@ -3,10 +3,8 @@ class CheckAssignmentsController < ApplicationController
   expose(:check) do
     project_checks_repository.find(params[:project_check_id])
   end
-
   expose(:assignments_repository) { CheckAssignmentsRepository.new }
   expose(:assignment) { assignments_repository.latest_assignment(check) }
-  expose(:users_repository) { UsersRepository.new }
   expose(:last_checker) do
     assignment.nil? ? nil : assignment.user
   end
