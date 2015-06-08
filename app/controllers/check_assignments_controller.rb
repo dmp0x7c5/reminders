@@ -26,13 +26,11 @@ class CheckAssignmentsController < ApplicationController
   def complete_check
     if action_resolver.can_create?
       CheckAssignments::CreateCompleted.new(
-        checker: current_user,
-        project_check: check,
+        checker: current_user, project_check: check,
       ).call
     else
       CheckAssignments::Complete.new(
-        assignment: assignment,
-        checker: current_user,
+        assignment: assignment, checker: current_user,
       ).call
     end
 
