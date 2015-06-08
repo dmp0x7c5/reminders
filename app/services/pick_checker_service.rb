@@ -19,7 +19,7 @@ class PickCheckerService
   end
 
   def prepare_users
-    latest_checker.nil? ? users : users - [latest_checker]
+    users - [latest_checker]
   end
 
   def users
