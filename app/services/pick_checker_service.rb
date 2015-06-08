@@ -3,7 +3,7 @@ class PickCheckerService
   private :users_repository, :latest_checker
 
   def initialize(args)
-    @users_repository = args.fetch(:repository)
+    @users_repository = UsersRepository.new
     @latest_checker = args.fetch(:latest_checker)
   end
 
