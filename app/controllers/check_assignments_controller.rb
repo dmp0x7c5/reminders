@@ -8,6 +8,9 @@ class CheckAssignmentsController < ApplicationController
   expose(:last_checker) do
     assignment.nil? ? nil : assignment.user
   end
+  expose(:action_resolver) do
+    CheckAssignments::ResolveAction.new(assignment: assignment)
+  end
 
   def assign_checker
     checker = PickCheckerService.new(
