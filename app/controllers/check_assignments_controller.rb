@@ -13,20 +13,14 @@ class CheckAssignmentsController < ApplicationController
   end
 
   def assign_checker
-    checker = PickCheckerService.new(
-      repository: users_repository,
-      latest_checker: last_checker,
-    ).call
-
-    AssignmentsService.new(
-      checker: checker,
-      completed: false,
-      project_check_id: check.id,
-      assignments: assignments_repository,
-    ).call
-
-    redirect_to reminder_path(check.reminder),
-                notice: assigned_checker_notice(checker)
+    if action_resolver.can_create?
+      checker = create_with_assigned_user
+      redirect_to reminder_path(check.reminder),
+                  notice: assigned_checker_notice(checker)
+    else
+      redirect_to reminder_path(check.reminder),
+                  notice: "Someone is already assigned to do this"
+    end
   end
 
   def complete_check
@@ -52,6 +46,13 @@ class CheckAssignmentsController < ApplicationController
     }
 
     project_checks_repository.update(check, update_params)
+  def create_with_assigned_user
+    checker = PickCheckerService.new(latest_checker: last_checker).call
+    CheckAssignments::Create.new(
+      checker: checker,
+      project_check: check,
+    ).call
+    checker
   end
 
   def assigned_checker_notice(checker)
