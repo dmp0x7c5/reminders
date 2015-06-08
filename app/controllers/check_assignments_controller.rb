@@ -24,28 +24,23 @@ class CheckAssignmentsController < ApplicationController
   end
 
   def complete_check
-    check_assignment = AssignmentsService.new(
-      assignment: assignment,
-      checker: current_user,
-      completed: true,
-      project_check_id: check.id,
-      assignments: assignments_repository,
-    ).call
-
-    update_project_check(check_assignment) unless check_assignment.nil?
+    if action_resolver.can_create?
+      CheckAssignments::CreateCompleted.new(
+        checker: current_user,
+        project_check: check,
+      ).call
+    else
+      CheckAssignments::Complete.new(
+        assignment: assignment,
+        checker: current_user,
+      ).call
+    end
 
     redirect_to reminder_path(check.reminder), notice: "All right"
   end
 
   private
 
-  def update_project_check(check_assignment)
-    update_params = {
-      last_check_date: check_assignment.completion_date,
-      last_check_user_id: check_assignment.user_id,
-    }
-
-    project_checks_repository.update(check, update_params)
   def create_with_assigned_user
     checker = PickCheckerService.new(latest_checker: last_checker).call
     CheckAssignments::Create.new(
