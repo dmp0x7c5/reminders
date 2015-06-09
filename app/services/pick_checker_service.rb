@@ -2,27 +2,18 @@ class PickCheckerService
   attr_reader :users_repository, :latest_checker
   private :users_repository, :latest_checker
 
-  def initialize(args)
+  def initialize(data)
     @users_repository = UsersRepository.new
-    @latest_checker = args.fetch(:latest_checker)
+    @latest_checker = data.fetch(:latest_checker)
   end
 
   def call
-    pick_random
+    available_users.sample(1).first
   end
 
   private
 
-  def pick_random
-    users = prepare_users
-    users.sample(1).first
-  end
-
-  def prepare_users
-    users - [latest_checker]
-  end
-
-  def users
-    users_repository.all.to_a
+  def available_users
+    users_repository.all.to_a - [latest_checker]
   end
 end
