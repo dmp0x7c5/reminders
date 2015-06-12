@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-06-12
+
+## Added
+
+* we can check history of checks made for a given `Project` & `Reminder` combination
+* we can now assign person to be responsible for a given check
+* cleanup in slim templates
+* updated `rubocop` settings
+
 # 2015-05-17
 
 ## Added
