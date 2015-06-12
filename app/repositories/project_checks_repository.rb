@@ -6,7 +6,7 @@ class ProjectChecksRepository
   def for_reminder(reminder)
     all.includes(:project, :reminder,
                  :last_check_user,
-                 {check_assignments: :user},
+                 check_assignments: :user
                 )
       .where(reminder_id: reminder.id)
       .order("projects.name")
