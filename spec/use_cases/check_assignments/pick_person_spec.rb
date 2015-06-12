@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PickCheckerService do
+describe CheckAssignments::PickPerson do
   let(:service) { described_class.new(latest_checker: user) }
   let(:users_repository) { UsersRepository.new }
 
