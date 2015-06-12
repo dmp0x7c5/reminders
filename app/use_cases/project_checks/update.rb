@@ -3,8 +3,8 @@ module ProjectChecks
     attr_reader :check, :checks_repository
     private :check, :checks_repository
 
-    def initialize(args)
-      @check = args.fetch(:check)
+    def initialize(check:)
+      @check = check
       @checks_repository = ProjectChecksRepository.new
     end
 

@@ -3,10 +3,10 @@ module CheckAssignments
     attr_reader :assignment, :assignment_creator, :assignment_completer
     private :assignment, :assignment_creator, :assignment_completer
 
-    def initialize(data)
-      @assignment = data.fetch(:assignment)
-      @assignment_creator = data.fetch(:creator, nil)
-      @assignment_completer = data.fetch(:completer, nil)
+    def initialize(assignment:, creator:, completer:)
+      @assignment = assignment
+      @assignment_creator = creator
+      @assignment_completer = completer
     end
 
     def resolve

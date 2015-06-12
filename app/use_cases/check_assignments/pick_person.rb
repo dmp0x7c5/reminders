@@ -3,9 +3,9 @@ module CheckAssignments
     attr_reader :users_repository, :latest_checker
     private :users_repository, :latest_checker
 
-    def initialize(data)
+    def initialize(latest_checker:)
       @users_repository = UsersRepository.new
-      @latest_checker = data.fetch(:latest_checker)
+      @latest_checker = latest_checker
     end
 
     def call

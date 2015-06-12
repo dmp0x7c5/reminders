@@ -3,9 +3,9 @@ module CheckAssignments
     attr_reader :checker, :assignments_repository, :project_check
     private :checker, :assignments_repository, :project_check
 
-    def initialize(args)
-      @checker = args.fetch(:checker)
-      @project_check = args.fetch(:project_check)
+    def initialize(checker:, project_check:)
+      @checker = checker
+      @project_check = project_check
       @assignments_repository = CheckAssignmentsRepository.new
     end
 

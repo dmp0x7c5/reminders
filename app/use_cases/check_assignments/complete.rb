@@ -5,9 +5,9 @@ module CheckAssignments
     private :assignments_repository, :assignment,
             :checker, :project_check_update
 
-    def initialize(args)
-      @assignment = args.fetch(:assignment)
-      @checker = args.fetch(:checker)
+    def initialize(assignment:, checker:)
+      @assignment = assignment
+      @checker = checker
       @assignments_repository = CheckAssignmentsRepository.new
       @project_check_update =
         ProjectChecks::Update.new(check: assignment.project_check)
