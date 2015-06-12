@@ -1,5 +1,4 @@
 source "https://rubygems.org"
-ruby "2.2.0"
 gem "rails", "4.2.1"
 
 gem "app_konfig"
@@ -44,6 +43,8 @@ group :test do
   gem "codeclimate-test-reporter", require: nil
   gem "factory_girl_rails"
   gem "rspec-rails"
+  gem "timecop"
+  gem "zonebie"
 end
 
 group :development do

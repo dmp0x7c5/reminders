@@ -11,12 +11,12 @@ describe Projects::SyncWithSlackChannels do
     double(:slack_channels_repository, all_project_channels: project_channels)
   end
   let(:projects_repository) do
-    class ProjectsRepository < InMemoryRepository
+    class InMemoryProjectsRepository < InMemoryRepository
       def find_by_name(name)
         all.find { |r| r.name == name }
       end
     end
-    repo = ProjectsRepository.new
+    repo = InMemoryProjectsRepository.new
     repo.all = [project]
     repo
   end

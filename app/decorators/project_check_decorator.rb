@@ -1,5 +1,6 @@
 class ProjectCheckDecorator < Draper::Decorator
-  delegate :id, :enabled?, :last_check_user
+  delegate :id, :enabled?, :last_check_user, :project_id, :reminder_id
+  decorates_association :check_assignments
 
   def project_name
     object.project.name
@@ -48,6 +49,35 @@ class ProjectCheckDecorator < Draper::Decorator
 
   def review
     object.reminder.name
+  end
+
+  def assignments
+    return check_assignments[1..-1] if has_appointed_review?
+    check_assignments
+  end
+
+  def assignments_table_size
+    assignments.count + 3
+  end
+
+  def has_no_checks?
+    check_assignments.empty?
+  end
+
+  def has_appointed_review?
+    latest_assignment.completion_date.nil? unless has_no_checks?
+  end
+
+  def latest_assignment
+    object.check_assignments.first.decorate unless has_no_checks?
+  end
+
+  def latest_completed_check
+    assignments.first
+  end
+
+  def assigned_reviewer
+    latest_assignment.checker if has_appointed_review?
   end
 
   private

@@ -12,30 +12,46 @@
           th Enable/disable
           th Assign reviewer
       tbody
-        - projects.each do |project|
-          tr class="#{project.latest_check.css_date_class}" id="#{project.name}"
-            td = project.name
-            td = project.latest_check.last_check_date
-            td = project.latest_check.days_to_deadline
-            td = project.latest_check.last_checked_by
-            td class="#{project.name}"
+        - project_checks.each do |pc|
+          tr class="#{pc.css_date_class}" id="#{pc.project_name}"
+            td = pc.project_name
+            td = pc.last_check_date
+            td = pc.days_to_deadline
+            td = pc.last_checked_by
+            td class="#{pc.project_name}"
               .toggle_history.btn.btn-success
                 | Show
             td
-              - if project.latest_check.enabled?
-                = link_to project_checks_path(params: {reminder_id: reminder.id, project_id: project.id }), method: :post,
-                  class: "btn btn-success btn-sm",
-                  data: { confirm: "Are you sure?", disable_with: project.latest_check.css_disabled_state } do
-                  i.glyphicon.glyphicon-ok
-                  | Check!
+              - if pc.enabled?
+                = form_tag complete_check_path, method: :post do
+                  = hidden_field_tag :project_check_id, pc.id
+                  = button_tag type: :submit,
+                    class: 'btn btn-success btn-sm',
+                    data: { confirm: "Are you sure?", disable_with: pc.css_disabled_state } do
+                      i.glyphicon.glyphicon-ok
+                      | Check!
             td
-              - if project.latest_check.enabled?
-                = link_to project_check_toggle_state_path(project.latest_check), method: :post,
+              - if pc.enabled?
+                = link_to project_check_toggle_state_path(pc), method: :post,
+                  class: "btn btn-danger",
+                  data: { confirm: "Are you sure?", disable_with: pc.css_disabled_state } do
+                  i.glyphicon.glyphicon-ok-circle
+
+              - else
+                = link_to project_check_toggle_state_path(pc), method: :post,
                   class: "btn btn-success",
-                  data: { confirm: "Are you sure?", disable_with: project.latest_check.css_disabled_state } do
+                  data: { confirm: "Are you sure?", disable_with: pc.css_disabled_state } do
                   i.glyphicon.glyphicon-ok-circle
             td
-              .btn.btn-success
-                | Pick random
-            = render template: "review_history/reminder_project_checks", locals: { checks: project.checks_per_reminder(reminder.id), project: project.name }
+              - if pc.has_appointed_review?
+                | Assigned: #{pc.assigned_reviewer}
 
+              - else
+                = form_tag assign_checker_path, method: :post do
+                  = hidden_field_tag :project_check_id, pc.id
+                  = button_tag type: :submit,
+                    class: 'btn btn-success btn-sm' do
+                      | Pick random
+
+            = render template: "review_history/reminder_project_checks",
+              locals: { checks: pc.assignments, project_name: pc.project_name, table_size: pc.assignments_table_size }

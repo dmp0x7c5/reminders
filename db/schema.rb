@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428174011) do
+ActiveRecord::Schema.define(version: 20150609115359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "check_assignments", force: :cascade do |t|
+    t.integer  "project_check_id"
+    t.integer  "user_id"
+    t.date     "completion_date"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "check_assignments", ["project_check_id"], name: "index_check_assignments_on_project_check_id", using: :btree
+  add_index "check_assignments", ["user_id"], name: "index_check_assignments_on_user_id", using: :btree
 
   create_table "project_checks", force: :cascade do |t|
     t.integer  "project_id"
@@ -55,6 +66,8 @@ ActiveRecord::Schema.define(version: 20150428174011) do
     t.boolean  "admin",      default: false
   end
 
+  add_foreign_key "check_assignments", "project_checks"
+  add_foreign_key "check_assignments", "users"
   add_foreign_key "project_checks", "projects"
   add_foreign_key "project_checks", "reminders"
 end

@@ -13,19 +13,27 @@ describe ProjectCheckDecorator do
     end
 
     context "when the date is set" do
-      it 'returns "X days ago" for more than one day' do
+      before do
+        Timecop.freeze(Time.local(2015, 05, 20))
+      end
+
+      after do
+        Timecop.return
+      end
+
+      it 'returns "date (X days ago)" for more than one day' do
         check.last_check_date = 2.days.ago.to_date
-        expect(decorator.last_check_date).to eq "2 days ago"
+        expect(decorator.last_check_date).to eq "2015-05-18 (2 days ago)"
       end
 
-      it 'returns "yesterday" for one day ago' do
+      it 'returns "date (yesterday)" for one day ago' do
         check.last_check_date = Time.zone.yesterday
-        expect(decorator.last_check_date).to eq "yesterday"
+        expect(decorator.last_check_date).to eq "2015-05-19 (yesterday)"
       end
 
-      it 'returns "today" for today' do
+      it 'returns "date (today)" for today' do
         check.last_check_date = Time.zone.today
-        expect(decorator.last_check_date).to eq "today"
+        expect(decorator.last_check_date).to eq "2015-05-20 (today)"
       end
     end
   end
