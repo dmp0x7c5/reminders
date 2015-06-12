@@ -9,7 +9,23 @@ class CheckAssignmentsController < ApplicationController
     assignment.nil? ? nil : assignment.user
   end
   expose(:action_resolver) do
-    CheckAssignments::ResolveAction.new(assignment: assignment)
+    CheckAssignments::ResolveAction.new(
+      assignment: assignment,
+      creator: assignment_creator,
+      completer: assignment_completer,
+    )
+  end
+  expose(:assignment_creator) do
+    CheckAssignments::CreateCompleted.new(
+      checker: current_user,
+      project_check: check,
+    )
+  end
+  expose(:assignment_completer) do
+    CheckAssignments::Complete.new(
+      assignment: assignment,
+      checker: current_user,
+    )
   end
 
   def assign_checker
@@ -24,15 +40,7 @@ class CheckAssignmentsController < ApplicationController
   end
 
   def complete_check
-    if action_resolver.can_create?
-      CheckAssignments::CreateCompleted.new(
-        checker: current_user, project_check: check,
-      ).call
-    else
-      CheckAssignments::Complete.new(
-        assignment: assignment, checker: current_user,
-      ).call
-    end
+    action_resolver.resolve
 
     redirect_to reminder_path(check.reminder), notice: "All right"
   end
@@ -40,12 +48,14 @@ class CheckAssignmentsController < ApplicationController
   private
 
   def create_with_assigned_user
-    checker = PickCheckerService.new(latest_checker: last_checker).call
+    person = CheckAssignments::PickPerson.new(
+      latest_checker: last_checker,
+    ).call
     CheckAssignments::Create.new(
-      checker: checker,
+      checker: person,
       project_check: check,
     ).call
-    checker
+    person
   end
 
   def assigned_checker_notice(checker)
