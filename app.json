@@ -1,0 +1,7 @@
+{
+  "name": "Reminders app",
+  "description": "Application allowing to send scheduled reminders to Slack",
+  "repository": "you://github.com/netguru/reminders",
+  "logo": "https://github.com/netguru/reminders/blob/master/app/assets/images/logo.png",
+  "success_url": "/"
+}
