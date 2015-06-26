@@ -61,3 +61,5 @@ group :development do
   gem "spring"
   gem "spring-commands-rspec"
 end
+
+gem "rails_12factor", group: :production
