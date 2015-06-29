@@ -44,6 +44,12 @@ changes to `.rubocop.yml` file.
 
 We use RSpec 3.
 
+## Live demo
+
+Deploy app to Heroku using button below:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 ## Contributing
 
 If you make improvements to this application, please share with others.
