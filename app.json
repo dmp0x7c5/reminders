@@ -2,8 +2,7 @@
   "name": "Reminders app",
   "description": "Application allowing to send scheduled reminders to Slack",
   "repository": "https://github.com/netguru/reminders",
-  "logo": "https://raw.githubusercontent.com/netguru/reminders/master/app/assets/images/logo.png"
-
+  "logo": "https://raw.githubusercontent.com/netguru/reminders/master/app/assets/images/logo.png",
   "env": {
     "OMNIAUTH_PROVIDER_KEY": {
       "description": "Google app client ID",
