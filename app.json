@@ -20,7 +20,7 @@
       "required": false
     },
     "SLACK_ENABLED": {
-      "description": "Change it to true if slack token has been provided."
+      "description": "Change it to true if slack token has been provided.",
       "value": "false",
       "required": false
     }
