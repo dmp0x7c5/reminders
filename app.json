@@ -3,4 +3,27 @@
   "description": "Application allowing to send scheduled reminders to Slack",
   "repository": "https://github.com/netguru/reminders",
   "logo": "https://raw.githubusercontent.com/netguru/reminders/master/app/assets/images/logo.png"
+
+  "env": {
+    "OMNIAUTH_PROVIDER_KEY": {
+      "description": "Google app client ID",
+      "value": "",
+      "required": true
+    },
+    "OMNIAUTH_PROVIDER_SECRET": {
+      "description": "Google app client secret key",
+      "value": "",
+      "required": true
+    },
+    "SLACK_TOKEN": {
+      "description": "Your Slack auth token",
+      "value": "",
+      "required": false
+    },
+    "SLACK_ENABLED": {
+      "description": "Change it to true if slack token has been provided."
+      "value": "false",
+      "required": false
+    }
+  }
 }
