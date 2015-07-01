@@ -1,4 +1,4 @@
-projects = ["Reminders", "Review", "My sample project", "Access", "People"]
+projects = ["Reminders", "Review", "Profile", "Access", "People"]
 reminders = [{name: "Leaders review", remind_after_days: [5, 10, 15, 20, 25],
               deadline_text: "Last *{{reminder_name}}* for _{{ project_name }}_ was done *{{ days_ago }}* .",
               notification_text: "This is notification for project _{{project_name}}."
