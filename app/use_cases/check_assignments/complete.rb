@@ -5,12 +5,12 @@ module CheckAssignments
     private :assignments_repository, :assignment,
             :checker, :project_check_update
 
-    def initialize(assignment:, checker:)
+    def initialize(assignment:, checker:, project_check:)
       @assignment = assignment
       @checker = checker
       @assignments_repository = CheckAssignmentsRepository.new
       @project_check_update =
-        ProjectChecks::Update.new(check: assignment.project_check)
+        ProjectChecks::Update.new(check: project_check)
     end
 
     def call
