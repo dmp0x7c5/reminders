@@ -5,6 +5,7 @@ describe CheckAssignments::Complete do
     described_class.new(
       assignment: assignment,
       checker: checker,
+      project_check: project_check,
     )
   end
   let(:repo) { CheckAssignmentsRepository.new }

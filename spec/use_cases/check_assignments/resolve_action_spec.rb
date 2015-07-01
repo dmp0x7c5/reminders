@@ -17,6 +17,7 @@ describe CheckAssignments::ResolveAction do
     CheckAssignments::Complete.new(
       assignment: double(:assignment, project_check: nil),
       checker: double(:user),
+      project_check: double(:project_check),
     )
   end
 
