@@ -46,6 +46,7 @@ group :test do
   gem "rspec-rails"
   gem "timecop"
   gem "zonebie"
+  gem "capybara"
 end
 
 group :development do
