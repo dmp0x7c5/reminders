@@ -11,7 +11,7 @@ module CheckAssignments
       Complete.new(
         assignment: assignment,
         checker: checker,
-        project_check: project_check
+        project_check: project_check,
       ).call
     end
   end

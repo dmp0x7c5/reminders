@@ -25,7 +25,7 @@ class CheckAssignmentsController < ApplicationController
     CheckAssignments::Complete.new(
       assignment: assignment,
       checker: current_user,
-      project_check: check
+      project_check: check,
     )
   end
 
