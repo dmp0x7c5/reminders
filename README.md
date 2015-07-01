@@ -13,6 +13,37 @@ See [CHANGELOG](https://github.com/netguru/reminders/blob/master/CHANGELOG.md) f
 * Ruby 2.2
 * Postgres
 
+## Live demo
+
+Deploy app to Heroku using button below:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+You will be prompted to provide Heroku with following  credentials:
+
+* Client ID
+* Client Secret
+* Slack token (optional)
+* Slack enabling (optional)
+
+## Authorisation
+
+Our application authenticates users with Google via OAuth. You must have your
+own Google project, which you can create
+[here](https://console.developers.google.com/project). You can check your Client
+ID and Client Secret under `Credentials` in console.
+
+Remember to add Redirect URI for your Heroku application - it should look
+similar to this:
+
+`http://your-app-name.herokuapp.com/auth/google_oauth2/callback`
+
+## Slack
+
+Application can be synchronised with Slack to send notifications and fetch
+channels. You can find your Slack Token
+[here](https://api.slack.com/web).
+
 ## Setup
 
 Run the following command:
@@ -43,12 +74,6 @@ changes to `.rubocop.yml` file.
 ## Tests
 
 We use RSpec 3.
-
-## Live demo
-
-Deploy app to Heroku using button below:
-
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## Contributing
 
