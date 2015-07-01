@@ -26,7 +26,7 @@ You will be prompted to provide Heroku with following  credentials:
 * Slack token (optional)
 * Slack enabling (optional)
 
-## Authorisation
+### Authorisation
 
 Our application authenticates users with Google via OAuth. You must have your
 own Google project, which you can create
@@ -38,7 +38,7 @@ similar to this:
 
 `http://your-app-name.herokuapp.com/auth/google_oauth2/callback`
 
-## Slack
+### Slack
 
 Application can be synchronised with Slack to send notifications and fetch
 channels. You can find your Slack Token
