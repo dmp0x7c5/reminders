@@ -55,3 +55,19 @@ project_ids.each_with_object(reminders_ids) do |project, reminders|
     ProjectCheck.create(project_id: project, reminder_id: reminder)
   end
 end
+
+#create completed check assignments
+reminders = Reminder.all
+projects = Project.all
+users = User.all
+
+reminders.each_with_index do |reminder, index|
+  project_check = ProjectCheck.find_by(reminder_id: reminder.id, project_id: projects[index].id)
+  assignment = CheckAssignment.create(project_check_id: project_check.id,
+                         user_id: users[index].id,
+                         completion_date: 2.days.ago.to_date
+                        )
+ project_check.update_attributes(last_check_user_id: assignment.user_id,
+                                 last_check_date: assignment.completion_date)
+end
+
