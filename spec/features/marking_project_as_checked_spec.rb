@@ -9,7 +9,7 @@ feature "marking project as checked" do
            reminder: reminder,
           )
   end
-  let(:user) { User.first }
+  let(:user) { create(:user, uid: "23424", provider: "google_oauth2") }
 
   before do
     log_in(user)

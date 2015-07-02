@@ -9,7 +9,7 @@ feature "assign user to perform check" do
            reminder: reminder,
           )
   end
-  let(:user) { User.first }
+  let(:user) { create(:user, uid: "12331", provider: "google_oauth2") }
 
   before do
     log_in(user)
