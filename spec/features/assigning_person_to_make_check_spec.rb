@@ -12,7 +12,7 @@ feature "assign user to perform check" do
   let(:user) { User.first }
 
   before do
-    log_in
+    log_in(user)
   end
 
   scenario "there is no user assigned yet" do

@@ -12,7 +12,7 @@ feature "marking project as checked" do
   let(:user) { User.first }
 
   before do
-    log_in
+    log_in(user)
   end
 
   context "when project hasn't been checked yet" do
