@@ -12,7 +12,7 @@ feature "marking project as checked" do
   let(:user) { User.first }
 
   before do
-    visit "auth/google_oauth2"
+    log_in
   end
 
   context "when project hasn't been checked yet" do

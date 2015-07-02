@@ -12,7 +12,7 @@ feature "assign user to perform check" do
   let(:user) { User.first }
 
   before do
-    visit "auth/google_oauth2"
+    log_in
   end
 
   scenario "there is no user assigned yet" do
