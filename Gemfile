@@ -47,6 +47,9 @@ group :test do
   gem "timecop"
   gem "zonebie"
   gem "capybara"
+  gem "poltergeist"
+  gem "launchy"
+  gem "site_prism"
 end
 
 group :development do
