@@ -59,24 +59,13 @@ class ProjectCheckDecorator < Draper::Decorator
     assignments.count + 3
   end
 
-  def has_no_checks?
-    check_assignments.empty?
-  end
-
   def has_appointed_review?
-    latest_assignment.completion_date.nil? unless has_no_checks?
-  end
-
-  def latest_assignment
-    object.check_assignments.first.decorate unless has_no_checks?
-  end
-
-  def latest_completed_check
-    assignments.first
+    return if check_assignments.empty?
+    check_assignments.first.completion_date.nil?
   end
 
   def assigned_reviewer
-    latest_assignment.checker if has_appointed_review?
+    check_assignments.first.checker if has_appointed_review?
   end
 
   private
