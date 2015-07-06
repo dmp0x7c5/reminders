@@ -48,6 +48,7 @@ feature "project checks history" do
     page.first_project.check_button.click
     page.first_project.history_button.click
 
+    expect(page.checks_history.done_checks_number).to eq 2
     expect(page.first_project.checks_history)
       .not_to have_text second_user.name
   end
