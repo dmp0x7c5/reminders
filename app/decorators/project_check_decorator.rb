@@ -52,8 +52,7 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   def assignments
-    return check_assignments[1..-1] if has_appointed_review?
-    check_assignments
+    check_assignments.select { |c| c.object.completion_date.present? }
   end
 
   def assignments_table_size
