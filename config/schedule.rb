@@ -4,6 +4,6 @@ every 1.day, at: "09:30 am" do
   rake "reminders:check_all"
 end
 
-every 1.day, at "11:55 pm" do
-  rake "project:sync_missing"
+every 1.day, at: "11:55 pm" do
+  rake "projects:sync_missing"
 end
