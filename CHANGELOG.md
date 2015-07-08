@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-07-08
+
+## Added
+
+* deploy to Heroku button added to GitHub repository
+* scheduled job for synchronising new Slack project channels and existing
+  reminders
+
 # 2015-06-12
 
 ## Added
