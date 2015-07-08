@@ -27,7 +27,9 @@ class SyncMissingProjectsJob
 
   def sync_with_reminders
     reminders_repository.all.each do |reminder|
-      Reminders::SyncProjects.new(reminder).call
+      Reminders::SyncProjects
+        .new(reminder, projects_repository, project_checks_repository)
+        .call
     end
   end
 end
