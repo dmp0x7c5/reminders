@@ -1,7 +1,8 @@
 class SyncMissingProjectsJob
   attr_reader :slack_channels_repository,
               :projects_repository,
-              :reminders_repository
+              :reminders_repository,
+              :project_checks_repository
 
   def initialize(projects_repository:, slack_repository:, reminders_repository:)
     @projects_repository = projects_repository
