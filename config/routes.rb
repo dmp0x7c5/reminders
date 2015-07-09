@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :projects, only: [:index] do
     post :sync, on: :collection
+    post :toggle_state, on: :member
   end
 
   resources :project_checks do
