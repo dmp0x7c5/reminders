@@ -8,6 +8,10 @@ class ProjectsController < ApplicationController
   expose(:projects) do
     ProjectDecorator.decorate_collection projects_repository.with_done_checks
   end
+  expose(:project) do
+    projects_repository.find(params[:id])
+  end
+  expose(:project_checks_repository) { ProjectChecksRepository.new }
 
   def index; end
 
@@ -15,6 +19,14 @@ class ProjectsController < ApplicationController
     Projects::SyncWithSlackChannels.new(projects_repository,
                                         slack_channels_repository).call
     redirect_to projects_path, notice: "Projects have been synchronized"
+  end
+
+  def toggle_state
+    Projects::ToggleState.new(project: project,
+                              projects_repository: projects_repository,
+                              checks_repository: project_checks_repository,
+                             ).toggle
+    redirect_to projects_path
   end
 
   private
