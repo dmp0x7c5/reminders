@@ -1,4 +1,4 @@
-require_relative "../sections/project_checks_table_row.rb"
+require_relative "./sections/project_checks_table_row.rb"
 
 module Reminders
   class ReminderPage < SitePrism::Page

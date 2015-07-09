@@ -16,9 +16,5 @@ module Reminders
     def id
       root_element[:id]
     end
-
-    def checks_history
-      history_table.root_element
-    end
   end
 end
