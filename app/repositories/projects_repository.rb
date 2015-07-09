@@ -25,5 +25,9 @@ class ProjectsRepository
       .distinct
   end
 
+  def update(project, update_params)
+    project.update_attributes(update_params)
+  end
+
   delegate :find_by_name, to: :all
 end
