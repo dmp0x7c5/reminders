@@ -50,4 +50,14 @@ describe ProjectsRepository do
       expect(repo.for_reminder(reminder).count).to eq 1
     end
   end
+
+  describe "#update" do
+    let(:project) { create(:project, enabled: false, name: "some_name") }
+
+    it "updates project's given attributes" do
+      repo.update(project, enabled: true, name: "other_name")
+      expect(project.enabled).to be true
+      expect(project.name).to eq "other_name"
+    end
+  end
 end
