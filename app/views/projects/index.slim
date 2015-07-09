@@ -13,6 +13,7 @@
           th Channel name
           th Created at
           th Review history
+          th Enable/disable
 
       tbody
         - projects.each do |project|
@@ -23,6 +24,17 @@
             td = project.created_at
             td class="#{project.name}"
               = project.show_history
+            td
+              - if project.enabled
+                = link_to toggle_state_project_path(project), method: :post,
+                  class: "btn btn-danger",
+                  data: { confirm: "Are you sure?" } do
+                  i.glyphicon.glyphicon-ok-circle
+              - else
+                = link_to toggle_state_project_path(project), method: :post,
+                  class: "btn btn-success",
+                  data: { confirm: "Are you sure?" } do
+                  i.glyphicon.glyphicon-ok-circle
 
           - if project.has_checked_reviews?
             = render template: "review_history/project_reviews",
