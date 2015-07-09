@@ -1,5 +1,5 @@
 class ProjectDecorator < Draper::Decorator
-  delegate :id, :name
+  delegate :id, :name, :enabled
 
   def created_at
     h.l object.created_at
