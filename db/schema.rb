@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609115359) do
+ActiveRecord::Schema.define(version: 20150709142838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,10 +41,11 @@ ActiveRecord::Schema.define(version: 20150609115359) do
   add_index "project_checks", ["reminder_id"], name: "index_project_checks_on_reminder_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "name",                        null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "channel_name"
+    t.boolean  "enabled",      default: true
   end
 
   create_table "reminders", force: :cascade do |t|
