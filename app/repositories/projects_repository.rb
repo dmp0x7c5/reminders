@@ -1,6 +1,6 @@
 class ProjectsRepository
   def all
-    Project.all
+    Project.all.order(:id)
   end
 
   def find(project_id)
