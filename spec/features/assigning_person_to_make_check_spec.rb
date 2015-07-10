@@ -5,8 +5,8 @@ feature "assign user to perform check" do
   let(:reminder) { create(:reminder) }
   let!(:project_check) do
     create(:project_check,
-           project: project,
-           reminder: reminder,
+           project_id: project.id,
+           reminder_id: reminder.id,
           )
   end
   let(:user) { create(:user, uid: "12331", provider: "google_oauth2") }
