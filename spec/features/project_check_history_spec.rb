@@ -21,7 +21,7 @@ feature "project checks history" do
   scenario "history shows only done project checks" do
     page.load reminder_id: reminder.id
 
-    expect(page.first_project)
+    expect(page.first_project.last_checker)
       .not_to have_text user.name
 
     page.first_project.check_button.click
@@ -33,23 +33,24 @@ feature "project checks history" do
 
     page.first_project.history_button.click
 
-    expect(page.first_project.checks_history)
+    expect(page.first_project.history_table.content)
       .to have_text user.name
 
     page.first_project.pick_random_button.click
 
     expect(page.first_project.assigned_reviewer)
       .to have_text second_user.name
-    expect(page.first_project.checks_history)
+    expect(page.first_project.history_table.content)
       .to have_text user.name
-    expect(page.first_project.checks_history)
+    expect(page.first_project.history_table.content)
       .not_to have_text second_user.name
 
     page.first_project.check_button.click
     page.first_project.history_button.click
 
-    expect(page.checks_history.done_checks_number).to eq 2
-    expect(page.first_project.checks_history)
+    expect(page.first_project.history_table
+      .checks_number).to eq 2
+    expect(page.first_project.history_table.content)
       .not_to have_text second_user.name
   end
 end
