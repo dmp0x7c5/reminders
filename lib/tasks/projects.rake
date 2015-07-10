@@ -3,7 +3,8 @@ namespace :projects do
   task sync_missing: :environment do
     ActiveRecord::Base.connection_pool.with_connection do
       SyncMissingProjectsJob.new(projects_repo: ProjectsRepository.new,
-                                 slack_repo: SlackChannelsRepository.new(Slack.client),
+                                 slack_repo: SlackChannelsRepository
+                                  .new(Slack.client),
                                  reminders_repo: RemindersRepository.new,
                                 ).perform
     end
