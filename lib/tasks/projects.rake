@@ -4,7 +4,7 @@ namespace :projects do
     ActiveRecord::Base.connection_pool.with_connection do
       SyncMissingProjectsJob.new(projects_repo: ProjectsRepository.new,
                                  slack_repo: SlackChannelsRepository.new(Slack.client),
-                                 reminders_repo: RemindersRepository.new
+                                 reminders_repo: RemindersRepository.new,
                                 ).perform
     end
   end
