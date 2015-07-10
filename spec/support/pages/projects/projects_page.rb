@@ -6,7 +6,7 @@ module Projects
     sections :project_rows, ProjectTableRow, ".row .col-xs-12 table.table tbody tr.projects_list"
 
     def first_project
-     project_rows.first
+      project_rows.first
     end
   end
 end
