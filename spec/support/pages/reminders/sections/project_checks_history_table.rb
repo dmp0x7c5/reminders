@@ -4,4 +4,8 @@
     def checks_number
       checks.count
     end
+
+    def content
+      root_element.text
+    end
   end
