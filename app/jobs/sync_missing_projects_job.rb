@@ -4,11 +4,11 @@ class SyncMissingProjectsJob
               :reminders_repository,
               :project_checks_repository
 
-  def initialize(projects_repo:, slack_repo:, reminders_repo:, checks_repo: ProjectChecksRepository.new)
+  def initialize(projects_repo:, slack_repo:, reminders_repo:, checks_repo:)
     @projects_repository = projects_repo
     @slack_channels_repository = slack_repo
     @reminders_repository = reminders_repo
-    @project_checks_repository = checks_repo
+    @project_checks_repository = checks_repo || ProjectChecksRepository.new
   end
 
   def perform
