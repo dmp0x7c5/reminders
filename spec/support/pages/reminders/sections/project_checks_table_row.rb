@@ -17,5 +17,13 @@ module Reminders
     def id
       root_element[:id]
     end
+
+    def disabled?
+      toggle_state_button[:class] == "btn btn-success"
+    end
+
+    def toggle_state
+      toggle_state_button.click
+    end
   end
 end
