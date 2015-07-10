@@ -1,4 +1,5 @@
 require_relative './sections/project_table_row.rb'
+
 module Projects
   class ProjectsPage < SitePrism::Page
     set_url "/projects"
