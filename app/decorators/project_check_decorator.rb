@@ -1,6 +1,11 @@
 class ProjectCheckDecorator < Draper::Decorator
   delegate :id, :enabled?, :last_check_user, :project_id, :reminder_id
-  decorates_association :check_assignments
+
+  def check_assignments
+    CheckAssignmentDecorator.decorate_collection(object.check_assignments)
+      .sort_by(&:created_at)
+      .reverse
+  end
 
   def project_name
     object.project.name
@@ -60,7 +65,7 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   def has_appointed_review?
-    return if check_assignments.empty?
+    return false if check_assignments.empty?
     check_assignments.first.completion_date.nil?
   end
 
