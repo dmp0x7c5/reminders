@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-07-10
+
+## Added
+
+* we can now block entire project from projects list, which automatically
+  disables all reminders for this project.
+
 # 2015-07-08
 
 ## Added
