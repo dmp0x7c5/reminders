@@ -14,7 +14,7 @@ describe ProjectCheckDecorator do
 
     context "when the date is set" do
       before do
-        Timecop.freeze(Time.local(2015, 05, 20))
+        Timecop.freeze(Time.zone.parse("2015-05-20"))
       end
 
       after do
