@@ -22,7 +22,7 @@ module CheckAssignments
     def complete_assignment
       assignments_repository.update(
         assignment,
-        completion_date: Time.now, user_id: checker.id,
+        completion_date: Time.now, user_id: checker.id
       )
       project_check_update.call(
         last_check_date: assignment.completion_date,
