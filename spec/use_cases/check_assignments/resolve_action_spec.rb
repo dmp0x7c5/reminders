@@ -1,4 +1,4 @@
-require "rails_helper"
+require "spec_helper"
 
 describe CheckAssignments::ResolveAction do
   let(:service) do
