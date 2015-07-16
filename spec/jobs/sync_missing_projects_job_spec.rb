@@ -64,11 +64,11 @@ describe SyncMissingProjectsJob do
       end
 
       it "does nothing" do
-        expect { job.perform }.to change { projects_repository.all.count }.by(0)
+        expect { job.perform }.not_to change { projects_repository.all.count }
         expect { job.perform }
-          .to change { checks_repository.for_reminder(reminder1).count }.by(0)
+          .not_to change { checks_repository.for_reminder(reminder1).count }
         expect { job.perform }
-          .to change { checks_repository.for_reminder(reminder2).count }.by(0)
+          .not_to change { checks_repository.for_reminder(reminder2).count }
       end
     end
 
