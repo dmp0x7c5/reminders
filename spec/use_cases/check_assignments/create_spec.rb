@@ -4,6 +4,7 @@ describe CheckAssignments::Create do
   let(:service) { described_class.new(parameters) }
   let(:parameters) do
     {
+      assignments_repository: assignments_repo,
       checker: checker,
       project_check: project_check,
     }
