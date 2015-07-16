@@ -1,8 +1,12 @@
 require "rails_helper"
 
 describe CheckAssignments::PickPerson do
-  let(:service) { described_class.new(latest_checker: user) }
-  let(:users_repository) { UsersRepository.new }
+  let(:service) do
+    described_class.new(latest_checker: user,
+                        users_repository: users_repo,
+                       )
+  end
+  let(:users_repo) { UsersRepository.new }
 
   before do
     %w(John Jake Hank).each do |name|
