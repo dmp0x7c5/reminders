@@ -52,22 +52,4 @@ class CheckAssignmentsController < ApplicationController
 
     redirect_to reminder_path(check.reminder), notice: "All right"
   end
-
-  private
-
-  def create_with_assigned_user
-    person = CheckAssignments::PickPerson.new(
-      latest_checker: last_checker,
-    ).call
-    CheckAssignments::Create.new(
-      checker: person,
-      project_check: check,
-    ).call
-    person
-  end
-
-  def assigned_checker_notice(checker)
-    "#{checker.name} was assigned to do next
-    #{check.reminder.name} in #{check.project.name}"
-  end
 end
