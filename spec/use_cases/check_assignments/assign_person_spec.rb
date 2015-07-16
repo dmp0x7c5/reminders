@@ -32,11 +32,11 @@ describe CheckAssignments::AssignPerson do
   let(:project) { double(:project, name: "test", channel_name: "test") }
   let(:last_checker) { double(:user, name: "Jane Doe", id: 5) }
   let(:user) { double(:user, name: "John Doe", id: 4) }
-  let(:info) do
-    { person: user.name,
-      reminder: reminder.name,
-      project: project.name,
-    }
+  let(:message) do
+    u = user.name
+    r = reminder.name
+    p = project.name
+    "#{u} was just assigned to do next #{r} in #{p}. "
   end
 
   describe "#assign" do
@@ -55,7 +55,7 @@ describe CheckAssignments::AssignPerson do
     it "attempts to send Slack notification" do
       expect_any_instance_of(CheckAssignments::Notify)
         .to receive(:notify)
-        .with(project.channel_name, info)
+        .with(project.channel_name, message)
       service.assign(last_checker)
     end
 
