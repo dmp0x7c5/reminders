@@ -19,6 +19,7 @@ class CheckAssignmentsController < ApplicationController
     CheckAssignments::CreateCompleted.new(
       checker: current_user,
       project_check: check,
+      assignments_repository: assignments_repository,
     )
   end
   expose(:assignment_completer) do
