@@ -13,7 +13,7 @@ module CheckAssignments
     def assign(last_checker)
       person = pick_person(last_checker)
       create_with_assigned_user(person)
-      notify_channel(notice_info(person))
+      notify_channel(compose_notice(person))
     end
 
     private
@@ -33,11 +33,12 @@ module CheckAssignments
       ).call
     end
 
-    def notice_info(person)
-      { person: person.name,
-        reminder: check.reminder.name,
-        project: check.project.name,
-      }
+    def compose_notice(person)
+      user = person.name
+      reminder = check.reminder.name
+      project = check.project.name
+
+      "#{user} was just assigned to do next #{reminder} in #{project}. "
     end
 
     def notify_channel(message)
