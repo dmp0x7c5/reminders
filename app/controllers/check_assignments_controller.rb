@@ -28,12 +28,19 @@ class CheckAssignmentsController < ApplicationController
       project_check: check,
     )
   end
+  expose(:user_assigner) do
+    CheckAssignments::AssignPerson.new(
+      project_check: check,
+      assignments_repo: assignments_repository,
+      users_repo: UsersRepository.new,
+    )
+  end
 
   def assign_checker
     if action_resolver.can_create?
-      checker = create_with_assigned_user
+      notice = user_assigner.assign(last_checker)
       redirect_to reminder_path(check.reminder),
-                  notice: assigned_checker_notice(checker)
+                  notice: notice
     else
       redirect_to reminder_path(check.reminder),
                   notice: "Someone is already assigned to do this"
