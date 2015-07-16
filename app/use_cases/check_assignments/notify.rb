@@ -1,7 +1,6 @@
 module CheckAssignments
   class Notify
     attr_reader :notifier
-    private :notifier
 
     def initialize
       @notifier = Notifier.new
@@ -30,7 +29,7 @@ module CheckAssignments
 
     def slack_message(message)
       "Just letting know that " + message +
-        "Please let them know."
+        " Please let them know."
     end
 
     def final_notice(notifier_output, message)
