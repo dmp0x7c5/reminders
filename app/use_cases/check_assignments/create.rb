@@ -3,7 +3,7 @@ module CheckAssignments
     attr_reader :checker, :assignments_repository, :project_check
     private :checker, :assignments_repository, :project_check
 
-    def initialize(checker:, project_check:, assignments_repository:)
+    def initialize(checker:, project_check:, assignments_repository: nil)
       @checker = checker
       @project_check = project_check
       @assignments_repository = assignments_repository ||
