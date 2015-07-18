@@ -99,6 +99,7 @@ GEM
     colorize (0.7.7)
     columnize (0.9.0)
     daemons (1.2.2)
+    database_cleaner (1.4.1)
     debug_inspector (0.0.2)
     decent_exposure (2.3.2)
     diff-lcs (1.2.5)
@@ -397,6 +398,7 @@ DEPENDENCIES
   capybara
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
+  database_cleaner
   decent_exposure
   draper
   factory_girl_rails
@@ -436,3 +438,6 @@ DEPENDENCIES
   web-console
   whenever
   zonebie
+
+BUNDLED WITH
+   1.10.5
