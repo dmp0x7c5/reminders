@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-07-19
+
+## Added
+
+* Sending notification to Slack channel when person gets assigned to perform
+  project check.
+
 # 2015-07-10
 
 ## Added
