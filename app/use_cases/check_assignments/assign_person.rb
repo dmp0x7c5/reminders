@@ -10,7 +10,7 @@ module CheckAssignments
                     UsersRepository.new
     end
 
-    def assign(last_checker)
+    def call(last_checker)
       person = pick_person(last_checker)
       create_with_assigned_user(person)
       notify_channel(compose_notice(person))
@@ -42,7 +42,7 @@ module CheckAssignments
     end
 
     def notify_channel(message)
-      CheckAssignments::Notify.new.notify(
+      CheckAssignments::Notify.new.call(
         check.project.channel_name,
         message,
       )

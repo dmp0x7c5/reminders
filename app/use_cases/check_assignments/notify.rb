@@ -6,7 +6,7 @@ module CheckAssignments
       @notifier = Notifier.new
     end
 
-    def notify(channel_name, message)
+    def call(channel_name, message)
       return slack_disabled(message) unless notifier.slack_enabled?
 
       channel = prep_channel_name(channel_name)
