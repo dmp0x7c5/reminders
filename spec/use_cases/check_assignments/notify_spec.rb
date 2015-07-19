@@ -35,10 +35,6 @@ describe CheckAssignments::Notify do
       end
 
       context "after successful notification" do
-        let(:notifier_output) do
-          { "ok" => true }
-        end
-
         before do
           allow_any_instance_of(Notifier).to receive(:notify_slack)
             .and_return("ok" => true)
@@ -53,10 +49,6 @@ describe CheckAssignments::Notify do
       end
 
       context "after unsuccessful notification" do
-        let(:notifier_output) do
-          { "ok" => false }
-        end
-
         before do
           allow_any_instance_of(Notifier).to receive(:notify_slack)
             .and_return("ok" => false)
