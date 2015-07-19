@@ -36,7 +36,7 @@ describe CheckAssignments::AssignPerson do
     u = user.name
     r = reminder.name
     p = project.name
-    "#{u} was just assigned to do next #{r} in #{p}. "
+    "#{u} got assigned to do next #{r} in #{p}. "
   end
 
   describe "#call" do
