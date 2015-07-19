@@ -1,0 +1,15 @@
+h1
+  | History of #{project_check.reminder_name} in #{project_check.project_name}
+
+table.table.datatable
+  thead
+    tr
+      th Check date
+      th Checker
+  tbody
+    - checks.each do |check|
+      tr
+        td
+          = check.completion_date
+        td
+          = check.checker

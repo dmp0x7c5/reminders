@@ -18,9 +18,10 @@
             td = pc.last_check_date
             td = pc.days_to_deadline
             td = pc.last_checked_by
-            td class="#{pc.project_name}"
-              .toggle_history.btn.btn-success
-                | Show
+            td
+              = link_to history_project_check_path(pc) do
+                .btn.btn-success
+                  | Show
             td
               - if pc.enabled?
                 = form_tag complete_check_path, method: :post do
@@ -52,6 +53,3 @@
                   = button_tag type: :submit,
                     class: 'btn btn-success btn-sm' do
                       | Pick random
-
-            = render template: "review_history/reminder_project_checks",
-              locals: { checks: pc.assignments, project_name: pc.project_name, table_size: pc.assignments_table_size }

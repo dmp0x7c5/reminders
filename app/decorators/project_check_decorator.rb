@@ -56,6 +56,10 @@ class ProjectCheckDecorator < Draper::Decorator
     object.reminder.name
   end
 
+  def reminder_name
+    object.reminder.name
+  end
+
   def assignments
     check_assignments.select { |c| c.object.completion_date.present? }
   end

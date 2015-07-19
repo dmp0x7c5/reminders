@@ -21,14 +21,10 @@ class ProjectDecorator < Draper::Decorator
     checked_reviews.any?
   end
 
-  def history_rowspan_size
-    checks.count + 2
-  end
-
   def show_history
     if project.checked_reviews.count > 0
-      h.content_tag :div, "Show",
-                    class: ["toggle_history", "btn", "btn-success", "center"]
+      h.link_to "Show", h.history_project_path(project.id),
+                class: "btn btn-success"
     else
       "nothing to show"
     end

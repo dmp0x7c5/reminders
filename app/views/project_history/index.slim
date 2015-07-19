@@ -1,0 +1,21 @@
+h1
+  | History of checks in #{project.name}
+
+table.table.datatable
+  thead
+    tr
+      th Check name
+      th Check date
+      th Checker
+      th Actions
+  tbody
+    - checks.each do |check|
+      tr
+        td
+          = check.review
+        td
+          = check.last_check_date
+        td
+          = check.last_checked_by
+        td
+          = link_to "Details", history_project_check_path(check.id), class: 'btn btn-default'

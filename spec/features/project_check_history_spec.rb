@@ -18,7 +18,7 @@ feature "project checks history" do
     log_in(user)
   end
 
-  scenario "history shows only done project checks" do
+  pending "history shows only done project checks" do
     page.load reminder_id: reminder.id
 
     expect(page.first_project.last_checker)

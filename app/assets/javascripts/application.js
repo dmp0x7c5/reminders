@@ -16,5 +16,4 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
 //= require netguru_theme
-//= require review_history
 //= require_tree .
