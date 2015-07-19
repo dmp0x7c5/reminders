@@ -6,6 +6,7 @@ describe CheckAssignments::CreateCompleted do
     {
       checker: checker,
       project_check: project_check,
+      assignments_repository: repo,
     }
   end
   let(:repo) { CheckAssignmentsRepository.new }

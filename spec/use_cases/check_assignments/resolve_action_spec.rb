@@ -11,6 +11,7 @@ describe CheckAssignments::ResolveAction do
     CheckAssignments::CreateCompleted.new(
       checker: double(:user),
       project_check: double(:project_check),
+      assignments_repository: repo,
     )
   end
   let(:completer) do
@@ -20,6 +21,8 @@ describe CheckAssignments::ResolveAction do
       project_check: double(:project_check),
     )
   end
+
+  let(:repo) { InMemoryRepository.new }
 
   describe "#can_create?" do
     context "when assignment is nil" do
