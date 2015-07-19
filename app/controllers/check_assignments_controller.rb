@@ -39,7 +39,7 @@ class CheckAssignmentsController < ApplicationController
 
   def assign_checker
     if action_resolver.can_create?
-      notice = user_assigner.assign(last_checker)
+      notice = user_assigner.call(last_checker)
       redirect_to reminder_path(check.reminder),
                   notice: notice
     else

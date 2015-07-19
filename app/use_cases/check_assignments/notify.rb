@@ -6,8 +6,8 @@ module CheckAssignments
       @notifier = Notifier.new
     end
 
-    def notify(channel_name, message)
-      return slack_disabled(message) unless notifier.slack_enabled?
+    def call(channel_name, message)
+      return unsuccessful_notification(message) unless notifier.slack_enabled?
 
       channel = prep_channel_name(channel_name)
       slack_message = slack_message(message)
@@ -18,11 +18,6 @@ module CheckAssignments
 
     private
 
-    def slack_disabled(message)
-      message +
-        "We couldn't notify channel because Slack is disabled."
-    end
-
     def prep_channel_name(channel_name)
       "##{channel_name}"
     end
@@ -32,11 +27,16 @@ module CheckAssignments
         " Please let them know."
     end
 
+    def unsuccessful_notification(message)
+      message +
+        " Something went wrong and we couldn't notify channel."
+    end
+
     def final_notice(notifier_output, message)
       if notifier_output["ok"]
         message + " We have notified project's channel."
       else
-        message + " Something went wrong and we could't notify channel."
+        unsuccessful_notification(message)
       end
     end
   end

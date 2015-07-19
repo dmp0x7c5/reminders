@@ -36,31 +36,31 @@ describe CheckAssignments::AssignPerson do
     u = user.name
     r = reminder.name
     p = project.name
-    "#{u} was just assigned to do next #{r} in #{p}. "
+    "#{u} got assigned to do next #{r} in #{p}. "
   end
 
-  describe "#assign" do
+  describe "#call" do
     it "creates new uncompleted check assignment" do
-      expect { service.assign(last_checker) }
+      expect { service.call(last_checker) }
         .to change { assignments_repo.all.count }
         .by(1)
       expect(assignments_repo.all.first.completion_date).to eq nil
     end
 
     it "doesn't assign user that performed last check" do
-      service.assign(last_checker)
+      service.call(last_checker)
       expect(assignments_repo.all.first.user_id).to eq user.id
     end
 
     it "attempts to send Slack notification" do
       expect_any_instance_of(CheckAssignments::Notify)
-        .to receive(:notify)
+        .to receive(:call)
         .with(project.channel_name, message)
-      service.assign(last_checker)
+      service.call(last_checker)
     end
 
     it "returns notice text" do
-      expect(service.assign(last_checker)).to be_an_instance_of String
+      expect(service.call(last_checker)).to be_an_instance_of String
     end
   end
 end
