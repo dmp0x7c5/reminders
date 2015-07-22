@@ -4,7 +4,7 @@ class RemindersController < ApplicationController
 
   expose(:reminders_repository) { RemindersRepository.new }
   expose(:reminders) do
-    ReminderDecorator::Base.decorate_collection reminders_repository.all
+    ReminderDecorator::Base.decorate_collection reminders_repository.all.includes(:project_checks)
   end
   expose(:reminder) { reminders_repository.find(params[:id]) }
   expose(:project_checks_repository) { ProjectChecksRepository.new }
