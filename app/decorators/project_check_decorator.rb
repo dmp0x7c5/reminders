@@ -41,11 +41,11 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   def days_to_deadline
-    if days_to_deadline_as_number > 0
-      days_to_deadline_as_number
-    else
-      "after deadline"
-    end
+    overdue? ? "after deadline" : days_to_deadline_as_number
+  end
+
+  def overdue?
+    days_to_deadline_as_number < 0
   end
 
   def last_checked_by
