@@ -6,6 +6,7 @@ table.table.datatable
       th Name
       th Valid for N days
       th Remind after N days
+      th No. of overdue projects
       th Actions
 
   tbody
@@ -15,6 +16,7 @@ table.table.datatable
           = link_to reminder.name, reminder_path(reminder)
         td = reminder.valid_for_n_days
         td = reminder.remind_after_days
+        td = reminder.number_of_overdue_project
         td
           .btn-group
             = link_to 'Show', reminder, class: 'btn btn-mini btn-success'
