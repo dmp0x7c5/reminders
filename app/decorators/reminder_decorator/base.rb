@@ -11,5 +11,9 @@ module ReminderDecorator
         "No reminders before deadline"
       end
     end
+
+    def number_of_overdue_project
+      ProjectCheckDecorator.decorate_collection(object.project_checks).count(&:overdue?)
+    end
   end
 end
