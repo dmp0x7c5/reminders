@@ -48,6 +48,10 @@ class ProjectCheckDecorator < Draper::Decorator
     days_to_deadline_as_number < 0
   end
 
+  def overdue_text
+    overdue? ? 'overdue' : ''
+  end
+
   def last_checked_by
     object.last_check_user.name if object.last_check_user.present?
   end
