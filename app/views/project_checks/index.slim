@@ -1,6 +1,11 @@
 .row
   .col-xs-12
-    table.table.datatable
+    ul.nav.nav-tabs.project-checks-filters
+      li.active
+        = link_to 'All', '#', data: { filter: '' }
+      li
+        = link_to 'Overdue', '#',data: { filter: 'overdue' }
+    table.table.project-checks-datatable
       thead
         tr
           th Project
@@ -11,6 +16,7 @@
           th Check now?
           th Enable/disable
           th Assign reviewer
+          th.hidden
       tbody.project_row
         - project_checks.each do |pc|
           tr class="#{pc.css_date_class}" id="#{pc.project_name}"
@@ -53,3 +59,4 @@
                   = button_tag type: :submit,
                     class: 'btn btn-success btn-sm' do
                       | Pick random
+            td.hidden = pc.overdue_text
