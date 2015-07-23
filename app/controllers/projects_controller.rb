@@ -12,12 +12,16 @@ class ProjectsController < ApplicationController
     projects_repository.find(params[:id])
   end
   expose(:project_checks_repository) { ProjectChecksRepository.new }
+  expose(:reminders_repository) { RemindersRepository.new }
 
   def index; end
 
   def sync
-    Projects::SyncWithSlackChannels.new(projects_repository,
-                                        slack_channels_repository).call
+    SyncMissingProjectsJob.new(
+      projects_repo: projects_repository,
+      slack_repo: slack_channels_repository,
+      reminders_repo: reminders_repository,
+      checks_repo: project_checks_repository).perform
     redirect_to projects_path, notice: "Projects have been synchronized"
   end
 
