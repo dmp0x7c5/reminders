@@ -22,7 +22,7 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def show_history
-    if project.checked_reviews.count > 0
+    if project.checked_reviews.length > 0
       h.link_to "Show", h.history_project_path(project.id),
                 class: "btn btn-success"
     else
