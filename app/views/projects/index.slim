@@ -13,7 +13,7 @@
           th Channel name
           th Created at
           th Review history
-          th Enable/disable
+          th Enabled
 
       tbody
         - projects.each do |project|
@@ -25,13 +25,6 @@
             td
               = project.show_history
             td
-              - if project.enabled
-                = link_to toggle_state_project_path(project), method: :post,
-                  class: "btn btn-danger",
-                  data: { confirm: "Are you sure?" } do
-                  i.glyphicon.glyphicon-ok-circle
-              - else
-                = link_to toggle_state_project_path(project), method: :post,
-                  class: "btn btn-success",
-                  data: { confirm: "Are you sure?" } do
-                  i.glyphicon.glyphicon-ok-circle
+              = form_tag toggle_state_project_path(project)
+                input.project-switch type="checkbox" checked=("checked" if project.enabled) id="project-#{project.id}"
+                label for="project-#{project.id}"
