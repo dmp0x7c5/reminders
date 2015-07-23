@@ -14,7 +14,7 @@
           th Last checked by
           th History
           th Check now?
-          th Enable/disable
+          th Enabled
           th Assign reviewer
           th.hidden
       tbody.project_row
@@ -38,17 +38,9 @@
                       i.glyphicon.glyphicon-ok
                       | Check!
             td
-              - if pc.enabled?
-                = link_to project_check_toggle_state_path(pc), method: :post,
-                  class: "btn btn-danger",
-                  data: { confirm: "Are you sure?", disable_with: pc.css_disabled_state } do
-                  i.glyphicon.glyphicon-ok-circle
-
-              - else
-                = link_to project_check_toggle_state_path(pc), method: :post,
-                  class: "btn btn-success",
-                  data: { confirm: "Are you sure?", disable_with: pc.css_disabled_state } do
-                  i.glyphicon.glyphicon-ok-circle
+              = form_tag project_check_toggle_state_path(pc)
+                input.project-switch type="checkbox" checked=("checked" if pc.enabled?) id="project-#{pc.id}"
+                label for="project-#{pc.id}"
             td
               - if pc.has_appointed_review?
                 | Assigned: #{pc.assigned_reviewer}
