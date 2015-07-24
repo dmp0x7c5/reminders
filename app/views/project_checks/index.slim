@@ -4,7 +4,9 @@
       li.active
         = link_to 'All', '#', data: { filter: '' }
       li
-        = link_to 'Overdue', '#',data: { filter: 'overdue' }
+        = link_to 'Overdue', '#', data: { filter: 'overdue' }
+      li
+        = link_to 'Not checked yet', '#', data: { filter: 'not_checked_yet' }
     table.table.project-checks-datatable
       thead
         tr
@@ -51,4 +53,4 @@
                   = button_tag type: :submit,
                     class: 'btn btn-success btn-sm', disabled: !pc.enabled? do
                       | Pick random
-            td.hidden = pc.overdue_text
+            td.hidden = pc.status_text

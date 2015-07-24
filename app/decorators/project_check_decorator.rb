@@ -12,11 +12,15 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   def last_check_date
-    if object.last_check_date.present?
+    if checked?
       "#{h.l(object.last_check_date)} (#{last_check_date_time_diff})"
     else
       "not checked yet"
     end
+  end
+
+  def checked?
+    object.last_check_date.present?
   end
 
   def row_class
@@ -48,8 +52,14 @@ class ProjectCheckDecorator < Draper::Decorator
     days_to_deadline_as_number < 0
   end
 
-  def overdue_text
-    overdue? ? 'overdue' : ''
+  def status_text
+    if overdue?
+      'overdue'
+    elsif !checked?
+      'not_checked_yet'
+    else
+      ''
+    end
   end
 
   def last_checked_by
