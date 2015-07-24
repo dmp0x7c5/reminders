@@ -12,8 +12,10 @@ class ProjectChecksController < ApplicationController
 
   def toggle_state
     check.enabled = !check.enabled
-    check.save
-
-    redirect_to reminder_path(check.reminder), notice: "All right!"
+    if check.save
+      redirect_to reminder_path(check.reminder), notice: 'All right!'
+    else
+      redirect_to reminder_path(check.reminder), alert: check.errors.full_messages.join(', ')
+    end
   end
 end
