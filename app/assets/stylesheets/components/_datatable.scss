@@ -1,5 +1,5 @@
-// Project checks index table
-table.project-checks-datatable tbody { // This is really long because datatables defined it with such a long rule :(
+table.dataTable tbody { // This is really long because datatables defined it with such a long rule :(
+                        // also it's dataTable because that's the class that datatable plugin adds
   tr.active {
     td {
       background-color: $table-bg-active;
