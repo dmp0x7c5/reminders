@@ -49,6 +49,6 @@
                 = form_tag assign_checker_path, method: :post do
                   = hidden_field_tag :project_check_id, pc.id
                   = button_tag type: :submit,
-                    class: 'btn btn-success btn-sm' do
+                    class: 'btn btn-success btn-sm', disabled: !pc.enabled? do
                       | Pick random
             td.hidden = pc.overdue_text
