@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_admin!, only: [:sync]
+  before_action :authenticate_admin!
 
   expose(:projects_repository) { ProjectsRepository.new }
   expose(:slack_channels_repository) do
