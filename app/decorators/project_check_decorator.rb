@@ -19,7 +19,7 @@ class ProjectCheckDecorator < Draper::Decorator
     end
   end
 
-  def css_date_class
+  def row_class
     if !object.enabled?
       "active"
     elsif object.last_check_date.nil?

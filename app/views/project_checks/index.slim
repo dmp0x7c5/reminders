@@ -19,7 +19,7 @@
           th.hidden
       tbody.project_row
         - project_checks.each do |pc|
-          tr class="#{pc.css_date_class}" id="#{pc.project_name}"
+          tr class="#{pc.row_class}" id="#{pc.project_name}"
             td = pc.project_name
             td = pc.last_check_date
             td = pc.days_to_deadline
