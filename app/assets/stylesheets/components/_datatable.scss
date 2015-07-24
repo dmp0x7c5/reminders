@@ -8,10 +8,6 @@ table.dataTable tbody { // This is really long because datatables defined it wit
     &:hover td {
       background-color: $table-bg-active !important; // jQuery Datatables has !important and we want to override this
     }
-    .btn-success {
-      background-color: lighten($btn-success-bg, 13.5%);
-      border-color: lighten($btn-success-border, 13.5%);
-    }
   }
   tr.warning td {
     background-color: $state-warning-bg;
