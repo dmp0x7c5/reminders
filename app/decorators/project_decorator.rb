@@ -9,6 +9,10 @@ class ProjectDecorator < Draper::Decorator
     "##{object.channel_name}"
   end
 
+  def row_class
+    "active" unless object.enabled?
+  end
+
   def checked_reviews
     ::ProjectCheckDecorator.decorate_collection object.checked_reviews
   end

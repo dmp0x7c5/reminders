@@ -17,7 +17,7 @@
 
       tbody
         - projects.each do |project|
-          tr id="#{project.name}" class='projects_list'
+          tr id="#{project.name}" class='projects_list #{project.row_class}'
             td = project.id
             td = project.name
             td = project.channel_name
