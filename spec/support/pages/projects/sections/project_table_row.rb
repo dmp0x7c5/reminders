@@ -1,9 +1,9 @@
 module Projects
   class ProjectTableRow < SitePrism::Section
-    element :toggle_state_button, "td[6] a"
+    element :toggle_state_button, ".project-switch"
 
     def disabled?
-      toggle_state_button[:class] == "btn btn-success"
+      toggle_state_button[:checked] != true
     end
 
     def disable

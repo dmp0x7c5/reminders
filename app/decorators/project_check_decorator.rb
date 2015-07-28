@@ -54,11 +54,11 @@ class ProjectCheckDecorator < Draper::Decorator
 
   def status_text
     if overdue?
-      'overdue'
+      "overdue"
     elsif !checked?
-      'not_checked_yet'
+      "not_checked_yet"
     else
-      ''
+      ""
     end
   end
 

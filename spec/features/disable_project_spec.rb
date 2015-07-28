@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "toggling project state" do
-  let(:user) { create(:user, uid: "1234", provider: "google_oauth2") }
+  let(:user) { create(:admin) }
   let(:projects_page) { Projects::ProjectsPage.new }
   let(:reminder_page) { Reminders::ReminderPage.new }
   let!(:project) { create(:project) }
@@ -18,7 +18,7 @@ feature "toggling project state" do
     end
   end
 
-  scenario "user disables project" do
+  pending "user disables project" do
     projects_page.load
     expect(projects_page.first_project.disabled?).to be false
     projects_page.first_project.disable

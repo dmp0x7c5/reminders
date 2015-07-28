@@ -11,7 +11,7 @@ class ProjectCheck < ActiveRecord::Base
   private
 
   def project_enabled?
-    return unless enabled? && !project.enabled?
-    errors[:base] << 'Can\'t enable project checks belonging to a disabled project'
+    return unless enabled? && project.present? && !project.enabled?
+    errors[:base] << "Can't enable project checks belonging to a disabled project"
   end
 end
