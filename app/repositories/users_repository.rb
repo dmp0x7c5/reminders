@@ -3,6 +3,10 @@ class UsersRepository
     User.all
   end
 
+  def assignable
+    all.where(assignable: true)
+  end
+
   def from_auth(auth)
     User.where(
       provider: auth["provider"],

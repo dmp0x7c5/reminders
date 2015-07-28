@@ -15,7 +15,7 @@ module CheckAssignments
     private
 
     def available_users
-      users_repository.all.to_a - [latest_checker]
+      users_repository.assignable.to_a - [latest_checker]
     end
   end
 end

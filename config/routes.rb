@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     post :sync_projects
   end
 
+  resources :users, only: [:index]
+
   root to: "visitors#index"
 
   get "/auth/:provider/callback" => "sessions#create"
