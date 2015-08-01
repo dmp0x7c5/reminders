@@ -1,10 +1,14 @@
 class SkillsRepository
+  def all
+    Skill.all
+  end
+
   def user_skills(user)
-    Skill.where(user_id: user.id)
+    all.where(user_id: user.id)
   end
 
   def find_for_reminder_and_user(reminder, user)
-    Skill.where(reminder_id: reminder.id, user_id: user.id).first
+    all.where(reminder_id: reminder.id, user_id: user.id).first
   end
 
   def create(attrs)
@@ -13,5 +17,9 @@ class SkillsRepository
 
   def delete(skill)
     skill.destroy!
+  end
+
+  def user_ids_for_reminder(reminder)
+    all.where(reminder_id: reminder.id).pluck(:user_id)
   end
 end

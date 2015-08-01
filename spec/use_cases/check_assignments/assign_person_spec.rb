@@ -6,6 +6,7 @@ describe CheckAssignments::AssignPerson do
       project_check: project_check,
       assignments_repo: assignments_repo,
       users_repo: users_repo,
+      skills_repo: skills_repo,
     )
   end
   let(:project_check) do
@@ -15,9 +16,25 @@ describe CheckAssignments::AssignPerson do
            project: project,
           )
   end
+  let(:needed_skill) do
+    double(:skill, id: 1, reminder_id: reminder.id, user_id: user.id)
+  end
+  let(:not_needed_skill) do
+    double(:skill, id: 2, reminder_id: 121_221, user_id: user.id)
+  end
   let(:users_repo) do
     repo = InMemoryRepository.new
     repo.all = [last_checker, user]
+    repo
+  end
+  let(:skills_repo) do
+    class InMemorySkillsRepository < InMemoryRepository
+      def user_ids_for_reminder(reminder)
+        all.select { |s| s.reminder_id == reminder.id }.map(&:user_id)
+      end
+    end
+    repo = InMemorySkillsRepository.new
+    repo.all = [needed_skill, not_needed_skill]
     repo
   end
   let(:assignments_repo) do
@@ -28,7 +45,7 @@ describe CheckAssignments::AssignPerson do
     end
     InMemoryAssignmentsRepository.new
   end
-  let(:reminder) { double(:reminder, name: "sample review") }
+  let(:reminder) { double(:reminder, id: 1, name: "sample review") }
   let(:project) { double(:project, name: "test", channel_name: "test") }
   let(:last_checker) { double(:user, name: "Jane Doe", id: 5) }
   let(:user) { double(:user, name: "John Doe", id: 4) }

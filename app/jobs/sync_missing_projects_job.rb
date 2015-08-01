@@ -8,7 +8,7 @@ class SyncMissingProjectsJob
     @projects_repository = projects_repo
     @slack_channels_repository = slack_repo
     @reminders_repository = reminders_repo
-    @project_checks_repository = checks_repo || ProjectChecksRepository.new
+    @project_checks_repository = checks_repo
   end
 
   def perform

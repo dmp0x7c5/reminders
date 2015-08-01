@@ -9,7 +9,8 @@ module Skills
     end
 
     def call
-      if skill = skills_repo.find_for_reminder_and_user(reminder, user)
+      skill = skills_repo.find_for_reminder_and_user(reminder, user)
+      if skill.present?
         skills_repo.delete(skill)
       else
         skills_repo.create(user_id: user.id, reminder_id: reminder.id)

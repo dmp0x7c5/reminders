@@ -10,6 +10,7 @@ class ProjectChecksController < ApplicationController
     reminders_repository.find(params[:reminder_id])
   end
 
+  # rubocop:disable Metrics/AbcSize
   def toggle_state
     check.enabled = !check.enabled
     if check.save
@@ -19,4 +20,5 @@ class ProjectChecksController < ApplicationController
                   alert: check.errors.full_messages.join(", ")
     end
   end
+  # rubocop:enable Metrics/AbcSize
 end

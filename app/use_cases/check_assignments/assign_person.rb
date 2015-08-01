@@ -1,13 +1,13 @@
 module CheckAssignments
   class AssignPerson
-    attr_reader :check, :assignments_repo, :users_repo
+    attr_reader :check, :assignments_repo, :users_repo, :skills_repo
 
-    def initialize(project_check:, assignments_repo:, users_repo:)
+    def initialize(project_check:, assignments_repo:, users_repo:,
+                   skills_repo:)
       @check = project_check
-      @assignments_repo = assignments_repo ||
-                          CheckAssignmentsRepository.new
-      @users_repo = users_repo ||
-                    UsersRepository.new
+      @assignments_repo = assignments_repo
+      @users_repo = users_repo
+      @skills_repo = skills_repo
     end
 
     def call(last_checker)
@@ -22,6 +22,8 @@ module CheckAssignments
       CheckAssignments::PickPerson.new(
         latest_checker: last_checker,
         users_repository: users_repo,
+        skills_repository: skills_repo,
+        reminder: check.reminder,
       ).call
     end
 

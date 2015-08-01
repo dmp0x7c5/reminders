@@ -18,6 +18,7 @@ feature "assign user to perform check" do
   end
 
   scenario "there is no user assigned yet" do
+    Skill.create!(user_id: user.id, reminder_id: reminder.id)
     reminder_page.load reminder_id: reminder.id
 
     expect(reminder_page.first_project)
@@ -34,6 +35,7 @@ feature "assign user to perform check" do
   end
 
   scenario "someone has already checked project" do
+    Skill.create!(user_id: second_user.id, reminder_id: reminder.id)
     reminder_page.load reminder_id: reminder.id
 
     expect(reminder_page.first_project.last_checker)

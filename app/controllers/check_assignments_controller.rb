@@ -34,6 +34,7 @@ class CheckAssignmentsController < ApplicationController
       project_check: check,
       assignments_repo: assignments_repository,
       users_repo: UsersRepository.new,
+      skills_repo: SkillsRepository.new,
     )
   end
 
