@@ -46,6 +46,12 @@ class RemindersController < ApplicationController
     end
   end
 
+  def toggle_skill
+    reminder = reminders_repository.find(params[:reminder_id])
+    Skills::Toggle.new(reminder: reminder, user: current_user).call
+    redirect_to skills_path, notice: "Skill toggled."
+  end
+
   def update
     update_reminder = Reminders::Update.new(reminder, reminder_attrs).call
     if update_reminder.success?

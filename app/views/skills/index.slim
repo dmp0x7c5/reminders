@@ -1,0 +1,11 @@
+.row
+  .col-xs-12
+    h1
+      | Your skills
+      small
+        |  Click to toggle
+.row
+  .col-xs-12
+    .list-group
+      - reminders_with_my_skills.each do |r|
+        = link_to r.name, reminder_toggle_skill_path(r), class: r.css_item_class, method: :post
