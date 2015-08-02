@@ -9,6 +9,7 @@
           th ID
           th Name
           th Created at
+          th Actions
 
       tbody
         - users.each do |user|
@@ -16,3 +17,5 @@
             td = user.id
             td = user.name
             td = user.created_at
+            td
+              = link_to 'Edit skills', admin_user_skills_path(user), class: 'btn btn-primary'

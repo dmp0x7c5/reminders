@@ -25,6 +25,14 @@ Rails.application.routes.draw do
 
   root to: "visitors#index"
 
+  namespace :admin do
+    resources :users do
+      resources :skills, only: [:index] do
+        post :toggle, on: :collection
+      end
+    end
+  end
+
   get "/auth/:provider/callback" => "sessions#create"
   get "/signin" => "sessions#new", :as => :signin
   get "/signout" => "sessions#destroy", :as => :signout
