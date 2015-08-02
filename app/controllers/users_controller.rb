@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   expose(:users_repo) { UsersRepository.new }
   expose(:users) do
-    users_repo.all
+    UserDecorator.decorate_collection users_repo.all
   end
 
   def index
