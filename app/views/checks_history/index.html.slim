@@ -11,7 +11,7 @@
     .col-xs-12
       = simple_form_for(:manual_check, url: admin_project_check_check_assignments_path(project_check)) do |f|
         = f.input :completion_date, as: :date
-        = f.input :user_id, collection: User.all
+        = f.input :user_id, collection: users
         = f.submit 'Add manual check', class: 'btn btn-primary'
 
 .row

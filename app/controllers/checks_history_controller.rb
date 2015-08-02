@@ -5,6 +5,7 @@ class ChecksHistoryController < ApplicationController
   expose(:project_checks_repository) { ProjectChecksRepository.new }
   expose(:checks) { project_check.check_assignments }
   expose(:manual_check) { ProjectCheck.new }
+  expose(:users) { UsersRepository.new.all }
 
   def index
   end

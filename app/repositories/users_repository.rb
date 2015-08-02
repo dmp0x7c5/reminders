@@ -1,6 +1,6 @@
 class UsersRepository
   def all
-    User.all
+    User.where(archived_at: nil).order(:name)
   end
 
   def find(id)
