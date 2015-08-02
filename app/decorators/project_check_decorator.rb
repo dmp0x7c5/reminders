@@ -46,7 +46,13 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   def days_to_deadline
-    overdue? ? "after deadline" : days_to_deadline_as_number
+    if !enabled?
+      ""
+    elsif overdue?
+      "after deadline"
+    else
+      days_to_deadline_as_number
+    end
   end
 
   def overdue?
