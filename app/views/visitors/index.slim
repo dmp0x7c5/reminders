@@ -1,1 +1,18 @@
-h3 Welcome! You can find and configure reminders here! enjoy!
+.row
+  .col-xs-12
+    .jumbotron
+      h1 Reminders app
+      p Welcome! You can find and configure reminders here! enjoy!
+
+    .panel.panel-success
+      .panel-heading
+        h3.panel-title Your skills
+      .panel-body
+        | Please mark your "skills" - so you can be assigned to check some of the reminders:
+        = link_to ' go to Skills page.', skills_path
+
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title Info
+      .panel-body
+        | If you think there is something wrong, please ping us on reminders-related channel on Slack.
