@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-08-02
+
+## Added
+
+* Skills page so user can decide which reminders might be assigned to them
+* When picking person for a given check - only people with a certain skill are
+  taken into consideration
+* Admin space for changing user's skills
+* Admin space for adding manual check entries
+
 # 2015-07-19
 
 ## Added
