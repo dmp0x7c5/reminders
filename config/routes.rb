@@ -15,10 +15,11 @@ Rails.application.routes.draw do
 
   resources :reminders do
     post :sync_projects
-    post :toggle_skill
   end
 
-  resources :skills, only: [:index]
+  resources :skills, only: [:index] do
+    post :toggle, on: :collection
+  end
 
   resources :users, only: [:index]
 

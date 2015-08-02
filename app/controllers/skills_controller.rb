@@ -8,4 +8,10 @@ class SkillsController < ApplicationController
 
   def index
   end
+
+  def toggle
+    reminder = reminders_repo.find(params[:reminder_id])
+    Skills::Toggle.new(reminder: reminder, user: current_user).call
+    redirect_to skills_path, notice: "Skill toggled."
+  end
 end
