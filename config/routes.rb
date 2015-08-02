@@ -31,6 +31,10 @@ Rails.application.routes.draw do
         post :toggle, on: :collection
       end
     end
+
+    resources :project_checks, only: [] do
+      resources :check_assignments, only: [:create]
+    end
   end
 
   get "/auth/:provider/callback" => "sessions#create"
