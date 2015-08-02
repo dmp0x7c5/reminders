@@ -6,6 +6,7 @@ development: &default
   slack_token: slack_token
   slack_enabled: false
   secret_key_base: secret_key_base
+  rollbar_token: rollbar_token
 
 test:
   <<: *default
