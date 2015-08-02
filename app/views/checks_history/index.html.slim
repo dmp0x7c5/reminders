@@ -2,7 +2,9 @@
   .col-xs-12
     .page-header
       h1
-        | History of #{project_check.reminder_name} in #{project_check.project_name}
+        | History of
+        = link_to " #{project_check.reminder_name} ", reminder_path(project_check.reminder_id)
+        | in #{project_check.project_name}
 
 - if current_user.admin?
   .row

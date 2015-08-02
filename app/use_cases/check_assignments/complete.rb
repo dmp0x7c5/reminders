@@ -1,16 +1,17 @@
 module CheckAssignments
   class Complete
     attr_reader :assignments_repository, :assignment,
-                :checker, :project_check_update
+                :checker, :project_check_update, :completion_date
     private :assignments_repository, :assignment,
-            :checker, :project_check_update
+            :checker, :project_check_update, :completion_date
 
-    def initialize(assignment:, checker:, project_check:)
+    def initialize(assignment:, checker:, project_check:, completion_date: nil)
       @assignment = assignment
       @checker = checker
       @assignments_repository = CheckAssignmentsRepository.new
       @project_check_update =
         ProjectChecks::Update.new(check: project_check)
+      @completion_date = completion_date || Time.current
     end
 
     def call
@@ -22,7 +23,7 @@ module CheckAssignments
     def complete_assignment
       assignments_repository.update(
         assignment,
-        completion_date: Time.now, user_id: checker.id
+        completion_date: completion_date, user_id: checker.id
       )
       project_check_update.call(
         last_check_date: assignment.completion_date,

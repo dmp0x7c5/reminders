@@ -1,5 +1,6 @@
 class ProjectCheckDecorator < Draper::Decorator
-  delegate :id, :enabled?, :last_check_user, :project_id, :reminder_id
+  delegate :id, :enabled?, :last_check_user, :project_id,
+           :reminder_id, :reminder
 
   def check_assignments
     CheckAssignmentDecorator.decorate_collection(object.check_assignments)
@@ -67,12 +68,10 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   def review
-    object.reminder.name
+    reminder_name
   end
 
-  def reminder_name
-    object.reminder.name
-  end
+  delegate :name, to: :reminder, prefix: true
 
   def assignments
     check_assignments.select { |c| c.object.completion_date.present? }

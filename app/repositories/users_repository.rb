@@ -3,6 +3,10 @@ class UsersRepository
     User.all
   end
 
+  def find(id)
+    all.find_by_id(id)
+  end
+
   def from_auth(auth)
     User.where(
       provider: auth["provider"],
