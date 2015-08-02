@@ -25,7 +25,7 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   def row_class
-    if !object.enabled?
+    if !enabled?
       "active"
     elsif object.last_check_date.nil?
       "warning"
@@ -50,7 +50,7 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   def overdue?
-    days_to_deadline_as_number < 0
+    enabled? && days_to_deadline_as_number < 0
   end
 
   def status_text
