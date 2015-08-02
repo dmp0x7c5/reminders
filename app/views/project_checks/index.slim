@@ -16,7 +16,8 @@
           th Last checked by
           th History
           th Check now?
-          th Enabled
+          - if current_user.admin?
+            th Enabled
           th Assign reviewer
           th.hidden
       tbody.project_row
@@ -39,11 +40,12 @@
                     data: { confirm: "Are you sure?", disable_with: pc.css_disabled_state } do
                       i.glyphicon.glyphicon-ok
                       | Check!
-            td
-              = form_tag project_check_toggle_state_path(pc)
-                input.project-switch type="checkbox" checked=("checked" if pc.enabled?) id="project-#{pc.id}"
-                label for="project-#{pc.id}"
-            td
+            - if current_user.admin?
+              td.toggle-state
+                = form_tag project_check_toggle_state_path(pc)
+                  input.project-switch type="checkbox" checked=("checked" if pc.enabled?) id="project-#{pc.id}"
+                  label for="project-#{pc.id}"
+            td.assigned-person
               - if pc.has_appointed_review?
                 | Assigned: #{pc.assigned_reviewer}
 
@@ -51,6 +53,6 @@
                 = form_tag assign_checker_path, method: :post do
                   = hidden_field_tag :project_check_id, pc.id
                   = button_tag type: :submit,
-                    class: 'btn btn-success btn-sm', disabled: !pc.enabled? do
+                    class: 'btn btn-success btn-sm pick-random-button', disabled: !pc.enabled? do
                       | Pick random
             td.hidden = pc.status_text

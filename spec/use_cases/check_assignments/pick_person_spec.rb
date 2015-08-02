@@ -9,7 +9,7 @@ describe CheckAssignments::PickPerson do
                        )
   end
   let(:users_repo) { UsersRepository.new }
-  let(:reminder) { double(:reminder, id: 10) }
+  let(:reminder) { double(:reminder, id: 10, name: "foo reminder") }
 
   let(:skills_repo) do
     class InMemorySkillsRepository < InMemoryRepository
@@ -37,8 +37,8 @@ describe CheckAssignments::PickPerson do
       expect(service.call).to eq john
     end
 
-    it "returns user different then latest checker" do
-      expect(service.call).not_to eq user
+    it "raises error when there is no user to select from" do
+      expect { service.call }.to raise_error(/no user/)
     end
   end
 end

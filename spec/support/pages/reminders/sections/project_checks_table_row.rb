@@ -7,9 +7,9 @@ module Reminders
     element :last_checker, "td[4]"
     element :history_button, "td[5]"
     element :check_button, "td[6] button"
-    element :toggle_state_button, "td[7] a"
-    element :assigned_reviewer, "td[8]"
-    element :pick_random_button, "td[8] button"
+    element :toggle_state_button, ".toggle-state a"
+    element :assigned_reviewer, ".assigned-person"
+    element :pick_random_button, ".pick-random-button"
     section :history_table, ProjectChecksHistoryTable,
             :xpath, "ancestor::tbody/following-sibling::tbody",
             match: :first

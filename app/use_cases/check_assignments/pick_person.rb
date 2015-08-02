@@ -12,12 +12,19 @@ module CheckAssignments
     end
 
     def call
+      if available_users.none?
+        raise StandardError, "no user with skill required for #{reminder.name}"
+      end
       available_users.sample(1).first
     end
 
     private
 
     def available_users
+      @available_users ||= filter_users
+    end
+
+    def filter_users
       user_ids = skills_repo.user_ids_for_reminder(reminder)
       (users_repository.all.to_a - [latest_checker]).select do |u|
         user_ids.include?(u.id)
