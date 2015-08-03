@@ -1,9 +1,16 @@
-class ProjectCheckedOnTimeJob < ActiveJob::Base
-  queue_as :default
+class ProjectCheckedOnTimeJob
   attr_accessor :project_check
   attr_writer :project_checks_repository
+  attr_reader :project_check_id, :valid_for_n_days, :remind_after_days
 
-  def perform(project_check_id, valid_for_n_days, remind_after_days)
+  def initialize(project_check_id, valid_for_n_days, remind_after_days)
+    @project_check_id = project_check_id
+    @valid_for_n_days = valid_for_n_days
+    @remind_after_days = remind_after_days
+  end
+
+  # rubocop:disable Metrics/AbcSize
+  def perform
     self.project_check = project_checks_repository.find project_check_id
     if overdue? valid_for_n_days
       ProjectChecks::HandleOverdue.new(project_check, days_diff).call
@@ -11,6 +18,7 @@ class ProjectCheckedOnTimeJob < ActiveJob::Base
       ProjectChecks::HandleNotificationDay.new(project_check, days_diff).call
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 

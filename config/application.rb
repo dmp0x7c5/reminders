@@ -18,6 +18,5 @@ Bundler.require(*Rails.groups)
 module Reminders
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
-    config.active_job.queue_adapter = :sucker_punch
   end
 end

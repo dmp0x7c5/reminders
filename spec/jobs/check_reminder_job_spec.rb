@@ -28,11 +28,14 @@ describe CheckReminderJob do
     end
 
     it "creates a job for each enabled check belonging to the reminder" do
-      expect(ProjectCheckedOnTimeJob).to receive(:perform_later)
+      check_job = double(perform: true)
+      expect(ProjectCheckedOnTimeJob).to receive(:new)
         .with(check_1.id, days_valid, daily_reminders)
-      expect(ProjectCheckedOnTimeJob).to receive(:perform_later)
+        .and_return(check_job)
+      expect(ProjectCheckedOnTimeJob).to receive(:new)
         .with(check_2.id, days_valid, daily_reminders)
-      expect(ProjectCheckedOnTimeJob).to_not receive(:perform_later)
+        .and_return(check_job)
+      expect(ProjectCheckedOnTimeJob).to_not receive(:new)
         .with(check_3.id, days_valid, daily_reminders)
 
       job.perform reminder.id

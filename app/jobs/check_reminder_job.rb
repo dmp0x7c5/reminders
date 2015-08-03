@@ -6,9 +6,9 @@ class CheckReminderJob
   def perform(reminder_id)
     reminder = reminders_repository.find reminder_id
     checks_for_reminder(reminder).each do |check|
-      ProjectCheckedOnTimeJob.perform_later(check.id,
-                                            reminder.valid_for_n_days,
-                                            reminder.remind_after_days)
+      ProjectCheckedOnTimeJob.new(check.id,
+                                  reminder.valid_for_n_days,
+                                  reminder.remind_after_days).perform
     end
   end
 

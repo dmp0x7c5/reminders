@@ -6,7 +6,11 @@ class Notifier
   end
 
   def send_message(message, options = {})
-    notify_slack(message, options) if slack_enabled?
+    if slack_enabled?
+      notify_slack(message, options)
+    else
+      Rails.logger.info message
+    end
   end
 
   def notify_slack(message, options)

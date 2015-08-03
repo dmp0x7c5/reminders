@@ -23,7 +23,7 @@ describe ProjectCheckedOnTimeJob do
     end
 
     after do
-      job.perform check.id, days_valid, daily_reminders
+      job.perform
     end
 
     context "when check isn't overdue and has no notifications today" do
