@@ -19,6 +19,12 @@ module Admin
       end
     end
 
+    def destroy
+      check_assignments_repo.delete(params[:id])
+      redirect_to history_project_check_path(project_check),
+                  notice: "Entry deleted"
+    end
+
     private
 
     def complete_assignment(assignment)
