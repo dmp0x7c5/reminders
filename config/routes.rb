@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :reminders do
     post :sync_projects
+    get :available_people
   end
 
   resources :skills, only: [:index] do

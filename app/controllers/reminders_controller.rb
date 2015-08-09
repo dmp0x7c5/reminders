@@ -14,8 +14,14 @@ class RemindersController < ApplicationController
     ProjectCheckDecorator.decorate_collection checks
   end
   expose(:projects_repository) { ProjectsRepository.new }
+  expose(:users) { UsersWithSkillRepository.new(reminder).all }
 
   def index; end
+
+  def available_people
+    self.reminder = ReminderDecorator::Base.decorate(
+      reminders_repository.find(params[:reminder_id]))
+  end
 
   def show
     self.reminder = ReminderDecorator::Base.decorate(reminder)

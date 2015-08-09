@@ -16,6 +16,7 @@
 
     .btn-group
       = link_to "Back", reminders_path, class: "btn btn-default"
+      = link_to "Show people available for this", reminder_available_people_path(reminder), class: "btn btn-primary"
       - if admin?
         = link_to "Edit", edit_reminder_path(reminder), class: "btn btn-info"
         = link_to reminder_sync_projects_path(reminder),
