@@ -17,44 +17,28 @@ feature "assign user to perform check" do
     log_in(user)
   end
 
-  scenario "there is no user assigned yet" do
+  scenario "there is no user assigned yet", focus: true do
     Skill.create!(user_id: user.id, reminder_id: reminder.id)
-    reminder_page.load reminder_id: reminder.id
-
-    expect(reminder_page.first_project)
-      .not_to have_text user.name
-    expect(reminder_page.first_project)
-      .to have_button("Pick random")
-
-    reminder_page.first_project.pick_random_button.click
-
-    expect(reminder_page.first_project.assigned_reviewer)
-      .to have_text user.name
-    expect(reminder_page.first_project)
-      .not_to have_button("Pick random")
-  end
-
-  scenario "someone has already checked project" do
     Skill.create!(user_id: second_user.id, reminder_id: reminder.id)
+    create(:check_assignment, user: second_user, project_check: project_check,
+                              completion_date: 100.days.ago)
     reminder_page.load reminder_id: reminder.id
 
-    expect(reminder_page.first_project.last_checker)
+    expect(reminder_page.first_project)
       .not_to have_text user.name
     expect(reminder_page.first_project)
-      .to have_button("Pick random")
-
-    reminder_page.first_project.check_button.click
-
-    expect(reminder_page.first_project.last_checker)
-      .to have_text user.name
-    expect(reminder_page.first_project)
-      .not_to have_text second_user.name
+      .to have_link("Pick person")
 
     reminder_page.first_project.pick_random_button.click
-
+    pick_person_page = Reminders::PickPersonPage.new
+    expect(pick_person_page).to be_displayed
+    preffered_user = pick_person_page.users.first
+    expect(preffered_user).to have_text(user.name)
+    expect(pick_person_page.users.last).to have_text(second_user.name)
+    preffered_user.pick_button.click
     expect(reminder_page.first_project.assigned_reviewer)
-      .to have_text "Assigned: #{second_user.name}"
+      .to have_text user.name
     expect(reminder_page.first_project)
-      .not_to have_button("Pick random")
+      .not_to have_link("Pick person")
   end
 end

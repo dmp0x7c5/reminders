@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :skills
+  has_many :check_assignments
 
   def self.create_with_omniauth(auth)
     create! do |user|

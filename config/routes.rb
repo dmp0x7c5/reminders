@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :project_checks do
     post :toggle_state
+    get :pick_person
+    post :assign_checker
     get "history" => "checks_history#index", on: :member
   end
 

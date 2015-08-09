@@ -9,6 +9,27 @@ class ProjectChecksController < ApplicationController
   expose(:reminder) do
     reminders_repository.find(params[:reminder_id])
   end
+  expose(:users) { UsersWithSkillRepository.new(reminder).all }
+  expose(:assignments_repo) { CheckAssignmentsRepository.new }
+  expose(:users_repo) { UsersRepository.new }
+
+  def pick_person
+    last_checker = assignments_repo.latest_assignment(check).try(:user)
+    self.reminder = check.reminder
+    user_assigner = UserAssigner.new(reminder, users, last_checker)
+    self.users = UserAssignerResultDecorator.decorate_collection(
+      user_assigner.results)
+  end
+
+  def assign_checker
+    notice = CheckAssignments::AssignPerson.new(
+      project_check: check,
+      assignments_repo: assignments_repo,
+      person: users_repo.find(params[:user_id]),
+    ).call
+    redirect_to reminder_path(check.reminder),
+                notice: notice
+  end
 
   # rubocop:disable Metrics/AbcSize
   def toggle_state

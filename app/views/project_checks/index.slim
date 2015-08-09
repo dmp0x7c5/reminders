@@ -51,9 +51,5 @@
                   | Assigned: #{pc.assigned_reviewer}
 
               - else
-                = form_tag assign_checker_path, method: :post do
-                  = hidden_field_tag :project_check_id, pc.id
-                  = button_tag type: :submit,
-                    class: 'btn btn-primary btn-sm pick-random-button', disabled: !pc.enabled? do
-                      | Pick random person
+                = link_to 'Pick person', project_check_pick_person_path(pc), class: 'btn btn-primary btn-sm pick-random-button', disabled: !pc.enabled?
             td.hidden = pc.status_text

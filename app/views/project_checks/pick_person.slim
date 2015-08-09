@@ -1,0 +1,30 @@
+.row
+  .col-xs-12
+    h1
+      | People available for
+      = link_to " #{reminder.name} ", reminder_path(reminder)
+
+    .panel.panel-default
+      .panel-heading
+        h4 PickPersonAlgorithm &trade;
+      .panel-body
+        | Thanks to world-class mathematic algorithms we were able to present you this list of users who can do the job.
+        |  We truly recommend you to pick the first person on top, we belive it's the best match possible:
+    table.table
+      thead
+        tr
+          th User name
+          th Number of checks in last 30 days
+          th Last check
+          th
+      tbody
+        - users.each do |user|
+          tr
+            td
+              = user.name
+            td
+              = user.summary
+            td
+              = user.last_check_date
+            td
+              = link_to "Yes, that's my person!", project_check_assign_checker_path(check, user_id: user.id), class: 'btn btn-success', method: :post

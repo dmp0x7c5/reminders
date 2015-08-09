@@ -12,6 +12,12 @@ class CheckAssignmentsRepository
     end.last
   end
 
+  def from_last_n_days_for_users(number_of_days, user_ids)
+    all.where("completion_date >= ? OR completion_date IS NULL",
+              number_of_days.days.ago)
+      .where(user_id: user_ids)
+  end
+
   def add(parameters)
     CheckAssignment.create(parameters)
   end

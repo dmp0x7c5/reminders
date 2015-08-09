@@ -5,5 +5,6 @@ class Reminder < ActiveRecord::Base
   validates :valid_for_n_days, numericality: true
   has_many :project_checks
   has_many :projects, through: :project_checks
+  has_many :check_assignments, through: :project_checks
   has_many :skills
 end
