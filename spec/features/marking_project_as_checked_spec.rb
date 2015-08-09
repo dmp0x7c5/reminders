@@ -21,7 +21,7 @@ feature "marking project as checked" do
       expect(page).not_to have_text user.name
       expect(page).to have_text "not checked yet"
 
-      click_button("Check!")
+      click_button("I've done this!")
 
       expect(page).not_to have_text "not checked yet"
       expect(page).to have_text user.name

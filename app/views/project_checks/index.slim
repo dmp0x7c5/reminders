@@ -12,13 +12,13 @@
         tr
           th Project
           th Last check
-          th Days to deadline
+          th Days left
           th Last checked by
           th History
           th Check now?
           - if current_user.admin?
             th Enabled
-          th Assign reviewer
+          th Assigned person
           th.hidden
       tbody.project_row
         - project_checks.each do |pc|
@@ -29,7 +29,7 @@
             td = pc.last_checked_by
             td
               = link_to history_project_check_path(pc) do
-                .btn.btn-success
+                .btn.btn-info
                   | Show
             td
               - if pc.enabled?
@@ -37,9 +37,9 @@
                   = hidden_field_tag :project_check_id, pc.id
                   = button_tag type: :submit,
                     class: 'btn btn-success btn-sm',
-                    data: { confirm: "Are you sure?", disable_with: pc.css_disabled_state } do
+                    data: { confirm: "Are you sure? You'll be saved as person who completed this reminder.", disable_with: pc.css_disabled_state } do
                       i.glyphicon.glyphicon-ok
-                      | Check!
+                      | I've done this!
             - if current_user.admin?
               td.toggle-state
                 = form_tag project_check_toggle_state_path(pc)
@@ -47,12 +47,13 @@
                   label for="project-#{pc.id}"
             td.assigned-person
               - if pc.has_appointed_review?
-                | Assigned: #{pc.assigned_reviewer}
+                .btn.btn-default.disabled
+                  | Assigned: #{pc.assigned_reviewer}
 
               - else
                 = form_tag assign_checker_path, method: :post do
                   = hidden_field_tag :project_check_id, pc.id
                   = button_tag type: :submit,
-                    class: 'btn btn-success btn-sm pick-random-button', disabled: !pc.enabled? do
+                    class: 'btn btn-primary btn-sm pick-random-button', disabled: !pc.enabled? do
                       | Pick random
             td.hidden = pc.status_text
