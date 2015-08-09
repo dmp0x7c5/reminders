@@ -10,7 +10,7 @@ module Admin
     def create
       assignment = create_assignment
       if assignment.persisted?
-        complete_assignment(assignment)
+        complete_assignment!
         redirect_to history_project_check_path(project_check),
                     notice: "Manual entry added"
       else
@@ -20,14 +20,20 @@ module Admin
     end
 
     def destroy
-      check_assignments_repo.delete(params[:id])
+      CheckAssignments::Delete.new(
+        check_assignment_id: params[:id],
+        project_check: project_check,
+      ).call
+
       redirect_to history_project_check_path(project_check),
                   notice: "Entry deleted"
     end
 
     private
 
-    def complete_assignment(assignment)
+    def complete_assignment!
+      assignment = check_assignments_repo.latest_assignment(project_check,
+                                                            completed: true)
       CheckAssignments::Complete.new(
         assignment: assignment,
         checker: users_repo.find(assignment.user_id),

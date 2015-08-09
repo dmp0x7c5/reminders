@@ -5,17 +5,38 @@ describe CheckAssignmentsRepository do
   let(:project_check) { create(:project_check) }
 
   describe "#latest_assignment" do
-    before do
-      create(:check_assignment, project_check: project_check,
-                                user: create(:user))
-      create(:check_assignment, project_check: project_check,
-                                completion_date: Time.zone.now,
-                                user: create(:user))
+    let!(:monday_assignment) do
+      create(:check_assignment,
+             project_check: project_check,
+             user: create(:user),
+             completion_date: 7.days.ago,
+            )
+    end
+    let!(:wednesday_assignment) do
+      create(:check_assignment,
+             project_check: project_check,
+             user: create(:user),
+             completion_date: 5.days.ago,
+            )
+    end
+    let!(:fresh_assignment) do
+      create(:check_assignment,
+             project_check: project_check,
+             user: create(:user),
+            )
     end
 
     it "returns latest check assignment" do
-      latest = repo.latest_assignment(project_check)
-      expect(latest.completion_date).not_to be nil
+      expect(repo.latest_assignment(project_check)).to eq fresh_assignment
+    end
+
+    context "completed: true" do
+      it "returns latest completed check assignment" do
+        expect(
+          repo.latest_assignment(project_check,
+                                 completed: true),
+        ).to eq wednesday_assignment
+      end
     end
   end
 

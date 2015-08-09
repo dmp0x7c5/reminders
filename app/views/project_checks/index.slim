@@ -39,7 +39,7 @@
                     class: 'btn btn-success btn-sm',
                     data: { confirm: "Are you sure? You'll be saved as person who completed this reminder.", disable_with: pc.css_disabled_state } do
                       i.glyphicon.glyphicon-ok
-                      | I've done this!
+                      |  I've done this!
             - if current_user.admin?
               td.toggle-state
                 = form_tag project_check_toggle_state_path(pc)
@@ -55,5 +55,5 @@
                   = hidden_field_tag :project_check_id, pc.id
                   = button_tag type: :submit,
                     class: 'btn btn-primary btn-sm pick-random-button', disabled: !pc.enabled? do
-                      | Pick random
+                      | Pick random person
             td.hidden = pc.status_text

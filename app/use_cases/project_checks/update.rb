@@ -9,12 +9,6 @@ module ProjectChecks
     end
 
     def call(parameters)
-      update_project_check(parameters)
-    end
-
-    private
-
-    def update_project_check(parameters)
       checks_repository.update(check, parameters)
     end
   end

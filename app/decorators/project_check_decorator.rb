@@ -4,7 +4,7 @@ class ProjectCheckDecorator < Draper::Decorator
 
   def check_assignments
     CheckAssignmentDecorator.decorate_collection(object.check_assignments)
-      .sort_by(&:created_at)
+      .sort_by { |a| (a.completion_date || Time.current) }
       .reverse
   end
 
