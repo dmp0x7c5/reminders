@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-08-09
+
+## Added
+
+* Reminder page has been updated - new button colors and copy
+* Picking users is no longer random (as much)
+* Admin is able to delete check entries (MVP of editing)
+
 # 2015-08-02
 
 ## Added

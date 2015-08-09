@@ -12,12 +12,10 @@ Rails.application.routes.draw do
     get "history" => "checks_history#index", on: :member
   end
 
-  post "check_assignments/assign_checker" => "check_assignments#assign_checker", :as => :assign_checker
   post "check_assignments/complete_check" => "check_assignments#complete_check", :as => :complete_check
 
   resources :reminders do
     post :sync_projects
-    get :available_people
   end
 
   resources :skills, only: [:index] do

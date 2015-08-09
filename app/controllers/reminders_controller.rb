@@ -18,11 +18,6 @@ class RemindersController < ApplicationController
 
   def index; end
 
-  def available_people
-    self.reminder = ReminderDecorator::Base.decorate(
-      reminders_repository.find(params[:reminder_id]))
-  end
-
   def show
     self.reminder = ReminderDecorator::Base.decorate(reminder)
   end
