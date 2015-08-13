@@ -23,6 +23,9 @@ class CheckReminderJob
   end
 
   def checks_for_reminder(reminder)
-    project_checks_repository.for_reminder(reminder).select(&:enabled?)
+    project_checks_repository.for_reminder(reminder).select do |project_check|
+      project_check.enabled? &&
+        project_check.check_assignments.none? { |c| c.completion_date.nil? }
+    end
   end
 end
