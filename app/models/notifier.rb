@@ -16,7 +16,8 @@ class Notifier
   def notify_slack(message, options)
     options.merge!(
       text: message,
-      username: "Reminders app",
+      username: "Reminders App",
+      icon_emoji: ':loudspeaker:',
     )
     client.chat_postMessage options
   end
