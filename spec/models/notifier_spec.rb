@@ -14,14 +14,18 @@ describe Notifier do
 
     it "passes the message along with some default options" do
       expect(client).to receive(:chat_postMessage)
-        .with(text: message, username: "Reminders app")
+        .with(text: message,
+              username: "Reminders App",
+              icon_emoji: ":loudspeaker:")
       notifier.send_message message, options
     end
 
     it "passes additional options to client" do
       options = { foo: :bar }
       expect(client).to receive(:chat_postMessage)
-        .with(text: message, username: "Reminders app", foo: :bar)
+        .with(text: message,
+              username: "Reminders App",
+              foo: :bar, icon_emoji: ":loudspeaker:")
       notifier.send_message message, options
     end
   end

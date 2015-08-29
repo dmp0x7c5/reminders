@@ -17,7 +17,7 @@ class Notifier
     options.merge!(
       text: message,
       username: "Reminders App",
-      icon_emoji: ':loudspeaker:',
+      icon_emoji: ":loudspeaker:",
     )
     client.chat_postMessage options
   end
