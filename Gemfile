@@ -38,6 +38,7 @@ group :development, :test do
   gem "pry-rails"
   gem "pry-rescue"
   gem "web-console"
+  gem "letter_opener"
 end
 
 group :test do
