@@ -25,7 +25,7 @@ describe CheckAssignments::AssignPerson do
   end
   let(:reminder) { double(:reminder, id: 1, name: "sample review") }
   let(:project) { double(:project, name: "test", channel_name: "test") }
-  let(:user) { double(:user, name: "John Doe", id: 4) }
+  let(:user) { double(:user, name: "John Doe", id: 4, email: "john@doe.pl") }
   let(:message) do
     u = user.name
     r = reminder.name
@@ -50,6 +50,24 @@ describe CheckAssignments::AssignPerson do
 
     it "returns notice text" do
       expect(service.call).to be_an_instance_of String
+    end
+
+    context "sending email" do
+      before do
+        ActionMailer::Base.deliveries = []
+      end
+
+      it "sends one email" do
+        expect { service.call }
+          .to change { ActionMailer::Base.deliveries.count }
+          .by(1)
+      end
+
+      it "sends email to assigned user" do
+        service.call
+        expect(ActionMailer::Base.deliveries.last.to)
+          .to include "john@doe.pl"
+      end
     end
   end
 end

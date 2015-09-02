@@ -10,6 +10,7 @@ module CheckAssignments
 
     def call
       create_with_assigned_user
+      notify_user
       notify_channel(compose_notice)
     end
 
@@ -35,6 +36,10 @@ module CheckAssignments
         check.project.channel_name,
         message,
       )
+    end
+
+    def notify_user
+      UserNotificationMailer.check_assignment(@person, @check).deliver
     end
   end
 end
