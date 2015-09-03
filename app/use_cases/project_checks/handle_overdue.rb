@@ -1,18 +1,24 @@
 module ProjectChecks
   class HandleOverdue
-    attr_accessor :check, :days_diff, :notifier
+    attr_accessor :check, :days_diff, :notifier, :mailer
 
-    def initialize(check, days_diff, notifier = nil)
+    def initialize(check, days_diff, notifier = nil, mailer = nil)
       self.check = check
       self.days_diff = days_diff
       self.notifier = notifier || Notifier.new
+      self.mailer = mailer || ProjectNotificationMailer
     end
 
     def call
       notify!
+      mail!
     end
 
     private
+
+    def mail!
+      mailer.check_reminder(notification, check).deliver
+    end
 
     def notify!
       notifier.send_message notification, channel: "##{project.channel_name}"

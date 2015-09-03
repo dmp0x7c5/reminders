@@ -21,6 +21,24 @@ describe ProjectChecks::HandleNotificationDay do
       service.call
     end
 
+    context "sending email" do
+      before do
+        ActionMailer::Base.deliveries = []
+      end
+
+      it "sends one email" do
+        expect { service.call }
+          .to change { ActionMailer::Base.deliveries.count }
+          .by(1)
+      end
+
+      it "sends email to project's email" do
+        service.call
+        expect(ActionMailer::Base.deliveries.last.to)
+          .to include "foo-project-team@netguru.pl"
+      end
+    end
+
     context "passing variables works correctly for" do
       after do
         service.call
