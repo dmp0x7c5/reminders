@@ -7,6 +7,7 @@ development: &default
   slack_enabled: false
   secret_key_base: secret_key_base
   rollbar_token: rollbar_token
+  email_domain: netguru.pl
 
 test:
   <<: *default
