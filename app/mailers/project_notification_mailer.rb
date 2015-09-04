@@ -3,7 +3,7 @@ class ProjectNotificationMailer < ApplicationMailer
 
   def check_reminder(notification, project_check)
     @project_check = project_check
-    mail(to: compose_email,
+    mail(to: project_email,
          subject: compose_subject) do |format|
       format.text { render inline: notification }
     end
@@ -16,11 +16,7 @@ class ProjectNotificationMailer < ApplicationMailer
     in #{project_check.project.name}"
   end
 
-  def compose_email
-    "#{slugified_project_name}-team@netguru.pl"
-  end
-
-  def slugified_project_name
-    project_check.project.name.sub(" ", "-")
+  def project_email
+    project_check.project.decorate.email
   end
 end
