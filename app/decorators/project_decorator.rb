@@ -33,4 +33,12 @@ class ProjectDecorator < Draper::Decorator
       "nothing to show"
     end
   end
+
+  def email
+    "#{slugified_name}-team@netguru.pl"
+  end
+
+  def slugified_name
+    name.sub(" ", "-")
+  end
 end
