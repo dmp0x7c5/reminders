@@ -10,6 +10,8 @@ class CheckReminderJob
         ProjectCheckedOnTimeJob.new(project_check.id,
                                     reminder.valid_for_n_days,
                                     reminder.remind_after_days).perform
+      else
+        PendingCheckAssignmentsReminderJob.new(project_check.id).perform
       end
     end
   end
