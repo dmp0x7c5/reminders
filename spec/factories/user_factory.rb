@@ -9,5 +9,6 @@ FactoryGirl.define do
       uid 1234
       provider "google_oauth2"
     end
+    email "john@doe.pl"
   end
 end
