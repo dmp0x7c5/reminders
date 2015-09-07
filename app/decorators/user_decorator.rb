@@ -1,7 +1,7 @@
 class UserDecorator < Draper::Decorator
   include Rails.application.routes.url_helpers
 
-  delegate :id, :name, :admin?, :created_at
+  delegate :id, :name, :admin?, :created_at, :paused
 
   def admin_label
     h.content_tag :span, "admin", class: "label label-primary" if admin?
@@ -13,5 +13,10 @@ class UserDecorator < Draper::Decorator
               method: :post,
               class: "btn btn-primary",
               id: "toggle-admin-button"
+  end
+
+  def row_class
+    return unless paused
+    "active"
   end
 end
