@@ -16,10 +16,6 @@ class UsersRepository
 
   def toggle_admin(id)
     user = User.find(id)
-    if user.admin?
-      user.update_attributes(admin: false)
-    else
-      user.update_attributes(admin: true)
-    end
+    user.update_attributes(admin: !user.admin)
   end
 end
