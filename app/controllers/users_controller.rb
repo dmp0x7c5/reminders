@@ -13,4 +13,9 @@ class UsersController < ApplicationController
     users_repo.toggle_admin(params[:id])
     redirect_to users_url, notice: "User's permissions has been changed."
   end
+
+  def toggle_paused
+    users_repo.toggle_paused(params[:id])
+    redirect_to users_url, notice: "User has been paused."
+  end
 end
