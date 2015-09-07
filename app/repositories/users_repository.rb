@@ -18,4 +18,9 @@ class UsersRepository
     user = find(id)
     user.update_attributes(admin: !user.admin)
   end
+
+  def toggle_paused(id)
+    user = find(id)
+    user.update_attributes(paused: !user.paused)
+  end
 end

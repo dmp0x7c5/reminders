@@ -34,8 +34,6 @@ describe UsersRepository do
   end
 
   describe "#toggle_admin" do
-    before do
-    end
     context "user is admin" do
       let(:user) { create(:user, admin: true) }
       it "changes user.admin to false" do
@@ -49,6 +47,24 @@ describe UsersRepository do
       it "changes user.admin to true" do
         repo.toggle_admin(user.id)
         expect(user.reload.admin).to be_truthy
+      end
+    end
+  end
+
+  describe "#toggle_paused" do
+    context "user is paused" do
+      let(:user) { create(:user, paused: true) }
+      it "change value of paused to false" do
+        repo.toggle_paused(user.id)
+        expect(user.reload.paused).to be_falsy
+      end
+    end
+
+    context "user is not paused" do
+      let(:user) { create(:user, paused: false) }
+      it "change value of paused to false" do
+        repo.toggle_paused(user.id)
+        expect(user.reload.paused).to be_truthy
       end
     end
   end
