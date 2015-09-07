@@ -15,7 +15,9 @@ class UsersController < ApplicationController
   end
 
   def toggle_paused
-    users_repo.toggle_paused(params[:id])
-    redirect_to users_url, notice: "User has been paused."
+    paused = users_repo.toggle_paused(params[:id])
+    state = (paused) ? "paused" : "unpaused"
+    redirect_to users_url, notice: "User has been #{state}."
+  end
   end
 end
