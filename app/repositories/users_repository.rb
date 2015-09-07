@@ -13,4 +13,13 @@ class UsersRepository
       uid: auth["uid"].to_s,
     ).first || User.create_with_omniauth(auth)
   end
+
+  def toggle_admin(id)
+    user = User.find(id)
+    if user.admin?
+      user.update_attributes(admin: false)
+    else
+      user.update_attributes(admin: true)
+    end
+  end
 end

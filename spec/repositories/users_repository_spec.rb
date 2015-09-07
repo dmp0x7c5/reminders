@@ -32,4 +32,24 @@ describe UsersRepository do
       end
     end
   end
+
+  describe "#toggle_admin" do
+    before do
+    end
+    context "user is admin" do
+      let(:user) { create(:user, admin: true) }
+      it "changes user.admin to false" do
+        repo.toggle_admin(user.id)
+        expect(user.reload.admin).to be_falsey
+      end
+    end
+
+    context "user is not admin" do
+      let(:user) { create(:user, admin: false) }
+      it "changes user.admin to true" do
+        repo.toggle_admin(user.id)
+        expect(user.reload.admin).to be_truthy
+      end
+    end
+  end
 end
