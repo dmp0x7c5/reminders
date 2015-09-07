@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902095357) do
+ActiveRecord::Schema.define(version: 20150907115351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20150902095357) do
     t.boolean  "admin",       default: false
     t.datetime "archived_at"
     t.string   "email"
+    t.boolean  "paused",      default: false
   end
 
   add_foreign_key "check_assignments", "project_checks"
