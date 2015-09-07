@@ -15,7 +15,7 @@ class UsersRepository
   end
 
   def toggle_admin(id)
-    user = User.find(id)
+    user = find(id)
     user.update_attributes(admin: !user.admin)
   end
 end
