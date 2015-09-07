@@ -10,6 +10,7 @@
           th Name
           th Created at
           th Admin
+          th Paused
           th Actions
 
       tbody
@@ -19,6 +20,10 @@
             td = user.name
             td = user.created_at
             td = user.admin_label
+            td
+              = form_tag toggle_paused_user_path(user)
+                input.project-switch type="checkbox" checked=("checked" unless user.paused) id="user-#{user.id}"
+                label for="user-#{user.id}"
             td
               = link_to 'Edit skills', admin_user_skills_path(user), class: 'btn btn-primary'
               = user.toggle_admin_btn
