@@ -21,3 +21,4 @@
             td = user.admin_label
             td
               = link_to 'Edit skills', admin_user_skills_path(user), class: 'btn btn-primary'
+              = user.toggle_admin_btn
