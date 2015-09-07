@@ -15,7 +15,7 @@
 
       tbody
         - users.each do |user|
-          tr
+          tr class='#{user.row_class}'
             td = user.id
             td = user.name
             td = user.created_at
