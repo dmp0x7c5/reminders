@@ -37,4 +37,20 @@ describe UserDecorator do
       end
     end
   end
+
+  describe "#paused_as_string" do
+    context "user is paused" do
+      it "returns 'paused'" do
+        user.paused = true
+        expect(decorator.paused_as_string).to eq("paused")
+      end
+    end
+
+    context "user is not paused" do
+      it "returns 'paused'" do
+        user.paused = false
+        expect(decorator.paused_as_string).to eq("not paused")
+      end
+    end
+  end
 end
