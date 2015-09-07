@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     post :toggle, on: :collection
   end
 
-  resources :users, only: [:index]
+  resources :users, only: [:index] do
+    post :toggle_admin, on: :member
+  end
 
   root to: "visitors#index"
 
