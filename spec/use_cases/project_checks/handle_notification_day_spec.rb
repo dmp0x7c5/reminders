@@ -14,6 +14,11 @@ describe ProjectChecks::HandleNotificationDay do
   let(:check) { double(:project_check, reminder: reminder, project: project) }
   let(:notifier) { double(:notifier, send_message: true) }
 
+  before do
+    project.stub(:decorate) { project }
+    project.stub(:email) { "foo-project-team@netguru.pl" }
+  end
+
   describe "#call" do
     it "passes message to notifier" do
       expect(notifier).to receive(:send_message)
