@@ -48,6 +48,7 @@ group :test do
   gem "factory_girl_rails"
   gem "launchy"
   gem "poltergeist"
+  gem "rspec-html-matchers"
   gem "rspec-rails"
   gem "site_prism"
   gem "timecop"

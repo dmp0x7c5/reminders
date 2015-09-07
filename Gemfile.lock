@@ -277,6 +277,9 @@ GEM
     rspec-expectations (3.3.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.3.0)
+    rspec-html-matchers (0.7.0)
+      nokogiri (~> 1)
+      rspec (~> 3)
     rspec-mocks (3.3.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.3.0)
@@ -417,6 +420,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (= 4.2.4)
   rollbar
+  rspec-html-matchers
   rspec-rails
   rvm1-capistrano3
   sass-rails (~> 5.0)
