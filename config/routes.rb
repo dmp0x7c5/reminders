@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index] do
     post :toggle_admin, on: :member
+    post :toggle_paused, on: :member
   end
 
   root to: "visitors#index"
