@@ -9,8 +9,8 @@ feature "assign user to perform check" do
            reminder_id: reminder.id,
           )
   end
-  let(:user) { create(:user, uid: "12331", provider: "google_oauth2") }
-  let(:second_user) { create(:user, name: "John Smith") }
+  let(:user) { create(:user, uid: "12331", provider: "google_oauth2", email: "john@doe.pl") }
+  let(:second_user) { create(:user, name: "John Smith", email: "john@smith@netguru.pl") }
   let(:reminder_page) { Reminders::ReminderPage.new }
 
   before do
@@ -35,6 +35,7 @@ feature "assign user to perform check" do
     preffered_user = pick_person_page.users.first
     expect(preffered_user).to have_text(user.name)
     expect(pick_person_page.users.last).to have_text(second_user.name)
+
     preffered_user.pick_button.click
     expect(reminder_page.first_project.assigned_reviewer)
       .to have_text user.name
