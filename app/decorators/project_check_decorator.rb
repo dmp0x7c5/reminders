@@ -96,6 +96,14 @@ class ProjectCheckDecorator < Draper::Decorator
     check_assignments.first.checker if has_appointed_review?
   end
 
+  def slack_channel
+    if object.reminder.slack_channel.present?
+      object.reminder.slack_channel
+    else
+      object.project.channel_name
+    end
+  end
+
   private
 
   def last_check_date_time_diff

@@ -1,7 +1,9 @@
 require "rails_helper"
 
 describe ProjectCheckDecorator do
-  let(:check) { OpenStruct.new }
+  let(:check) { OpenStruct.new(reminder: reminder, project: project) }
+  let(:reminder) { OpenStruct.new }
+  let(:project) { OpenStruct.new(reminder: reminder, channel_name: "channel") }
   let(:decorator) { described_class.new(check) }
 
   describe "#last_check_date" do
@@ -34,6 +36,22 @@ describe ProjectCheckDecorator do
       it 'returns "date (today)" for today' do
         check.last_check_date = Time.zone.today
         expect(decorator.last_check_date).to eq "2015-05-20 (today)"
+      end
+    end
+  end
+
+  describe "#slack_channel" do
+    context "reminder has slack_channel specified" do
+      it "returns slack_channel of reminder" do
+        check.reminder.slack_channel = "some-channel"
+        expect(decorator.slack_channel).to eq("some-channel")
+        expect(decorator.slack_channel).to_not eq("channel")
+      end
+    end
+
+    context "reminder do not have slack_channel specified" do
+      it "returns slack_channel of project" do
+        expect(decorator.slack_channel).to eq("channel")
       end
     end
   end
