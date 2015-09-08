@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907115351) do
+ActiveRecord::Schema.define(version: 20150908070451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150907115351) do
     t.text     "remind_after_days", default: [],              array: true
     t.string   "deadline_text"
     t.string   "notification_text"
+    t.string   "slack_channel"
   end
 
   create_table "skills", force: :cascade do |t|
