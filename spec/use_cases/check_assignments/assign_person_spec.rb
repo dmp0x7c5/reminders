@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe CheckAssignments::AssignPerson do
   let(:service) do
@@ -31,6 +31,11 @@ describe CheckAssignments::AssignPerson do
     r = reminder.name
     p = project.name
     "#{u} got assigned to do next #{r} in #{p}. "
+  end
+
+  before do
+    project_check.stub(:decorate) { project_check }
+    project_check.stub(:slack_channel) { "test" }
   end
 
   describe "#call" do

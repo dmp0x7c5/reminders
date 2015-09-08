@@ -33,7 +33,7 @@ module CheckAssignments
 
     def notify_channel(message)
       CheckAssignments::Notify.new.call(
-        check.project.channel_name,
+        check.decorate.slack_channel,
         message,
       )
     end

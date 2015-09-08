@@ -17,6 +17,8 @@ describe ProjectChecks::HandleOverdue do
   before do
     project.stub(:decorate) { project }
     project.stub(:email) { "foo-project-team@netguru.pl" }
+    check.stub(:decorate) { check }
+    check.stub(:slack_channel) { "foo-project" }
   end
 
   describe "#call" do
