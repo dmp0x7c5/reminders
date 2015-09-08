@@ -81,6 +81,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.7.0)
+      capybara (>= 2.3.0, < 2.6.0)
+      json
     chronic (0.10.2)
     cliver (0.3.2)
     codeclimate-test-reporter (0.4.7)
@@ -393,6 +396,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails
   capybara
+  capybara-webkit
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   database_cleaner
