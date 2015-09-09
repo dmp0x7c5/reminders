@@ -3,8 +3,8 @@ require "rails_helper"
 feature "toggling admin permissions" do
   let(:user) do
     create(:user,
-          uid: "12331", provider: "google_oauth2",
-          email: "john@doe.pl", admin: true)
+           uid: "12331", provider: "google_oauth2",
+           email: "john@doe.pl", admin: true)
   end
   let(:second_user) do
     create(:user, name: "John Smith", email: "john@smith@netguru.pl")
