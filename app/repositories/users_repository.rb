@@ -28,4 +28,6 @@ class UsersRepository
     user.update_attributes(paused: !user.paused)
     user.paused
   end
+
+  delegate :find_by_email, to: :active
 end

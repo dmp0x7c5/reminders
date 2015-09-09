@@ -82,4 +82,12 @@ describe UsersRepository do
       end
     end
   end
+
+  describe "#find_by_email" do
+    let(:user) { create(:user, email: "john@doe.pl") }
+
+    it "returns user with specified email" do
+      expect(repo.find_by_email(user.email)).to eq(user)
+    end
+  end
 end
