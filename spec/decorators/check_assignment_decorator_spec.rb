@@ -49,4 +49,20 @@ describe CheckAssignmentDecorator do
       end
     end
   end
+
+  describe "#row_class" do
+    context "completion_date is present" do
+      it "returns class active" do
+        check_assignment.completion_date = Time.now
+        expect(decorator.row_class).to eq("active")
+      end
+    end
+
+    context "completion_date is not present" do
+      it "returns nil" do
+        check_assignment.completion_date = false
+        expect(decorator.row_class).to be_nil
+      end
+    end
+  end
 end

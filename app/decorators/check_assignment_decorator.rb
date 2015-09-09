@@ -5,6 +5,10 @@ class CheckAssignmentDecorator < Draper::Decorator
     object.user.name
   end
 
+  def row_class
+    "active" if completion_date.present?
+  end
+
   def assigned_days_ago
     (Time.zone.today - object.created_at.to_date).to_i
   end
