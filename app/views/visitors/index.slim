@@ -4,7 +4,8 @@
       h1 Reminders app
       p Welcome! You can find and configure reminders here! enjoy!
 
-    = render 'visitors/last_check_assignments'
-    = render 'visitors/skills'
-    = render 'visitors/availability'
+    - if user_signed_in?
+      = render 'visitors/last_check_assignments'
+      = render 'visitors/skills'
+      = render 'visitors/availability'
     = render 'visitors/info'
