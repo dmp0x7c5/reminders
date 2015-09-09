@@ -1,0 +1,10 @@
+.panel.panel-success
+  .panel-heading
+    h3.panel-title Your availability
+  .panel-body
+    | Please, mark yourself as paused if you will not be available for reminders.
+    strong
+      |  At the moment you are #{current_user.decorate.paused_as_string}
+    = link_to ' Click here to change it.',
+              toggle_paused_by_user_user_path(id: current_user.id),
+              method: :post

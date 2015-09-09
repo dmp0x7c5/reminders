@@ -4,30 +4,7 @@
       h1 Reminders app
       p Welcome! You can find and configure reminders here! enjoy!
 
-
     = render 'visitors/last_check_assignments'
-
-
-    .panel.panel-success
-      .panel-heading
-        h3.panel-title Your skills
-      .panel-body
-        | Please mark your "skills" - so you can be assigned to check some of the reminders:
-        = link_to ' go to Skills page.', skills_path
-
-    .panel.panel-success
-      .panel-heading
-        h3.panel-title Your availability
-      .panel-body
-        | Please, mark yourself as paused if you will not be available for reminders.
-        strong
-          |  At the moment you are #{current_user.decorate.paused_as_string}
-        = link_to ' Click here to change it.',
-                  toggle_paused_by_user_user_path(id: current_user.id),
-                  method: :post
-
-    .panel.panel-primary
-      .panel-heading
-        h3.panel-title Info
-      .panel-body
-        | If you think there is something wrong, please ping us on reminders-related channel on Slack.
+    = render 'visitors/skills'
+    = render 'visitors/availability'
+    = render 'visitors/info'
