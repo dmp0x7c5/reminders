@@ -3,6 +3,10 @@ class UsersRepository
     User.where(archived_at: nil).order(:name)
   end
 
+  def active
+    all.where("archived_at IS NULL")
+  end
+
   def find(id)
     all.find_by_id(id)
   end

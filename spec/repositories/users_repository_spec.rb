@@ -68,4 +68,18 @@ describe UsersRepository do
       end
     end
   end
+
+  describe "#active" do
+    before do
+      2.times { create(:user, archived_at: Time.now) }
+      2.times { create(:user, archived_at: nil) }
+    end
+
+    it "returns only not archived users" do
+      expect(repo.active.count).to eq(2)
+      repo.active.each do |user|
+        expect(user.archived_at).to be_nil
+      end
+    end
+  end
 end
