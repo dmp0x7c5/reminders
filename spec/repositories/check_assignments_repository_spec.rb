@@ -64,4 +64,41 @@ describe CheckAssignmentsRepository do
       end.to change { check_assignment.user_id }.to user.id
     end
   end
+
+  describe "#latest_user_assignments" do
+    let(:user) { create(:user) }
+    let(:assignments) { repo.latest_user_assignments(user_id: user.id) }
+
+    before do
+      create(:check_assignment, user: user, completion_date: 1.days.ago)
+      3.times { create(:check_assignment, user: user) }
+      create(:check_assignment, user: user, completion_date: 2.days.ago)
+    end
+
+    it "returns latest assignments" do
+      expect(assignments.count).to eq(5)
+    end
+
+    it "returns firstly assignments without completion_date" do
+      assignments.take(3).each do |assignment|
+        expect(assignment.completion_date).to be_nil
+      end
+    end
+
+    it "returns assignments with completion_date on the end" do
+      assignments.last(2).each do |assignment|
+        expect(assignment.completion_date).to_not be_nil
+      end
+    end
+
+    context "with limit passed" do
+      let(:assignments) do
+        repo.latest_user_assignments(user_id: user.id, limit: 1)
+      end
+
+      it "returns limited assignments" do
+        expect(assignments.count).to eq(1)
+      end
+    end
+  end
 end

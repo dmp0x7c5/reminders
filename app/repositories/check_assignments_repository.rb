@@ -30,4 +30,10 @@ class CheckAssignmentsRepository
     assignment.update_attributes(parameters)
     assignment
   end
+
+  def latest_user_assignments(user_id:, limit: 5)
+    all.where(user_id: user_id)
+      .limit(limit)
+      .order(completion_date: :desc, updated_at: :desc)
+  end
 end
