@@ -10,4 +10,8 @@ class UsersWithSkillRepository
       .where(skills: { reminder_id: reminder.id })
       .where(paused: false)
   end
+
+  def active
+    all.where("archived_at is NULL")
+  end
 end
