@@ -15,30 +15,31 @@ describe ProjectNotificationMailer do
 
   before do
     deliveries = []
-    project.stub(:decorate) { project }
-    project.stub(:email) { "abc-def#{AppConfig.project_email_ending}" }
+    allow(project).to receive(:decorate) { project }
+    allow(project)
+      .to receive(:email) { "abc-def#{AppConfig.project_email_ending}" }
   end
 
   it "send one email" do
-    expect { subject.deliver }
+    expect { subject.deliver_now }
       .to change { deliveries.count }
       .by(1)
   end
 
   it "set proper subject" do
-    subject.deliver
+    subject.deliver_now
     expect(delivered_email.subject)
       .to include("next senior review in abc def")
   end
 
   it "sends to project email" do
-    subject.deliver
+    subject.deliver_now
     expect(delivered_email.to)
       .to include(project.email)
   end
 
   it "set proper body" do
-    subject.deliver
+    subject.deliver_now
     expect(delivered_email.body)
       .to eq(notification)
   end

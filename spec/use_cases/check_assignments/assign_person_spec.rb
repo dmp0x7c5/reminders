@@ -34,8 +34,8 @@ describe CheckAssignments::AssignPerson do
   end
 
   before do
-    project_check.stub(:decorate) { project_check }
-    project_check.stub(:slack_channel) { "test" }
+    allow(project_check).to receive(:decorate) { project_check }
+    allow(project_check).to receive(:slack_channel) { "test" }
   end
 
   describe "#call" do

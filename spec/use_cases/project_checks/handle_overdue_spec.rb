@@ -15,10 +15,12 @@ describe ProjectChecks::HandleOverdue do
   let(:notifier) { double(:notifier, send_message: true) }
 
   before do
-    project.stub(:decorate) { project }
-    project.stub(:email) { "foo-project#{AppConfig.project_email_ending}" }
-    check.stub(:decorate) { check }
-    check.stub(:slack_channel) { "foo-project" }
+    allow(project).to receive(:decorate) { project }
+
+    allow(project)
+      .to receive(:email) { "foo-project#{AppConfig.project_email_ending}" }
+    allow(check).to receive(:decorate) { check }
+    allow(check).to receive(:slack_channel) { "foo-project" }
   end
 
   describe "#call" do

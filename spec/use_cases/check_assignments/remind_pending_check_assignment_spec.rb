@@ -21,7 +21,7 @@ describe CheckAssignments::RemindPendingCheckAssignment do
 
   describe "#perform" do
     before do
-      check_assignments_repository.stub(:latest_assignment) do
+      allow(check_assignments_repository).to receive(:latest_assignment) do
         check_assignments_repository.all.last
       end
       service.check_assignments_repository = check_assignments_repository
@@ -44,7 +44,7 @@ describe CheckAssignments::RemindPendingCheckAssignment do
       let(:check_assignments_repository) { create_repository(check_assignment) }
 
       before do
-        check_assignment.stub(:created_at) { Time.current }
+        allow(check_assignment).to receive(:created_at) { Time.current }
       end
 
       it "doesn't send any reminder" do
@@ -56,8 +56,9 @@ describe CheckAssignments::RemindPendingCheckAssignment do
       let(:check_assignments_repository) { create_repository(check_assignment) }
 
       before do
-        check_assignment.stub(:created_at) { 15.days.ago }
-        UserReminderMailer.stub_chain(:check_assignment_remind, :deliver)
+        allow(check_assignment).to receive(:created_at) { 15.days.ago }
+        allow(UserReminderMailer)
+          .to receive_message_chain(:check_assignment_remind, :deliver_now)
       end
 
       it "sends reminder" do
@@ -69,10 +70,11 @@ describe CheckAssignments::RemindPendingCheckAssignment do
       let(:check_assignments_repository) { create_repository(check_assignment) }
 
       before do
-        check_assignment.stub(:created_at) { 15.days.ago }
-        check_assignment.stub(:completion_date) { Time.current }
+        allow(check_assignment).to receive(:created_at) { 15.days.ago }
+        allow(check_assignment).to receive(:completion_date) { Time.current }
 
-        UserReminderMailer.stub_chain(:check_assignment_remind, :deliver)
+        allow(UserReminderMailer)
+          .to receive_message_chain(:check_assignment_remind, :deliver)
       end
 
       it "doesn't send any reminder" do

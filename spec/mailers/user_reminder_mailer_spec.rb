@@ -14,36 +14,37 @@ describe UserReminderMailer do
 
   before do
     deliveries = []
-    project.stub(:decorate) { project }
-    project.stub(:email) { "abc-def#{AppConfig.project_email_ending}" }
+    allow(project).to receive(:decorate) { project }
+    allow(project)
+      .to receive(:email) { "abc-def#{AppConfig.project_email_ending}" }
   end
 
   it "send one email" do
-    expect { subject.deliver }
+    expect { subject.deliver_now }
       .to change { deliveries.count }
       .by(1)
   end
 
   it "set proper subject" do
-    subject.deliver
+    subject.deliver_now
     expect(delivered_email.subject)
       .to include("waiting for you")
   end
 
   it "sends to assigned user" do
-    subject.deliver
+    subject.deliver_now
     expect(delivered_email.to)
       .to include(user.email)
   end
 
   it "sends to team email as cc" do
-    subject.deliver
+    subject.deliver_now
     expect(delivered_email.cc)
       .to include("abc-def#{AppConfig.project_email_ending}")
   end
 
   it "set proper body" do
-    subject.deliver
+    subject.deliver_now
     expect(delivered_email.body)
       .to include(reminder.name)
 

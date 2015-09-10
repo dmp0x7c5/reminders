@@ -17,7 +17,7 @@ module ProjectChecks
     private
 
     def mail!
-      mailer.check_reminder(notification, check).deliver
+      mailer.check_reminder(notification, check).deliver_now
     end
 
     def notify!

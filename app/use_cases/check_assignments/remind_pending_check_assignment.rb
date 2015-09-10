@@ -17,7 +17,7 @@ module CheckAssignments
     def remind_person
       UserReminderMailer
         .check_assignment_remind(user, project_check, days_diff)
-        .deliver
+        .deliver_now
     end
 
     def check_assignment
