@@ -20,12 +20,12 @@ class UsersRepository
 
   def toggle_admin(id)
     user = find(id)
-    user.update_attributes(admin: !user.admin)
+    user.update_column(:admin, !user.admin)
   end
 
   def toggle_paused(id)
     user = find(id)
-    user.update_attributes(paused: !user.paused)
+    user.update_column(:paused, !user.paused)
     user.paused
   end
 
