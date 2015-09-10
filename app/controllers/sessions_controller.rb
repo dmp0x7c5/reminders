@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate_user!, except: :destroy
+  expose(:auth) { request.env["omniauth.auth"] }
 
   def new
     redirect_to "/auth/google_oauth2"
   end
 
   def create
-    auth = request.env["omniauth.auth"]
     user = UsersRepository.new.from_auth(auth)
     reset_session
     session[:user_id] = user.id
