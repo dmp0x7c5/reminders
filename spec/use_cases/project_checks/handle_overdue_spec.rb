@@ -16,7 +16,7 @@ describe ProjectChecks::HandleOverdue do
 
   before do
     project.stub(:decorate) { project }
-    project.stub(:email) { "foo-project-team@netguru.pl" }
+    project.stub(:email) { "foo-project#{AppConfig.project_email_ending}" }
     check.stub(:decorate) { check }
     check.stub(:slack_channel) { "foo-project" }
   end
@@ -42,7 +42,7 @@ describe ProjectChecks::HandleOverdue do
       it "sends email to project's email" do
         service.call
         expect(ActionMailer::Base.deliveries.last.to)
-          .to include "foo-project-team@netguru.pl"
+          .to include "foo-project#{AppConfig.project_email_ending}"
       end
     end
 

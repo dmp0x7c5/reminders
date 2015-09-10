@@ -16,7 +16,7 @@ describe ProjectNotificationMailer do
   before do
     deliveries = []
     project.stub(:decorate) { project }
-    project.stub(:email) { "abc-def-team@netguru.pl" }
+    project.stub(:email) { "abc-def#{AppConfig.project_email_ending}" }
   end
 
   it "send one email" do

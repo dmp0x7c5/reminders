@@ -14,7 +14,8 @@ describe ProjectDecorator do
     end
 
     it "uses data from config as domain part" do
-      expect(decorator.email).to match(/^.*@(#{AppConfig.email_domain})$/)
+      expect(decorator.email)
+        .to match(/^abc(#{AppConfig.project_email_ending})$/)
     end
   end
 end

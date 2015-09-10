@@ -7,7 +7,7 @@ development: &default
   slack_enabled: false
   secret_key_base: secret_key_base
   rollbar_token: rollbar_token
-  email_domain: netguru.pl
+  project_email_ending: -team@netguru.pl
 
 test:
   <<: *default

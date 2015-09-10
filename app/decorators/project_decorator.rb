@@ -35,7 +35,7 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def email
-    "#{slugified_name}-team@netguru.pl"
+    "#{slugified_name}#{AppConfig.project_email_ending}"
   end
 
   def slugified_name
