@@ -4,6 +4,7 @@ module FeatureHelpers
       OmniAuth::AuthHash.new(
         provider: user.provider,
         uid: user.uid,
+        info: { name: "John", email: "john@doe.pl" },
       )
     visit "auth/google_oauth2"
   end
