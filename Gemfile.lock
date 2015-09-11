@@ -312,8 +312,6 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
-    sendgrid (1.2.0)
-      json
     shellany (0.0.1)
     simple_form (3.1.0)
       actionpack (~> 4.0)
@@ -430,7 +428,6 @@ DEPENDENCIES
   rspec-rails
   rvm1-capistrano3
   sass-rails (~> 5.0)
-  sendgrid
   simple_form
   site_prism
   slack-api

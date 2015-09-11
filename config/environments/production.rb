@@ -8,6 +8,16 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
   config.log_formatter = ::Logger::Formatter.new
 
+  config.action_mailer.smtp_settings = {
+    user_name: AppConfig.sendgrid_user_name,
+    password: AppConfig.sendgrid_password,
+    domain: AppConfig.domain,
+    address: "smtp.sendgrid.net",
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true,
+  }
+
   # Access secret base key via AppConfig
   secrets.secret_key_base = AppConfig.secret_key_base
 end
