@@ -9,7 +9,7 @@ class ProjectChecksController < ApplicationController
   expose(:reminder) do
     reminders_repository.find(params[:reminder_id])
   end
-  expose(:users) { UsersWithSkillRepository.new(reminder).all }
+  expose(:users) { UsersWithSkillRepository.new(reminder).active }
   expose(:assignments_repo) { CheckAssignmentsRepository.new }
   expose(:users_repo) { UsersRepository.new }
 
