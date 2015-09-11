@@ -8,7 +8,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def toggle_admin_btn
-    h.link_to "Toggle admin permissions",
+    h.link_to "Toggle admin",
               toggle_admin_user_path(id: id),
               method: :post,
               class: "btn btn-primary",
