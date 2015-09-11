@@ -17,7 +17,7 @@ describe ProjectNotificationMailer do
     deliveries = []
     allow(project).to receive(:decorate) { project }
     allow(project)
-      .to receive(:email) { "abc-def#{AppConfig.project_email_ending}" }
+      .to receive(:email) { "foo@email.com" }
   end
 
   it "send one email" do

@@ -17,7 +17,7 @@ describe ProjectChecks::HandleNotificationDay do
   before do
     allow(project).to receive(:decorate) { project }
     allow(project)
-      .to receive(:email) { "foo-project#{AppConfig.project_email_ending}" }
+      .to receive(:email) { "foo-project@foo.com" }
     allow(check).to receive(:decorate) { check }
     allow(check).to receive(:slack_channel) { "foo-project" }
   end
@@ -43,7 +43,7 @@ describe ProjectChecks::HandleNotificationDay do
       it "sends email to project's email" do
         service.call
         expect(ActionMailer::Base.deliveries.last.to)
-          .to include "foo-project#{AppConfig.project_email_ending}"
+          .to include "foo-project@foo.com"
       end
     end
 

@@ -16,7 +16,7 @@ describe UserReminderMailer do
     deliveries = []
     allow(project).to receive(:decorate) { project }
     allow(project)
-      .to receive(:email) { "abc-def#{AppConfig.project_email_ending}" }
+      .to receive(:email) { "abc-def@foo.com" }
   end
 
   it "send one email" do
@@ -40,7 +40,7 @@ describe UserReminderMailer do
   it "sends to team email as cc" do
     subject.deliver_now
     expect(delivered_email.cc)
-      .to include("abc-def#{AppConfig.project_email_ending}")
+      .to include("abc-def@foo.com")
   end
 
   it "set proper body" do
