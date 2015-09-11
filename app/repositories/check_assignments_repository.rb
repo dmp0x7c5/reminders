@@ -33,6 +33,7 @@ class CheckAssignmentsRepository
 
   def latest_user_assignments(user_id:, limit: 5)
     all.where(user_id: user_id)
+      .includes(project_check: [:project, :reminder])
       .limit(limit)
       .order(completion_date: :desc, updated_at: :desc)
   end
