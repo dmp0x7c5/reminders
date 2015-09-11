@@ -52,6 +52,7 @@ group :test do
   gem "rspec-html-matchers"
   gem "rspec-rails"
   gem "site_prism"
+  gem 'shoulda-matchers'
   gem "timecop"
   gem "zonebie"
 end
