@@ -19,6 +19,13 @@ table.dataTable tbody { // This is really long because datatables defined it wit
     color: $gray-darker;
   }
 
+  td.centered {
+    form {
+      width: 105px;
+      margin: 0 auto;
+    }
+  }
+
   .btn-separate {
     margin-right: 5px;
   }

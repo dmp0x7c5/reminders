@@ -10,7 +10,7 @@
           th Name
           th Created at
           th Admin
-          th Paused
+          th Available to assign?
           th Actions
 
       tbody
@@ -20,7 +20,7 @@
             td = user.name
             td = user.created_at
             td = user.admin_label
-            td
+            td.centered
               = form_tag toggle_paused_user_path(user)
                 input.project-switch type="checkbox" checked=("checked" unless user.paused) id="user-#{user.id}"
                 label for="user-#{user.id}"
