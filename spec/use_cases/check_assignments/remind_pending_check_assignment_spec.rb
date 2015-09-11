@@ -33,7 +33,7 @@ describe CheckAssignments::RemindPendingCheckAssignment do
     end
 
     context "when check has no one assigned" do
-      let(:check_assignments_repository) { create_repository }
+      let(:check_assignments_repository) { create_check_assignments_repository }
 
       it "doesn't send any reminder" do
         expect(UserReminderMailer).to_not receive(:check_assignment_remind)
@@ -41,7 +41,9 @@ describe CheckAssignments::RemindPendingCheckAssignment do
     end
 
     context "when check has assigned user today" do
-      let(:check_assignments_repository) { create_repository(check_assignment) }
+      let(:check_assignments_repository) do
+        create_check_assignments_repository(check_assignment)
+      end
 
       before do
         allow(check_assignment).to receive(:created_at) { Time.current }
@@ -53,7 +55,9 @@ describe CheckAssignments::RemindPendingCheckAssignment do
     end
 
     context "when check has assigned user 15 days ago" do
-      let(:check_assignments_repository) { create_repository(check_assignment) }
+      let(:check_assignments_repository) do
+        create_check_assignments_repository(check_assignment)
+      end
 
       before do
         allow(check_assignment).to receive(:created_at) { 15.days.ago }
@@ -67,7 +71,9 @@ describe CheckAssignments::RemindPendingCheckAssignment do
     end
 
     context "when check has completion_date" do
-      let(:check_assignments_repository) { create_repository(check_assignment) }
+      let(:check_assignments_repository) do
+        create_check_assignments_repository(check_assignment)
+      end
 
       before do
         allow(check_assignment).to receive(:created_at) { 15.days.ago }
