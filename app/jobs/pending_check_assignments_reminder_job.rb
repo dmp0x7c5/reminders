@@ -8,7 +8,8 @@ class PendingCheckAssignmentsReminderJob
   end
 
   def perform
-    CheckAssignments::RemindPendingCheckAssignment.new(project_check).call
+    CheckAssignments::RemindPendingCheckAssignment
+      .new(project_check: project_check).call
   end
 
   private

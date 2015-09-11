@@ -21,7 +21,8 @@ module ProjectChecks
     end
 
     def notify!
-      notifier.send_message notification, channel: "##{check.decorate.slack_channel}"
+      notifier
+        .send_message notification, channel: "##{check.decorate.slack_channel}"
     end
 
     def reminder
