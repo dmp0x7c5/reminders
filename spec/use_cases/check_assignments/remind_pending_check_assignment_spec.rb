@@ -3,7 +3,11 @@ require "rails_helper"
 describe CheckAssignments::RemindPendingCheckAssignment do
   include RepositoriesHelpers
 
-  let(:service) { described_class.new(project_check) }
+  let(:service) do
+    described_class
+      .new(project_check: project_check,
+           check_assignments_repository: check_assignments_repository)
+  end
   let(:user) { double(:user, id: 1, email: "john@doe.pl") }
   let(:check_assignment) do
     double(:check_assignment,
@@ -11,21 +15,16 @@ describe CheckAssignments::RemindPendingCheckAssignment do
            created_at: nil
           )
   end
-  let(:users_repository) { create_repository(user) }
 
   let(:project_check) do
     double(:project_check, id: 1, created_at: Time.current, reminder_id: 1)
   end
-
-  let(:reminders_repository) { create_repository(reminder) }
 
   describe "#perform" do
     before do
       allow(check_assignments_repository).to receive(:latest_assignment) do
         check_assignments_repository.all.last
       end
-      service.check_assignments_repository = check_assignments_repository
-      service.users_repository = users_repository
     end
 
     after do

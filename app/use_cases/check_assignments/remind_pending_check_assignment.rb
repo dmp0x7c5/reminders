@@ -1,10 +1,18 @@
 module CheckAssignments
   class RemindPendingCheckAssignment
-    attr_writer :users_repository, :check_assignments_repository
-    attr_reader :project_check
+    attr_reader :project_check, :users_repository,
+                :check_assignments_repository, :reminders_repository
 
-    def initialize(project_check)
+    def initialize(
+                    project_check:,
+                    users_repository: UsersRepository.new,
+                    check_assignments_repository: CheckAssignmentsRepository.new,
+                    reminders_repository: RemindersRepository.new
+    )
       @project_check = project_check
+      @users_repository = users_repository
+      @check_assignments_repository = check_assignments_repository
+      @reminders_repository = reminders_repository
     end
 
     def call
@@ -27,18 +35,6 @@ module CheckAssignments
 
     def user
       users_repository.find(check_assignment.user_id)
-    end
-
-    def reminders_repository
-      @reminders_repository ||= RemindersRepository.new
-    end
-
-    def users_repository
-      @users_repository ||= UsersRepository.new
-    end
-
-    def check_assignments_repository
-      @check_assignments_repository ||= CheckAssignmentsRepository.new
     end
 
     def user_assigned?
