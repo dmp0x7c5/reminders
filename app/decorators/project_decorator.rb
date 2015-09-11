@@ -1,5 +1,5 @@
 class ProjectDecorator < Draper::Decorator
-  delegate :id, :name, :enabled
+  delegate :id, :name, :enabled, :email
 
   def created_at
     h.l object.created_at
@@ -32,13 +32,5 @@ class ProjectDecorator < Draper::Decorator
     else
       "nothing to show"
     end
-  end
-
-  def email
-    "#{slugified_name}#{AppConfig.project_email_ending}"
-  end
-
-  def slugified_name
-    name.sub(" ", "-")
   end
 end
