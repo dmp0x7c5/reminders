@@ -9,18 +9,7 @@ class CheckAssignmentDecorator < Draper::Decorator
     "active" if completion_date.present?
   end
 
-  def assigned_days_ago
-    (Time.zone.today - object.created_at.to_date).to_i
-  end
-
   def assigned_days_ago_as_string
-    diff = assigned_days_ago
-    if diff == 0
-      "today"
-    elsif diff == 1
-      "#{diff} day ago"
-    else
-      "#{diff} days ago"
-    end
+    "#{h.time_ago_in_words(object.created_at)} ago"
   end
 end
