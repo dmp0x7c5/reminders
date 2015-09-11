@@ -12,10 +12,9 @@ class UsersRepository
   end
 
   def from_auth(auth)
-    User.where(
-      provider: auth["provider"],
-      uid: auth["uid"].to_s,
-    ).first || User.create_with_omniauth(auth)
+    Users::FindWithOmniauth.new(auth: auth).call ||
+      Users::CreateWithOmniauth.new(auth: auth).call
+  end
 
   def add(attrs)
     User.create!(attrs)

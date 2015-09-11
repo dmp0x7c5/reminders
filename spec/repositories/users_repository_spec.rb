@@ -14,7 +14,13 @@ describe UsersRepository do
   end
 
   describe "#from_auth" do
-    let(:auth) { { provider: "google", uid: 123 } }
+    let(:auth) do
+      {
+        "provider" => "google",
+        "uid" => 123,
+        "info" => { "name" => "John", "email" => "john@doe.pl" },
+      }
+    end
 
     context "when user exists" do
       let(:user) { create(:user, provider: "google", uid: 123) }
