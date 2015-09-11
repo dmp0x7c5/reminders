@@ -25,5 +25,5 @@
                 input.project-switch type="checkbox" checked=("checked" unless user.paused) id="user-#{user.id}"
                 label for="user-#{user.id}"
             td
-              = link_to 'Edit skills', admin_user_skills_path(user), class: 'btn btn-primary'
+              = link_to 'Edit skills', admin_user_skills_path(user), class: 'btn btn-primary btn-separate'
               = user.toggle_admin_btn

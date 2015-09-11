@@ -18,4 +18,8 @@ table.dataTable tbody { // This is really long because datatables defined it wit
   td {
     color: $gray-darker;
   }
+
+  .btn-separate {
+    margin-right: 5px;
+  }
 }
