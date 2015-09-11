@@ -8,6 +8,7 @@ development: &default
   secret_key_base: secret_key_base
   rollbar_token: rollbar_token
   project_email_ending: -team@netguru.pl
+  domain: netguru.pl
   default_from_email: reminders-app@netguru.pl
 
 test:
