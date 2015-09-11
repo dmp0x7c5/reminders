@@ -16,6 +16,10 @@ class UsersRepository
       provider: auth["provider"],
       uid: auth["uid"].to_s,
     ).first || User.create_with_omniauth(auth)
+
+  def add(attrs)
+    User.create!(attrs)
+  end
   end
 
   def toggle_admin(id)

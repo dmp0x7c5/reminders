@@ -90,4 +90,18 @@ describe UsersRepository do
       expect(repo.find_by_email(user.email)).to eq(user)
     end
   end
+
+  describe "#add" do
+    let(:params) { { name: "John", email: "john@doe.pl" } }
+
+    it "creates with attributes passed" do
+      added_user = repo.add(params)
+      expect(added_user.name).to eq(params[:name])
+      expect(added_user.email).to eq(params[:email])
+    end
+
+    it "creates new user" do
+      expect { repo.add(params) }.to change { User.count }.by(1)
+    end
+  end
 end
