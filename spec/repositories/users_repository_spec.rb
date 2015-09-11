@@ -104,4 +104,13 @@ describe UsersRepository do
       expect { repo.add(params) }.to change { User.count }.by(1)
     end
   end
+
+  describe "#find_by" do
+    let!(:user) { create(:user, uid: "123", provider: "google") }
+    let(:attrs) { { uid: "123", provider: "google" } }
+
+    it "returns user with specified attrs" do
+      expect(repo.find_by(attrs)).to eq(user)
+    end
+  end
 end

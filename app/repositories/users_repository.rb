@@ -20,6 +20,9 @@ class UsersRepository
   def add(attrs)
     User.create!(attrs)
   end
+
+  def find_by(attrs)
+    User.find_by(attrs)
   end
 
   def toggle_admin(id)
