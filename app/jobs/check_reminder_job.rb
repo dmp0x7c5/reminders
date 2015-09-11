@@ -6,7 +6,7 @@ class CheckReminderJob
   def perform(reminder_id)
     reminder = reminders_repository.find reminder_id
     checks_for_reminder(reminder).each do |project_check|
-      if project_check.check_assignments.none? { |c| c.completion_date.nil? }
+      if all_assigments_completed?(project_check.check_assignments)
         ProjectCheckedOnTimeJob.new(project_check.id,
                                     reminder.valid_for_n_days,
                                     reminder.remind_after_days).perform
@@ -17,6 +17,10 @@ class CheckReminderJob
   end
 
   private
+
+  def all_assigments_completed?(assignments)
+    assignments.none? { |c| c.completion_date.nil? }
+  end
 
   def reminders_repository
     @reminders_repository ||= RemindersRepository.new

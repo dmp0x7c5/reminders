@@ -3,16 +3,13 @@ module CheckAssignments
     attr_reader :project_check, :users_repository,
                 :check_assignments_repository, :reminders_repository
 
-    def initialize(
-                    project_check:,
-                    users_repository: UsersRepository.new,
-                    check_assignments_repository: CheckAssignmentsRepository.new,
-                    reminders_repository: RemindersRepository.new
-    )
+    def initialize(project_check:, users_repository: nil,
+                   check_assignments_repository: nil, reminders_repository: nil)
       @project_check = project_check
-      @users_repository = users_repository
-      @check_assignments_repository = check_assignments_repository
-      @reminders_repository = reminders_repository
+      @users_repository = users_repository || UsersRepository.new
+      @check_assignments_repository = check_assignments_repository ||
+                                      CheckAssignmentsRepository.new
+      @reminders_repository = reminders_repository || RemindersRepository.new
     end
 
     def call

@@ -14,7 +14,6 @@ describe ProjectNotificationMailer do
   end
 
   before do
-    deliveries = []
     allow(project).to receive(:decorate) { project }
     allow(project)
       .to receive(:email) { "foo@email.com" }
