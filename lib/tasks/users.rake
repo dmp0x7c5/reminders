@@ -13,7 +13,19 @@ namespace :users do
     end
   end
 
+  desc "Add email to users"
+  task migrate_emails: :environment do
+    users = UsersRepository.new.all
+    users.each do |user|
+      user.update_column(:email, prepare_email(user.name))
+    end
+  end
+
   private
+
+  def prepare_email(name)
+    name.parameterize.gsub("-", ".") + "@#{AppConfig.domain}"
+  end
 
   def find_user_by_email(email)
     user = UsersRepository.new.find_by_email(email)

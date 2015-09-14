@@ -45,4 +45,32 @@ describe "rake users" do
       end
     end
   end
+
+  describe "migrate_emails" do
+    let(:user1) { build(:user, name: "John Doe", email: nil) }
+    let(:user2) { build(:user, name: "Joę Dołe", email: nil) }
+    before do
+      Rake::Task["users:migrate_emails"].reenable
+      user1.save(validate: false)
+      user2.save(validate: false)
+      allow(AppConfig).to receive(:domain) { "foo.pl" }
+    end
+
+    it "add email to all active users" do
+      Rake.application.invoke_task("users:migrate_emails")
+      expect(user1.reload.email).to_not be_blank
+    end
+
+    it "creates email from name" do
+      Rake.application.invoke_task("users:migrate_emails")
+      expect(user1.reload.email).to eq("john.doe@foo.pl")
+    end
+
+    context "user has polish chars in name" do
+      it "creates email from slugified name" do
+        Rake.application.invoke_task("users:migrate_emails")
+        expect(user2.reload.email).to eq("joe.dole@foo.pl")
+      end
+    end
+  end
 end
