@@ -1,10 +1,10 @@
 class UserNotificationMailer < ApplicationMailer
   def check_assignment(user, project_check)
     @project_check = project_check
+    @user = user
     mail(to: user.email,
          subject: compose_subject) do |format|
       format.html
-      format.text
     end
   end
 

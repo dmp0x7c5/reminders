@@ -40,6 +40,6 @@ describe ProjectNotificationMailer do
   it "set proper body" do
     subject.deliver_now
     expect(delivered_email.body)
-      .to eq(notification)
+      .to include(notification)
   end
 end

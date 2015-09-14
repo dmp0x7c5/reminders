@@ -1,0 +1,11 @@
+p Hi #{@user.name},
+
+p
+  | You have been assigned
+  strong  #{@days_diff}
+  |  days ago to do
+  strong  #{@project_check.reminder.name}
+  |  in
+  strong  #{@project_check.project.name}.
+
+p Please, complete it.

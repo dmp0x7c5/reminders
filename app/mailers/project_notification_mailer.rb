@@ -3,9 +3,11 @@ class ProjectNotificationMailer < ApplicationMailer
 
   def check_reminder(notification, project_check)
     @project_check = project_check
+    @team_name = team_name
+    @notification = notification
     mail(to: project_email,
          subject: compose_subject) do |format|
-      format.text { render inline: notification }
+      format.html
     end
   end
 
@@ -17,6 +19,10 @@ class ProjectNotificationMailer < ApplicationMailer
   end
 
   def project_email
-    project_check.project.decorate.email
+    project_check.project.email
+  end
+
+  def team_name
+    @project_check.project.name
   end
 end

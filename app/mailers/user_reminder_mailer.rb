@@ -4,12 +4,15 @@ class UserReminderMailer < ApplicationMailer
   def check_assignment_remind(user, project_check, days_diff)
     @project_check = project_check
     @days_diff = days_diff
+    @user = user
     mail(to: user.email,
          cc: project_email,
          subject: compose_subject) do |format|
-      format.text
+      format.html
     end
   end
+
+  private
 
   def compose_subject
     "Reminder: next #{project_check.reminder.name}
