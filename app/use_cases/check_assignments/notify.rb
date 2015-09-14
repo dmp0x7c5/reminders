@@ -24,7 +24,7 @@ module CheckAssignments
 
     def slack_message(message)
       "Just letting know that " + message +
-        " Please let them know."
+        " They were notified by email."
     end
 
     def unsuccessful_notification(message)
