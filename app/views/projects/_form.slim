@@ -1,0 +1,10 @@
+.row
+  .col-md-6
+    = simple_form_for(project, url: project_path) do |f|
+      = f.error_notification
+
+      .form-inputs
+        = f.input :email
+
+      .form-actions
+        = f.button :submit

@@ -14,7 +14,21 @@ class ProjectsController < ApplicationController
   expose(:project_checks_repository) { ProjectChecksRepository.new }
   expose(:reminders_repository) { RemindersRepository.new }
 
+  def edit; end
+
   def index; end
+
+  def update
+    update_project = Projects::Update
+                     .new(project: project, attrs: project_params).call
+    if update_project.success?
+      redirect_to projects_path,
+                  notice: "Project was successfully updated."
+    else
+      self.project = update_project.data
+      render :edit
+    end
+  end
 
   def sync
     SyncMissingProjectsJob.new(

@@ -26,6 +26,7 @@ describe ProjectsRepository do
     let(:project_check) do
       Project.new(
         name: "reminders",
+        email: "project@foo.pl",
       )
     end
 
