@@ -10,4 +10,18 @@ namespace :projects do
       ).perform
     end
   end
+
+  desc "Add email to projects"
+  task migrate_emails: :environment do
+    projects = ProjectsRepository.new.all
+    projects.each do |project|
+      project.update_column(:email, prepare_project_email(project.name))
+    end
+  end
+
+  private
+
+  def prepare_project_email(name)
+    "#{name.downcase}-team@#{AppConfig.domain}"
+  end
 end
