@@ -21,7 +21,12 @@ module Projects
 
     def save_project(name, channel_name)
       projects_repository.persist Project.new(name: name,
-                                              channel_name: channel_name)
+                                              channel_name: channel_name,
+                                              email: prepare_email(name))
+    end
+
+    def prepare_email(name)
+      "#{name.downcase}-team@#{AppConfig.domain}"
     end
   end
 end

@@ -2,7 +2,8 @@ require "spec_helper"
 
 describe Projects::SyncWithSlackChannels do
   let(:project) do
-    double(:project, id: 1, name: "baz", channel_name: "project-baz")
+    double(:project, id: 1, name: "baz", channel_name: "project-baz",
+                     email: "baz-team@foo.pl")
   end
   let(:project_channels) do
     [double(name: "project-foo"), double(name: "project-bar")]
@@ -24,6 +25,10 @@ describe Projects::SyncWithSlackChannels do
     described_class.new projects_repository, channels_repository
   end
 
+  before do
+    allow(AppConfig).to receive(:domain) { "foo.pl" }
+  end
+
   describe "#call" do
     it "creates new projects based on project channels" do
       expect { service.call }.to change { projects_repository.all.count }.by(2)
@@ -39,6 +44,12 @@ describe Projects::SyncWithSlackChannels do
       service.call
       expect(projects_repository.all.map(&:channel_name))
         .to include("project-foo", "project-bar", "project-baz")
+    end
+
+    it "creates new projects with emails based on project's names" do
+      service.call
+      expect(projects_repository.all.map(&:email))
+        .to include("foo-team@foo.pl", "bar-team@foo.pl", "baz-team@foo.pl")
     end
   end
 end
