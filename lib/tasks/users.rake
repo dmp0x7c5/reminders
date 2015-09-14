@@ -17,6 +17,7 @@ namespace :users do
   task migrate_emails: :environment do
     users = UsersRepository.new.all
     users.each do |user|
+      next if user.email.present?
       user.update_column(:email, prepare_email(user.name))
     end
   end

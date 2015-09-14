@@ -49,10 +49,12 @@ describe "rake users" do
   describe "migrate_emails" do
     let(:user1) { build(:user, name: "John Doe", email: nil) }
     let(:user2) { build(:user, name: "Joę Dołe", email: nil) }
+    let(:user3) { build(:user, name: "John Doe", email: "john@doe.pl") }
     before do
       Rake::Task["users:migrate_emails"].reenable
       user1.save(validate: false)
       user2.save(validate: false)
+      user3.save(validate: false)
       allow(AppConfig).to receive(:domain) { "foo.pl" }
     end
 
@@ -70,6 +72,13 @@ describe "rake users" do
       it "creates email from slugified name" do
         Rake.application.invoke_task("users:migrate_emails")
         expect(user2.reload.email).to eq("joe.dole@foo.pl")
+      end
+    end
+
+    context "user had already email" do
+      it "does not change the email" do
+        Rake.application.invoke_task("users:migrate_emails")
+        expect(user3.reload.email).to eq("john@doe.pl")
       end
     end
   end
