@@ -30,6 +30,12 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def archive
+    Projects::Archive.new(project).call
+    redirect_to projects_path,
+                notice: "Project has been archived."
+  end
+
   def sync
     SyncMissingProjectsJob.new(
       projects_repo: projects_repository,
