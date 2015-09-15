@@ -11,6 +11,19 @@ describe ProjectsRepository do
     it "returns all projects" do
       expect(repo.all.count).to eq 2
     end
+
+    context "there are archived projects" do
+      before do
+        2.times { create(:project, archived_at: Time.now) }
+      end
+
+      it "returns only not archived projects" do
+        expect(repo.all.count).to eq 2
+        repo.all.each do |project|
+          expect(project.archived_at).to be_nil
+        end
+      end
+    end
   end
 
   describe "#find" do

@@ -1,14 +1,18 @@
 class ProjectsRepository
   def all
-    Project.all.order(:id)
+    Project.where(archived_at: nil).order(:id)
   end
 
   def find(project_id)
     Project.find_by(id: project_id)
   end
 
+  def with_archived
+    Project.all.order(:id)
+  end
+
   def with_done_checks
-    all.includes(:checked_reviews)
+    with_archived.includes(:checked_reviews)
   end
 
   def persist(entity)
