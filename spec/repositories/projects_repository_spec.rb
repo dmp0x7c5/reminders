@@ -27,6 +27,7 @@ describe ProjectsRepository do
       Project.new(
         name: "reminders",
         email: "project@foo.pl",
+        channel_name: "sample-name",
       )
     end
 

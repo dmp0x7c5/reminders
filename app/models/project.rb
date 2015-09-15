@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true
+  validates :channel_name, presence: true
   has_many :project_checks, dependent: :destroy
   has_many :reminders, through: :project_checks
   has_many :checked_reviews,
