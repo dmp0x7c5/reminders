@@ -5,6 +5,11 @@
     = link_to "Sync projects with Slack", sync_projects_path, method: :post,
       class: 'btn btn-info', "data-confirm" => t('projects.sync.confirmation')
 
+    ul.nav.nav-tabs.datatable-filters
+      li.active
+        = link_to 'All', '#', data: { filter: 'all' }
+      li
+        = link_to 'Archived', '#', data: { filter: 'archived' }
     table.table.datatable
       thead
         tr
@@ -15,6 +20,7 @@
           th Review history
           th Enabled
           th Actions
+          th.hidden
 
       tbody
         - projects.each do |project|
@@ -33,3 +39,4 @@
               .btn-group
                 = link_to 'Edit', edit_project_path(project), class: 'btn btn-mini btn-success'
                 = link_to 'Archive', archive_project_path(project), class: 'btn btn-mini btn-danger', method: :post
+            td.hidden = project.status_text

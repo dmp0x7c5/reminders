@@ -1,5 +1,5 @@
 class ProjectDecorator < Draper::Decorator
-  delegate :id, :name, :enabled, :email
+  delegate :id, :name, :enabled, :email, :archived_at
 
   def created_at
     h.l object.created_at
@@ -32,5 +32,10 @@ class ProjectDecorator < Draper::Decorator
     else
       "nothing to show"
     end
+  end
+
+  def status_text
+    return "archived" unless archived_at.nil?
+    "all"
   end
 end
