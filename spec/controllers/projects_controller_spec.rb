@@ -15,7 +15,10 @@ describe ProjectsController do
     context "with valid params" do
       let(:expected_notice) { "Project was successfully updated." }
       let(:params) do
-        { id: project.id, project: { email: "new_project@email.com" } }
+        {
+          id: project.id,
+          project: { email: "new_project@email.com", channel_name: "name" },
+        }
       end
       it "redirect to projects index" do
         expect(subject)
@@ -29,14 +32,18 @@ describe ProjectsController do
     end
 
     context "with invalid params" do
-      let(:expected_notice) { "Project was successfully updated." }
       let(:params) do
         { id: project.id, project: { email: nil } }
       end
 
-      it "redirect to projects index" do
+      it "redirect to projects edit" do
         expect(subject)
           .to render_template(:edit)
+      end
+
+      it "not change project" do
+        expect { subject }
+          .to_not change { project }
       end
 
       context "without channel_name" do
