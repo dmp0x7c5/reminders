@@ -8,6 +8,8 @@ class UserNotificationMailer < ApplicationMailer
     end
   end
 
+  private
+
   def compose_subject
     "You have been assigned to do next #{@project_check.reminder.name}
     in #{@project_check.project.name}"
