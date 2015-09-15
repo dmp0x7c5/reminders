@@ -47,8 +47,10 @@
                   label for="project-#{pc.id}"
             td.assigned-person
               - if pc.has_appointed_review?
-                .btn.btn-default.disabled
-                  | Assigned: #{pc.assigned_reviewer}
+                .btn-group
+                  .btn.btn-default.disabled
+                    | #{pc.assigned_reviewer}
+                  = link_to 'Reassign', project_check_reassign_person_path(pc), class: 'btn btn-primary btn-sm reassign-random-button', disabled: !pc.enabled?, method: :post
 
               - else
                 = link_to 'Pick person', project_check_pick_person_path(pc), class: 'btn btn-primary btn-sm pick-random-button', disabled: !pc.enabled?
