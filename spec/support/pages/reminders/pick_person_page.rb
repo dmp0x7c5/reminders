@@ -5,5 +5,6 @@ module Reminders
     set_url "/project_checks{/project_check_id}/pick_person"
     sections :users, PickPersonUser,
              ".row .col-xs-12 table.table tbody tr"
+    element :flash_notice, ".flash-message"
   end
 end

@@ -10,6 +10,7 @@ module Reminders
     element :toggle_state_button, ".toggle-state a"
     element :assigned_reviewer, ".assigned-person"
     element :pick_random_button, ".pick-random-button"
+    element :reassign_random_button, ".reassign-random-button"
     section :history_table, ProjectChecksHistoryTable,
             :xpath, "ancestor::tbody/following-sibling::tbody",
             match: :first
