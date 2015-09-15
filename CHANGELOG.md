@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-09-15
+
+## Added
+
+* Listing last assignments of logged in user on home page
+* Notifications about coming close deadline sending to project's email
+* Email notifications for checker that he was assigned to complete reminder
+* Email notifications for checker that he was assigned to complete remider and there is no progress since X days
+* Possibility to pause users. It is possible to do it from admin or user can pause itself
+* Possibility to promote user to admin
+* Possibility to set default Slack channel for reminder. All notifications will be sent to that channel instead of project's channels
+* Possibility to archive users via rake task
+* Email is assigned to user account after login via Google
+* Simple form for editing project's email
+* Default project's email is set during sync with Slack
+* "Reassign person" feature to reminders
+* Field slack_channel to project's edition form
+
 # 2015-08-09
 
 ## Added
