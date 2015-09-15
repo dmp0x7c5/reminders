@@ -30,6 +30,18 @@ describe ProjectChecksRepository do
     it "returns all project checks for given reminder" do
       expect(repo.for_reminder(reminder).count).to eq 1
     end
+
+    context "there are archived projects" do
+      let(:archived_project) { create(:project, archived_at: Time.now) }
+      let!(:project_check_with_archived_project) do
+        create(:project_check, project: archived_project, reminder: reminder)
+      end
+
+      it "does not return project_checks with archived projects" do
+        expect(repo.for_reminder(reminder))
+          .to_not include(project_check_with_archived_project)
+      end
+    end
   end
 
   describe "#create" do

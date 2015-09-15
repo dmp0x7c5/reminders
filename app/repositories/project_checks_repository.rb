@@ -9,6 +9,7 @@ class ProjectChecksRepository
                  check_assignments: :user
                 )
       .where(reminder_id: reminder.id)
+      .where("projects.archived_at IS NULL")
       .order("projects.name")
   end
 
