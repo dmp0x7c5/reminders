@@ -66,4 +66,24 @@ describe ProjectsController do
       end
     end
   end
+
+  describe "archive" do
+    let(:params) { { id: project.id } }
+    let(:project) { create(:project) }
+    subject { post :archive, params }
+
+    it "calls Archive service" do
+      expect_any_instance_of(Projects::Archive).to receive(:call)
+      subject
+    end
+
+    it "redirects to projects index" do
+      expect(subject).to redirect_to(projects_path)
+    end
+
+    it "renders notice" do
+      subject
+      expect(flash[:notice]).to have_text("Project has been archived.")
+    end
+  end
 end
