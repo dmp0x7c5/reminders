@@ -38,6 +38,25 @@ describe ProjectsController do
         expect(subject)
           .to render_template(:edit)
       end
+
+      context "without channel_name" do
+        let(:params) do
+          {
+            id: project.id,
+            project: { email: "not@blank.com", channel_name: nil },
+          }
+        end
+
+        it "redirect to projects edit" do
+          expect(subject)
+            .to render_template(:edit)
+        end
+
+        it "not change project" do
+          expect { subject }
+            .to_not change { project }
+        end
+      end
     end
   end
 end
