@@ -22,8 +22,8 @@ class CheckAssignmentsRepository
     CheckAssignment.create(parameters)
   end
 
-  def delete(assignment_id)
-    all.find(assignment_id).destroy
+  def delete(assignment)
+    all.find(assignment.id).destroy
   end
 
   def update(assignment, parameters)
