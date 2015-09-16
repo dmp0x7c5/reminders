@@ -9,7 +9,7 @@ feature "pausing users" do
   let(:second_user) do
     create(:user,
            name: "John Smith",
-           email: "john@smith@netguru.pl",
+           email: "john@smith@foo.pl",
            paused: true)
   end
   let(:users_page) { Users::UsersPage.new }

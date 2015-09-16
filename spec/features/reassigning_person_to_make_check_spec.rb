@@ -13,7 +13,7 @@ feature "reassign user to perform check" do
     create(:user, uid: "12331", provider: "google_oauth2", email: "john@doe.pl")
   end
   let(:second_user) do
-    create(:user, name: "John Smith", email: "john@smith@netguru.pl")
+    create(:user, name: "John Smith", email: "john@smith@foo.pl")
   end
   let(:reminder_page) { Reminders::ReminderPage.new }
 

@@ -7,7 +7,7 @@ feature "toggling admin permissions" do
            email: "john@doe.pl", admin: true)
   end
   let(:second_user) do
-    create(:user, name: "John Smith", email: "john@smith@netguru.pl")
+    create(:user, name: "John Smith", email: "john@smith@foo.pl")
   end
   let(:page) { Users::UsersPage.new }
 
