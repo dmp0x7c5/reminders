@@ -20,7 +20,7 @@ describe ProjectsController do
           project: { email: "new_project@email.com", channel_name: "name" },
         }
       end
-      it "redirect to projects index" do
+      it "redirects to projects index" do
         expect(subject)
           .to redirect_to(projects_path)
       end
@@ -36,12 +36,12 @@ describe ProjectsController do
         { id: project.id, project: { email: nil } }
       end
 
-      it "redirect to projects edit" do
+      it "redirects to projects edit" do
         expect(subject)
           .to render_template(:edit)
       end
 
-      it "not change project" do
+      it "does not change project" do
         expect { subject }
           .to_not change { project }
       end
@@ -54,12 +54,12 @@ describe ProjectsController do
           }
         end
 
-        it "redirect to projects edit" do
+        it "redirects to projects edit" do
           expect(subject)
             .to render_template(:edit)
         end
 
-        it "not change project" do
+        it "does not change project" do
           expect { subject }
             .to_not change { project }
         end
