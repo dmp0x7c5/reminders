@@ -13,6 +13,10 @@ class ProjectDecorator < Draper::Decorator
     "active" unless object.enabled?
   end
 
+  def archive_button_class
+    "disabled" unless archived_at.nil?
+  end
+
   def checked_reviews
     ::ProjectCheckDecorator.decorate_collection object.checked_reviews
   end

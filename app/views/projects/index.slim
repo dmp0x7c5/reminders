@@ -38,5 +38,5 @@
             td
               .btn-group
                 = link_to 'Edit', edit_project_path(project), class: 'btn btn-mini btn-success'
-                = link_to 'Archive', archive_project_path(project), class: 'btn btn-mini btn-danger', method: :post
+                = link_to 'Archive', archive_project_path(project), class: "btn btn-mini btn-danger #{project.archive_button_class}", method: :post
             td.hidden = project.status_text
