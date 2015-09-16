@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# 2015-09-16
+
+## Added
+
+* Archivization of projects
+* Fixed destroying reminders and dependents project_checks, check_assignments and skills
+
 # 2015-09-15
 
 ## Added
