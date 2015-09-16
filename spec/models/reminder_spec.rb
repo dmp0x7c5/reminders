@@ -11,24 +11,20 @@ describe Reminder do
     end
     let!(:skill) { create(:skill, user: user, reminder: reminder) }
 
-    before { reminder.destroy }
-
     it "deletes reminder" do
-      expect { reminder.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { reminder.destroy }.to change { Reminder.count }.by(-1)
     end
 
     it "deletes dependent project_checks" do
-      expect { project_check.reload }
-        .to raise_error(ActiveRecord::RecordNotFound)
+      expect { reminder.destroy }.to change { ProjectCheck.count }.by(-1)
     end
 
     it "deletes dependent check_assignments" do
-      expect { check_assignment.reload }
-        .to raise_error(ActiveRecord::RecordNotFound)
+      expect { reminder.destroy }.to change { CheckAssignment.count }.by(-1)
     end
 
     it "deletes dependent skills" do
-      expect { skill.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { reminder.destroy }.to change { Skill.count }.by(-1)
     end
   end
 end
