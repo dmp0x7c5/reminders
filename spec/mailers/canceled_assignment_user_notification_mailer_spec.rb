@@ -7,9 +7,7 @@ describe CanceledAssignmentUserNotificationMailer do
   let(:project_check) { double(project: project, reminder: reminder) }
   let(:deliveries) { ActionMailer::Base.deliveries }
   let(:delivered_email) { deliveries.last }
-  subject do
-    described_class.canceled_assignment(user, project_check)
-  end
+  subject { described_class.canceled_assignment(user, project_check) }
 
   it "sends one email" do
     expect { subject.deliver_now }
@@ -17,7 +15,7 @@ describe CanceledAssignmentUserNotificationMailer do
       .by(1)
   end
 
-  it "set proper subject" do
+  it "sets proper subject" do
     subject.deliver_now
     expect(delivered_email.subject)
       .to include("has been canceled")
@@ -29,7 +27,7 @@ describe CanceledAssignmentUserNotificationMailer do
       .to include(user.email)
   end
 
-  it "set proper body" do
+  it "sets proper body" do
     subject.deliver_now
     expect(delivered_email.body)
       .to include(reminder.name)
