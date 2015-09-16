@@ -59,7 +59,7 @@ class RemindersController < ApplicationController
   end
 
   def destroy
-    reminders_repository.delete reminder
+    Reminders::Delete.new(reminder).call
     redirect_to reminders_url, notice: "Reminder was successfully destroyed."
   end
 
