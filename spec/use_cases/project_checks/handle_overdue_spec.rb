@@ -9,7 +9,8 @@ describe ProjectChecks::HandleOverdue do
   let(:deadline_text) { "foo bar baz" }
   let(:reminder) do
     double(:reminder, name: "bar baz", valid_for_n_days: 5,
-                      deadline_text: deadline_text)
+                      deadline_text: deadline_text,
+                      slack_channel: nil)
   end
   let(:check) { double(:project_check, reminder: reminder, project: project) }
   let(:notifier) { double(:notifier, send_message: true) }

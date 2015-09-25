@@ -17,7 +17,12 @@ module ProjectChecks
     private
 
     def mail!
+      return unless email_enabled?
       mailer.check_reminder(notification, check).deliver_now
+    end
+
+    def email_enabled?
+      check.reminder.slack_channel.nil?
     end
 
     def notify!
