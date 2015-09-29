@@ -27,6 +27,7 @@ gem "whenever"
 
 # deployment
 
+gem "airbrussh", require: false
 gem "capistrano"
 gem "capistrano-rails"
 gem "capistrano-bundler"
