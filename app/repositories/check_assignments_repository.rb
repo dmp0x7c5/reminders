@@ -23,7 +23,12 @@ class CheckAssignmentsRepository
   end
 
   def delete(assignment)
-    all.find(assignment.id).destroy
+    id = if assignment.is_a?(CheckAssignment)
+           assignment.id
+         else
+           assignment
+         end
+    all.find(id).destroy
   end
 
   def update(assignment, parameters)
