@@ -36,10 +36,10 @@ describe UserReminderMailer do
       .to include(user.email)
   end
 
-  it "sends to team email as cc" do
+  it "does not send to team email as cc" do
     subject.deliver_now
     expect(delivered_email.cc)
-      .to include("abc-def@foo.com")
+      .to be_nil
   end
 
   it "set proper body" do
