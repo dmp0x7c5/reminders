@@ -1,4 +1,7 @@
 class ProjectChecksController < ApplicationController
+  before_action :authenticate_admin!,
+                only: [:override_deadline]
+
   expose(:project_checks_repository) { ProjectChecksRepository.new }
   expose(:check) do
     project_checks_repository.find(
@@ -49,4 +52,23 @@ class ProjectChecksController < ApplicationController
     end
   end
   # rubocop:enable Metrics/AbcSize
+
+  def override_deadline
+    redirect_args = if override_deadline_call
+                      { notice: "All right! Initial due date changed!" }
+                    else
+                      { alert: check.errors.full_messages.join(", ") }
+                    end
+    redirect_to reminder_path(check.reminder), redirect_args
+  end
+
+  private
+
+  def override_deadline_call
+    ProjectChecks::OverrideDeadline.new(
+      check: check,
+      project_checks_repository: project_checks_repository,
+      new_days_left: params[:project_check_days_left],
+    ).call
+  end
 end

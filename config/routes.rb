@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :project_checks do
     post :toggle_state
+    post :override_deadline
     get :pick_person
     post :reassign_person
     post :assign_checker
