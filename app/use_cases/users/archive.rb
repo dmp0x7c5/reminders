@@ -7,7 +7,7 @@ module Users
     end
 
     def call
-      user.archived_at = Time.zone.now
+      user.archived_at = Time.current
       user.save!
     end
   end

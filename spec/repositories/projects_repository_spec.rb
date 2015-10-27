@@ -14,7 +14,7 @@ describe ProjectsRepository do
 
     context "there are archived projects" do
       before do
-        2.times { create(:project, archived_at: Time.now) }
+        2.times { create(:project, archived_at: Time.current) }
       end
 
       it "returns only not archived projects" do
