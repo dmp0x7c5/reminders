@@ -26,7 +26,7 @@ describe UsersWithSkillRepository do
   describe "#active" do
     let(:user) { create(:user) }
     let(:user_without_skills) { create(:user) }
-    let(:archived_user) { create(:user, archived_at: Time.now) }
+    let(:archived_user) { create(:user, archived_at: Time.current) }
 
     before do
       create(:skill, user_id: user.id, reminder_id: reminder.id)

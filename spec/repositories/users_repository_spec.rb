@@ -77,7 +77,7 @@ describe UsersRepository do
 
   describe "#active" do
     before do
-      2.times { create(:user, archived_at: Time.now) }
+      2.times { create(:user, archived_at: Time.current) }
       2.times { create(:user, archived_at: nil) }
     end
 

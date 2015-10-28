@@ -18,10 +18,10 @@ describe ProjectChecks::OverrideDeadline do
   describe "#call" do
     context "when new days changed" do
       it "updates project check created at field" do
-        Timecop.freeze(Date.today - valid_for_n_days.days) do
+        Timecop.freeze(Date.current - valid_for_n_days.days) do
           expect { subject }.to change { check.created_at }
-            .from(Time.now)
-            .to(Time.now + 10.days)
+            .from(Time.current)
+            .to(Time.current + 10.days)
         end
       end
     end
@@ -32,7 +32,7 @@ describe ProjectChecks::OverrideDeadline do
 
     context "when project was aleady checked" do
       let(:new_days_left) { 100 }
-      let(:last_check_date) { Date.today }
+      let(:last_check_date) { Date.current }
       it { is_expected.to eq false }
     end
   end

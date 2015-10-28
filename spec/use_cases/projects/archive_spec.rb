@@ -6,9 +6,9 @@ describe Projects::Archive do
 
   describe "#call" do
     it "sets current date on archived_at field of passed project" do
-      Timecop.freeze(Time.now) do
+      Timecop.freeze(Time.current) do
         expect { service.call }.to change { project.archived_at }
-        expect(project.archived_at).to eq(Time.now)
+        expect(project.archived_at).to eq(Time.current)
       end
     end
   end

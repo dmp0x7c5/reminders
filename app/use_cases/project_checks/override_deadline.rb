@@ -20,7 +20,7 @@ module ProjectChecks
     private
 
     def calc_new_created_at
-      Time.now + (new_days_left - check.reminder.valid_for_n_days).days
+      Time.current + (new_days_left - check.reminder.valid_for_n_days).days
     end
 
     def allow_override?

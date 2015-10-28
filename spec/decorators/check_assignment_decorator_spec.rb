@@ -31,7 +31,7 @@ describe CheckAssignmentDecorator do
   describe "#row_class" do
     context "completion_date is present" do
       it "returns class active" do
-        check_assignment.completion_date = Time.now
+        check_assignment.completion_date = Time.current
         expect(decorator.row_class).to eq("active")
       end
     end

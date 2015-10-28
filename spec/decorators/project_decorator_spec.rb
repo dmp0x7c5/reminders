@@ -6,7 +6,7 @@ describe ProjectDecorator do
 
   describe "#archive_button_class" do
     context "project is archived" do
-      before { project.archived_at = Time.now }
+      before { project.archived_at = Time.current }
       it { expect(decorator.archive_button_class).to eq("disabled") }
     end
 

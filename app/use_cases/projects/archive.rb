@@ -7,7 +7,7 @@ module Projects
     end
 
     def call
-      project.archived_at = Time.zone.now
+      project.archived_at = Time.current
       project.save!
     end
   end

@@ -32,7 +32,7 @@ describe ProjectChecksRepository do
     end
 
     context "there are archived projects" do
-      let(:archived_project) { create(:project, archived_at: Time.now) }
+      let(:archived_project) { create(:project, archived_at: Time.current) }
       let!(:project_check_with_archived_project) do
         create(:project_check, project: archived_project, reminder: reminder)
       end
