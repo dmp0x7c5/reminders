@@ -26,7 +26,7 @@ describe Projects::SyncWithSlackChannels do
   end
 
   before do
-    allow(AppConfig).to receive(:domain) { "foo.pl" }
+    AppConfig["domain"] = "foo.pl"
   end
 
   describe "#call" do
