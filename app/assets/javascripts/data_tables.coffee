@@ -1,19 +1,11 @@
 ready = ->
+  return if $('.datatable').size() == 0
+
   dataTable = $('.datatable').DataTable
     paging: false
     searching: true
     bInfo: false
     order: []
-    searchCols: [
-      null
-      null
-      null
-      null
-      null
-      null
-      null
-      { search: "all" }
-    ]
 
   handleFilterClick = (e) ->
     e.preventDefault()
