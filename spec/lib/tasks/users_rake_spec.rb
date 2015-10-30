@@ -55,7 +55,7 @@ describe "rake users" do
       user1.save(validate: false)
       user2.save(validate: false)
       user3.save(validate: false)
-      allow(AppConfig).to receive(:domain) { "foo.pl" }
+      AppConfig["domain"] = "foo.pl"
     end
 
     it "add email to all active users" do

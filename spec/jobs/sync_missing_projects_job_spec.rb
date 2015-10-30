@@ -59,8 +59,7 @@ describe SyncMissingProjectsJob do
   describe "#perform" do
     context "with Slack disabled" do
       before do
-        allow(AppConfig).to receive(:slack_enabled)
-          .and_return(false)
+        AppConfig["slack_enabled"] = false
       end
 
       it "does nothing" do
@@ -74,8 +73,7 @@ describe SyncMissingProjectsJob do
 
     context "with Slack enabled" do
       before do
-        allow(AppConfig).to receive(:slack_enabled)
-          .and_return(true)
+        AppConfig["slack_enabled"] = true
       end
 
       it "creates project" do

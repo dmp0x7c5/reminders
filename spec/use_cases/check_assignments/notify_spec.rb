@@ -8,8 +8,7 @@ describe CheckAssignments::Notify do
   describe "#notify" do
     context "with disabled Slack" do
       before do
-        allow(AppConfig).to receive(:slack_enabled)
-          .and_return(false)
+        AppConfig["slack_enabled"] = false
       end
 
       it "returns message of unsuccessful notification" do
@@ -22,8 +21,7 @@ describe CheckAssignments::Notify do
 
     context "with enabled Slack" do
       before do
-        allow(AppConfig).to receive(:slack_enabled)
-          .and_return(true)
+        AppConfig["slack_enabled"] = true
         allow_any_instance_of(Notifier).to receive(:notify_slack)
           .and_return("ok" => "")
       end
