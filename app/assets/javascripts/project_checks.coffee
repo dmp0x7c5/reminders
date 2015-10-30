@@ -1,4 +1,6 @@
 ready = ->
+  return if $('.project-checks-datatable').size() == 0
+
   dataTable = $('.project-checks-datatable').DataTable
     paging: false
     searching: true
@@ -14,6 +16,11 @@ ready = ->
     dataTable.columns([-1]).search(filter).draw()
 
   $('.project-checks-filters a').click handleFilterClick
+
+  $('input.project-check-switch').change (e) ->
+    $(this).parent().submit()
+
+  dataTable.columns([-1]).search('enabled').draw()
 
 $(document).on 'page:load', ready
 $(document).ready ready
