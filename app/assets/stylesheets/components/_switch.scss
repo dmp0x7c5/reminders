@@ -1,54 +1,56 @@
-.project-switch {
-  position: absolute;
-  margin-left: -9999px;
-  visibility: hidden;
-}
+@each $name in project, project-check {
+  .#{$name}-switch {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+  }
 
-.project-switch + label {
-  display: block;
-  position: relative;
-  cursor: pointer;
-  outline: none;
-  user-select: none;
-  padding: 1px;
-  width: 60px;
-  height: 30px;
-  background-color: $gray-light;
-  border-radius: 4px;
-  transition: background 0.4s;
-}
+  .#{$name}-switch + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    padding: 1px;
+    width: 60px;
+    height: 30px;
+    background-color: $gray-light;
+    border-radius: 4px;
+    transition: background 0.4s;
+  }
 
-.project-switch + label:before,
-.project-switch + label:after {
-  display: block;
-  position: absolute;
-  content: "";
-}
+  .#{$name}-switch + label:before,
+  .#{$name}-switch + label:after {
+    display: block;
+    position: absolute;
+    content: "";
+  }
 
-.project-switch + label:before {
-  top: 1px;
-  left: 1px;
-  bottom: 1px;
-  right: 1px;
-  background-color: $gray-light;
-  border-radius: 4px;
-  transition: background 0.4s;
-}
+  .#{$name}-switch + label:before {
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    right: 1px;
+    background-color: $gray-light;
+    border-radius: 4px;
+    transition: background 0.4s;
+  }
 
-.project-switch + label:after {
-  top: 2px;
-  left: 2px;
-  bottom: 2px;
-  width: 26px;
-  background-color: #fff;
-  border-radius: 4px;
-  transition: margin 0.4s, background 0.4s;
-}
+  .#{$name}-switch + label:after {
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    width: 26px;
+    background-color: #fff;
+    border-radius: 4px;
+    transition: margin 0.4s, background 0.4s;
+  }
 
-.project-switch:checked + label:before {
-  background-color: $btn-success-bg;
-}
+  .#{$name}-switch:checked + label:before {
+    background-color: $btn-success-bg;
+  }
 
-.project-switch:checked + label:after {
-  margin-left: 30px;
+  .#{$name}-switch:checked + label:after {
+    margin-left: 30px;
+  }
 }
