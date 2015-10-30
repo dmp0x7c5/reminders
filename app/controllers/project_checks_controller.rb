@@ -1,6 +1,6 @@
 class ProjectChecksController < ApplicationController
   before_action :authenticate_admin!,
-                only: [:override_deadline]
+                only: [:override_deadline, :toggle_state]
 
   expose(:project_checks_repository) { ProjectChecksRepository.new }
   expose(:check) do

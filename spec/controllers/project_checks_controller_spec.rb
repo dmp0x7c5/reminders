@@ -53,4 +53,45 @@ describe ProjectChecksController do
       end
     end
   end
+
+  describe "#toggle_state" do
+    let(:params) { { project_check_id: project_check.id } }
+    subject { post :toggle_state, params }
+
+    context "when user is an admin" do
+      it "toggle project state" do
+        expect { subject }.to change { project_check.reload.enabled }
+          .from(true).to(false)
+      end
+
+      it "renders a notice" do
+        subject
+        expect(flash[:notice]).to have_text("All right!")
+      end
+
+      context "and state can't be changed beceuse of errors" do
+        before do
+          allow_any_instance_of(ProjectCheck)
+            .to receive(:save).and_return(false)
+          allow_any_instance_of(ActiveModel::Errors)
+            .to receive(:full_messages).and_return(["Unable to process"])
+        end
+
+        it "renders alert" do
+          subject
+          expect(flash[:alert])
+            .to have_text("Unable to process")
+        end
+      end
+    end
+
+    context "when user is not an admin" do
+      let(:user) { create(:user) }
+
+      it "doesn't toggle project state" do
+        expect { subject }
+          .not_to change { project_check.reload.enabled }
+      end
+    end
+  end
 end
