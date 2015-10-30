@@ -2,11 +2,13 @@
   .col-xs-12
     ul.nav.nav-tabs.project-checks-filters
       li.active
-        = link_to 'All', '#', data: { filter: '' }
+        = link_to 'All', '#', data: { filter: 'enabled' }
       li
-        = link_to 'Overdue', '#', data: { filter: 'overdue' }
+        = link_to 'Overdue', '#', data: { filter: 'enabled_and_overdue' }
       li
-        = link_to 'Not checked yet', '#', data: { filter: 'not_checked_yet' }
+        = link_to 'Not checked yet', '#', data: { filter: 'enabled_and_not_checked_yet' }
+      li
+        = link_to 'Disabled', '#', data: { filter: 'disabled' }
     table.table.project-checks-datatable
       thead
         tr
@@ -58,8 +60,8 @@
             - if current_user.admin?
               td.toggle-state
                 = form_tag project_check_toggle_state_path(pc)
-                  input.project-switch type="checkbox" checked=("checked" if pc.enabled?) id="project-#{pc.id}"
-                  label for="project-#{pc.id}"
+                  input.toggle-switch.js-toggle-switch-project-check type="checkbox" checked=("checked" if pc.enabled?) id="project-check-#{pc.id}"
+                  label for="project-check-#{pc.id}"
             td.assigned-person
               - if pc.has_appointed_review?
                 .btn-group

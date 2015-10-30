@@ -55,4 +55,35 @@ describe ProjectCheckDecorator do
       end
     end
   end
+
+  describe "#status_text" do
+    before do
+      allow(decorator).to receive(:enabled?) { enabled }
+      allow(decorator).to receive(:overdue?) { overdue }
+      allow(decorator).to receive(:checked?) { checked }
+    end
+    subject { decorator.status_text }
+
+    context "when project check is enabled" do
+      let(:enabled) { true }
+      let(:overdue) { false }
+      let(:checked) { true }
+      it { is_expected.to eq "enabled" }
+
+      context "and overdue" do
+        let(:overdue) { true }
+        it { is_expected.to eq "enabled_and_overdue" }
+      end
+
+      context "and not checked yet" do
+        let(:checked) { false }
+        it { is_expected.to eq "enabled_and_not_checked_yet" }
+      end
+    end
+
+    context "when project check is disabled" do
+      let(:enabled) { false }
+      it { is_expected.to eq "disabled" }
+    end
+  end
 end

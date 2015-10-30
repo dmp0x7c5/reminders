@@ -22,7 +22,7 @@
             td = user.admin_label
             td.centered
               = form_tag toggle_paused_user_path(user)
-                input.project-switch type="checkbox" checked=("checked" unless user.paused) id="user-#{user.id}"
+                input.toggle-switch.js-toggle-switch type="checkbox" checked=("checked" unless user.paused) id="user-#{user.id}"
                 label for="user-#{user.id}"
             td
               .btn-group
