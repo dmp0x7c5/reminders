@@ -60,12 +60,13 @@ class ProjectCheckDecorator < Draper::Decorator
   end
 
   def status_text
+    return "disabled" unless enabled?
     if overdue?
-      "overdue"
+      "enabled_and_overdue"
     elsif !checked?
-      "not_checked_yet"
+      "enabled_and_not_checked_yet"
     else
-      ""
+      "enabled"
     end
   end
 
