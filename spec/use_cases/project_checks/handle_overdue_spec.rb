@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe ProjectChecks::HandleOverdue do
   let(:service) {  described_class.new(check, days_diff, notifier) }

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe CheckAssignments::Notify do
   let(:service) { described_class.new }

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Reminders::Create do
   let(:reminders_repo) { InMemoryRepository.new }
