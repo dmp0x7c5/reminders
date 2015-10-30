@@ -17,7 +17,7 @@ ready = ->
 
   $('.project-checks-filters a').click handleFilterClick
 
-  $('input.project-check-switch').change (e) ->
+  $('input.js-toggle-switch-project-check').change (e) ->
     $(this).parent().submit()
 
   dataTable.columns([-1]).search('enabled').draw()

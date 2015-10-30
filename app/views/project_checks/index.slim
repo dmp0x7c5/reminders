@@ -60,7 +60,7 @@
             - if current_user.admin?
               td.toggle-state
                 = form_tag project_check_toggle_state_path(pc)
-                  input.project-check-switch type="checkbox" checked=("checked" if pc.enabled?) id="project-check-#{pc.id}"
+                  input.toggle-switch.js-toggle-switch-project-check type="checkbox" checked=("checked" if pc.enabled?) id="project-check-#{pc.id}"
                   label for="project-check-#{pc.id}"
             td.assigned-person
               - if pc.has_appointed_review?

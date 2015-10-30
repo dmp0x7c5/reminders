@@ -33,7 +33,7 @@
               = project.show_history
             td
               = form_tag toggle_state_project_path(project)
-                input.project-switch type="checkbox" checked=("checked" if project.enabled) id="project-#{project.id}"
+                input.toggle-switch.js-toggle-switch type="checkbox" checked=("checked" if project.enabled) id="project-#{project.id}"
                 label for="project-#{project.id}"
             td
               .btn-group

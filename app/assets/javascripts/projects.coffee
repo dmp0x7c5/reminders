@@ -1,5 +1,5 @@
 ready = ->
-  $('input.project-switch').change (e) ->
+  $('input.js-toggle-switch').change (e) ->
     $(this).parent().submit()
 
 $(document).on 'page:load', ready
