@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe ProjectChecks::HandleNotificationDay do
   let(:service) {  described_class.new(check, days_diff, notifier) }

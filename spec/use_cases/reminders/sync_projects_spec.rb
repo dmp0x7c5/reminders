@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Reminders::SyncProjects do
   let(:reminder) { double(:reminder, id: 1) }

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe SyncMissingProjectsJob do
   let(:job) do
