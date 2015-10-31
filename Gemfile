@@ -8,7 +8,7 @@ gem "decent_exposure"
 gem "draper"
 gem "faker"
 gem "jquery-datatables-rails"
-gem "jquery-rails"
+gem "jquery-rails", "4.0.4" # version 4.0.5 breaks jquery-datatables
 gem "liquid"
 gem "lograge"
 gem "netguru_theme"
