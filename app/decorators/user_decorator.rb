@@ -15,6 +15,15 @@ class UserDecorator < Draper::Decorator
               id: "toggle-admin-button"
   end
 
+  def archive_user_btn
+    h.link_to "Archive",
+              archive_user_path(id: id),
+              class: "btn btn-danger",
+              data: { confirm: "Are you sure you want to archive #{name}?" },
+              id: "archive-user-button",
+              method: :post
+  end
+
   def row_class
     return unless paused
     "active"

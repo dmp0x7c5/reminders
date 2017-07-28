@@ -20,6 +20,27 @@ describe UserDecorator do
     end
   end
 
+  describe "#archive_user_btn" do
+    let(:btn) { decorator.archive_user_btn }
+
+    it "renders <a> tag" do
+      expect(btn).to have_tag("a")
+    end
+
+    it "has post method attribute" do
+      expect(btn).to have_tag("a", with: { "data-method" => "post" })
+    end
+
+    it "has proper url" do
+      expect(btn).to have_tag("a", with: { "href" => "/users/1/archive" })
+    end
+
+    it "has proper confirmation message" do
+      confirm = "Are you sure you want to archive #{user.name}?"
+      expect(btn).to have_tag("a", with: { "data-confirm" => confirm })
+    end
+  end
+
   describe "#row_class" do
     let(:btn) { decorator.toggle_admin_btn }
 
