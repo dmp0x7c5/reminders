@@ -25,4 +25,9 @@ class UsersController < ApplicationController
     state = (paused) ? "paused" : "unpaused"
     redirect_to root_url, notice: "You have been #{state} yourself."
   end
+
+  def archive
+    Users::Archive.new(users_repo.find(params[:id])).call
+    redirect_to users_url, notice: "User has been archived."
+  end
 end

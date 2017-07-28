@@ -26,9 +26,10 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index] do
+    post :archive, on: :member
     post :toggle_admin, on: :member
-    post :toggle_paused_by_user, on: :member
     post :toggle_paused, on: :member
+    post :toggle_paused_by_user, on: :member
   end
 
   root to: "visitors#index"
