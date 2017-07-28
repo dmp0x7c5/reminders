@@ -1,14 +1,8 @@
 require "rails_helper"
 
-feature "toggling admin permissions" do
-  let(:user) do
-    create(:user,
-           uid: "12331", provider: "google_oauth2",
-           email: "john@doe.pl", admin: true)
-  end
-  let(:second_user) do
-    create(:user, name: "John Smith", email: "john@smith@foo.pl")
-  end
+feature "toggling admin permissions and archivisation" do
+  let(:user) { create(:admin) }
+  let(:second_user) { create(:user) }
   let(:page) { Users::UsersPage.new }
 
   before do
@@ -32,5 +26,19 @@ feature "toggling admin permissions" do
     page.user_rows.second.toggle_admin_permissions!
 
     expect(page.user_rows.second).to_not have_admin_label
+  end
+
+  scenario "archiving user" do
+    page.load
+
+    expect(page.user_rows.first).to have_text(user.name)
+    expect(page.user_rows.second).to have_text(second_user.name)
+
+    expect(page.user_rows.count).to eq 2
+
+    page.user_rows.second.archive_user!
+    expect(page.flash_notice.text).to include("User has been archived.")
+
+    expect(page.user_rows.count).to eq 1
   end
 end

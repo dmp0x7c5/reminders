@@ -2,11 +2,16 @@ module Users
   class UsersTableRow < SitePrism::Section
     element :admin, ".pick-random-button"
     element :toggle_admin_button, "#toggle-admin-button"
+    element :archve_user_button, "#archive-user-button"
     element :admin_label, ".label.label-primary"
     element :toggle_paused_button, ".toggle-switch"
 
     def toggle_admin_permissions!
       toggle_admin_button.click
+    end
+
+    def archive_user!
+      archve_user_button.click
     end
 
     def paused?
